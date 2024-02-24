@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DependencyResolvers\**" />
+    <Content Remove="DependencyResolvers\**" />
+    <EmbeddedResource Remove="DependencyResolvers\**" />
+    <None Remove="DependencyResolvers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="7.1.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
@@ -17,10 +24,6 @@
     <ProjectReference Include="..\HotelGame.Core\HotelGame.Core.csproj" />
     <ProjectReference Include="..\HotelGame.DataAccess\HotelGame.DataAccess.csproj" />
     <ProjectReference Include="..\HotelGame.Entities\HotelGame.Entities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DependencyResolvers\" />
   </ItemGroup>
 
 </Project>
