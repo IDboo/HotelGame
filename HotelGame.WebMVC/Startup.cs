@@ -20,6 +20,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelGame.WebMVC.Configurations;
+using HotelGame.Business.Configuration;
 
 namespace HotelGame.WebMVC
 {
@@ -43,6 +45,8 @@ namespace HotelGame.WebMVC
 
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureRepositories.AddService(services, Configuration);
+            ConfigureDependencies.AddServices(services);
             var builder = services.AddControllersWithViews();
 
 #if DEBUG

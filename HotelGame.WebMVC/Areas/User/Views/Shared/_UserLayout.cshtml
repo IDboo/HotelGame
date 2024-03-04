@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HotelGame.WebMVC</title>
     
-    @await Html.PartialAsync("_CssPartialView")
+    @await Html.PartialAsync("_UserCssPartialView")
 
 </head>
 <body>
 
-    <partial name="_HeaderPartialView" />
+    <partial name="_UserHeaderPartialView" />
 
 
     <div class="container">
@@ -19,9 +19,9 @@
         </main>
     </div>
 
-    <partial name="_FooterPartialView" />
+    <partial name="_UserFooterPartialView" />
 
-    @await Html.PartialAsync("_JsPartialView");
+    @await Html.PartialAsync("_UserJsPartialView");
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
