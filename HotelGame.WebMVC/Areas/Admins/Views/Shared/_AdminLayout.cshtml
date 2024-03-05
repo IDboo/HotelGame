@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HotelGame.WebMVC</title>
+    
+    @await Html.PartialAsync("_AdminCssPartialView")
+
+</head>
+<body id="page-top">
+
+    <div id="wrapper">
+
+        <partial name="_AdminSideBarPartialView" />
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <partial name="_AdminHeaderPartialView" />
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <partial name="_AdminFooterPartialView" />
+
+    @await Html.PartialAsync("_AdminJsPartialView");
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

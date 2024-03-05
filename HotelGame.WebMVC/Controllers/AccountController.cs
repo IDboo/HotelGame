@@ -42,7 +42,7 @@ namespace HotelGame.WebMVC.Controllers
                     }
                     else if (user.Roles.Contains("User"))
                     {
-                        return RedirectToAction("Index", "Home", new { area = "Users" });
+                        return RedirectToAction("Index", "Dashboard", new { area = "Users" });
 
                         /*return RedirectToAction("Index", "Dashboard","Admin/User");*/
                     }
