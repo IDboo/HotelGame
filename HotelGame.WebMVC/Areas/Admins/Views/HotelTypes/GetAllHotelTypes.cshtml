@@ -1,0 +1,181 @@
+﻿@model HotelGame.WebMVC.Models.HotelTypes.GetAllHotelTypesViewModel
+
+@{
+    ViewData["Title"] = "GetAllHotelTypes";
+    Layout = "~/Areas/Admins/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main id="main" class="main">
+
+    @*Add Category Modal Start*@
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Otel Tipi Ekle</h5>
+            <p>Yeni Otel Tipi Eklemek İçin Tıklayın</p>
+
+            <!-- Vertically centered Modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                Ekle
+            </button>
+            <div class="modal fade" id="verticalycentered" tabindex="-1" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Otel Tipi Adını Yazın</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Vertical Form -->
+                            <form class="row g-3" asp-controller="HotelTypes" asp-action="Add" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Otel Tipi Adı</label>
+                                    <input asp-for="Name" id="Name" type="text" class="form-control" placeholder="Otel Tipi Adı">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                    <button type="submit" class="btn btn-primary" value="Add">Ekle</button>
+                                </div>
+                            </form><!-- Vertical Form -->
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Vertically centered Modal-->
+
+        </div>
+    </div>
+    @*Add Category Modal End*@
+
+    @*Category Data Table Start*@
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Otel Tipleri Listesi</h5>
+                        @if (Model != null)
+                        {
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable" id="categoriesTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Otel Tipi</th>
+                                        <th scope="col">Eklenme Tarihi</th>
+                                        <th scope="col">Güncelle</th>
+                                        <th scope="col">Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var category in Model.HotelTypes)
+                                    {
+                                        <tr>
+                                            <th scope="row">@category.Id</th>
+                                            <td>@category.Name</td>
+                                            <td>@category.CreatedTime</td>
+                                            <td><button type="button" onclick="showUpdateModal(@category.Id, '@category.Name')" class="btn btn-outline-warning">Güncelle</button></td>
+
+                                            <td><a type="submit" onclick="submitResult(event)" data-category-id="@category.Id" id="btn-delete" href="/Admins/HotelTypes/Delete/@category.Id" class="btn btn-outline-danger">Sil</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!-- End Table with stripped rows -->
+                        }
+                        else
+                        {
+                            <p>Hiç Otel Tipi Bulunamadı</p>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*Category Data Table End*@
+
+
+    @*Update Category Modal Start*@
+    <div class="modal fade" id="updateCategory" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Yeni Otel Tipini Yazın</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Vertical Form -->
+                    <form class="row g-3" asp-controller="HotelTypes" asp-action="Update" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Otel Tipi</label>
+                            <input asp-for="Name" id="Name" type="text" class="form-control" placeholder="Yeni Otel Tipi">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                            <button type="submit" class="btn btn-primary" value="Update">Güncelle</button>
+                        </div>
+                    </form><!-- Vertical Form -->
+                </div>
+            </div>
+        </div>
+    </div><!-- End Vertically centered Modal-->
+    @*Update Category Modal End*@
+
+
+    <script>
+
+        function showUpdateModal(categoryId, categoryName) {
+            debugger;
+            // item bilgilerini modal içine doldur
+            document.getElementById("Name").value = categoryName; // Yeni item adı alanına bilgiyi yerleştir
+            var updateForm = document.querySelector("#updateCategory form");
+            updateForm.action = `/Admins/HotelTypes/Update/${categoryId}`; // Formun gönderileceği URL'yi güncelle
+
+            // Modalı göster
+            var updateCategoryModal = new bootstrap.Modal(document.getElementById("updateCategory"));
+            updateCategoryModal.show();
+        }
+
+        function submitResult(e) {
+            e.preventDefault();
+            const categoryId = e.target.getAttribute("data-category-id");
+            if (!categoryId) {
+                console.error("Veri kimliği alınamadı.");
+                return;
+            }
+
+            Swal.fire({
+                title: 'Otel Tipini Silmek İstediğinize Emin Misiniz?',
+                text: "Eğer kabul ederseniz seçtiğiniz otel tipi silinecektir.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet Kabul Ediyorum',
+                cancelButtonText: 'Vazgeç',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/Admins/HotelTypes/Delete/${categoryId}`, {
+                        method: 'DELETE',
+                    });
+                    Swal.fire(
+                        'Otel Tipi Silindi',
+                        'Seçili otel tipi başarıyla silinmiştir',
+                        'success'
+                    );
+                    location.reload();
+                }
+            });
+        }
+
+
+
+
+    </script>
+
+
+</main><!-- End #main -->
+

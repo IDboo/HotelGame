@@ -7,22 +7,37 @@
     
     @await Html.PartialAsync("_AdminCssPartialView")
 
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#tiny'
+                                            plugins: [
+                'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
+                'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+                'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | a11ycheck casechange blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify |' +
+                'bullist numlist checklist outdent indent | removeformat | code table help'
+        })
+    </script>
+
 </head>
 <body id="page-top">
 
-    <div id="wrapper">
+    <script src="~/lib/jquery/dist/jquery-3.3.1.js"></script>
 
-        <partial name="_AdminSideBarPartialView" />
+    <partial name="_AdminHeaderPartialView" />
 
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <partial name="_AdminHeaderPartialView" />
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
-            </div>
+
+
+    <partial name="_AdminSideBarPartialView" />
+
+    <main role="main" class="main">
+        <div class="pagetitle">
+            @RenderBody()
         </div>
-    </div>
+    </main>
 
     <partial name="_AdminFooterPartialView" />
 
