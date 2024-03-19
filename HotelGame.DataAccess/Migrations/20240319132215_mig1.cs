@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HotelGame.DataAccess.Migrations
 {
-    public partial class mig_1 : Migration
+    public partial class mig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -481,17 +481,17 @@ namespace HotelGame.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { 1, "1f6ef507-f7d8-4741-9cfd-742bd5ead59f", "Admin Account", "Admin", "ADMIN" });
+                values: new object[] { 1, "9140d1c2-81b8-4291-bded-00b437b9e057", "Admin Account", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { 2, "2a68bb26-56f5-4fd2-9d69-6bc721f473b4", "User Account", "User", "USER" });
+                values: new object[] { 2, "e3b47875-3fcd-4ee1-ad88-e4ad77a1e449", "User Account", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { 3, "1ec72559-e2b3-4d49-acb7-6305ada439cd", "ProjectAdmin Account", "ProjectAdmin", "PROJECTADMİN" });
+                values: new object[] { 3, "7c4b3d7a-2aec-41bc-976c-0f151a2f73e1", "ProjectAdmin Account", "ProjectAdmin", "PROJECTADMİN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

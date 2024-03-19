@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelGame.DataAccess.Migrations
 {
     [DbContext(typeof(HotelGameContext))]
-    [Migration("20240224123323_mig_1")]
-    partial class mig_1
+    [Migration("20240319132215_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -363,7 +363,7 @@ namespace HotelGame.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "1f6ef507-f7d8-4741-9cfd-742bd5ead59f",
+                            ConcurrencyStamp = "9140d1c2-81b8-4291-bded-00b437b9e057",
                             Description = "Admin Account",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
@@ -371,7 +371,7 @@ namespace HotelGame.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "2a68bb26-56f5-4fd2-9d69-6bc721f473b4",
+                            ConcurrencyStamp = "e3b47875-3fcd-4ee1-ad88-e4ad77a1e449",
                             Description = "User Account",
                             Name = "User",
                             NormalizedName = "USER"
@@ -379,7 +379,7 @@ namespace HotelGame.DataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "1ec72559-e2b3-4d49-acb7-6305ada439cd",
+                            ConcurrencyStamp = "7c4b3d7a-2aec-41bc-976c-0f151a2f73e1",
                             Description = "ProjectAdmin Account",
                             Name = "ProjectAdmin",
                             NormalizedName = "PROJECTADMİN"
