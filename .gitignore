@@ -362,8 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /HotelGame.DataAccess/Concrete/EntityFramework/HotelGameContext.cs
-/HotelGame.DataAccess/Concrete/EntityFramework/HotelGameContext.cs
+/HotelGame.WebMVC/appsettings.json
 /HotelGame.WebMVC/appsettings.Development.json
-/HotelGame.DataAccess/Migrations/20240319200112_mig1.cs
+/HotelGame.DataAccess/Migrations/20240319132215_mig1.cs
 /HotelGame.DataAccess/Migrations/HotelGameContextModelSnapshot.cs
-/HotelGame.DataAccess/Migrations/20240319200112_mig1.Designer.cs

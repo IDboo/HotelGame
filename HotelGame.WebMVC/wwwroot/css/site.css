@@ -2,9 +2,9 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
@@ -67,10 +67,13 @@ body {
 .header {
     position:fixed;
     width:100%;
+    align-items:center;
+    text-align:center;
 }
 .footer {
     z-index: 2;
     position: fixed;
+    background-color:white;
     bottom: 0;
     left:0;
     width: 100%;
