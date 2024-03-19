@@ -6,13 +6,13 @@
 }
 
 .image-container {
+    z-index:-1;
     position: fixed; /* Sayfanın her zaman en üstünde olacak */
     top: 0; /* Header yüksekliği kadar aşağıda başlayacak */
     left: 0;
     right: 0; /* Sayfa genişliği kadar uzanacak */
     bottom: 0; /* Footer yüksekliği kadar yukarıda bitecek */
     overflow: hidden; /* Taşan kısımları kesecektir */
-    z-index: -1; /* Diğer öğelerin üstünde olmasını sağlar */
 }
 
 .image-container img {
@@ -22,15 +22,16 @@
     top: 50%; /* Sayfanın ortasına gelecek */
     left: 50%; /* Sayfanın ortasına gelecek */
     transform: translate(-50%, -50%); /* Dikey ve yatay olarak merkezlemek için */
- }
+}
 
 .enter-button {
+    z-index:1;
     position: absolute; /* Giriş butonunun pozisyonunu ayarlamak için */
     top: 63%; /* Sayfanın ortasına gelecek */
     left: 51%; /* Sayfanın ortasına gelecek */
     transform: translate(-50%, -50%); /* Dikey ve yatay olarak merkezlemek için */
-    padding: 33px 22px;
-    color: lightblue;
+    padding: 33px 20px;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -42,16 +43,10 @@
     letter-spacing: 1px; /* Harfler arası boşluk */
     text-decoration: none; /* Yazı altı çizgisi */
 }
-
-
-.footer {
-    position: fixed; /* Sayfanın altında sabit kalacak */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80px; /* Footer yüksekliği */
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    line-height: 80px; /* Footer içeriğini dikey olarak ortalamak için */
+.enter-button:hover{
+    color:blue;
+    background-color:white;
 }
+
+
+
