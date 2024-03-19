@@ -1,16 +1,14 @@
-﻿body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* Eğer tarayıcı scroll barı görünüyorsa, onu gizlemek için */
+﻿.homeContainer {
+    height:2000px;
+    width:100%;
 }
 
 .image-container {
     z-index:-1;
-    position: fixed; /* Sayfanın her zaman en üstünde olacak */
+    position: absolute; /* Sayfanın her zaman en üstünde olacak */
     top: 0; /* Header yüksekliği kadar aşağıda başlayacak */
     left: 0;
-    right: 0; /* Sayfa genişliği kadar uzanacak */
+    right: 1px; /* Sayfa genişliği kadar uzanacak */
     bottom: 0; /* Footer yüksekliği kadar yukarıda bitecek */
     overflow: hidden; /* Taşan kısımları kesecektir */
 }
@@ -18,7 +16,7 @@
 .image-container img {
     width: 100%; /* Genişlik tam sayfa genişliği kadar olacak */
     height: 100%; /* Orantılı olarak yükseklik ayarlanacak, kırpma olmayacak */
-    position: absolute; /* Diğer öğelerin içine girecek */
+    position: relative; /* Diğer öğelerin içine girecek */
     top: 50%; /* Sayfanın ortasına gelecek */
     left: 50%; /* Sayfanın ortasına gelecek */
     transform: translate(-50%, -50%); /* Dikey ve yatay olarak merkezlemek için */
