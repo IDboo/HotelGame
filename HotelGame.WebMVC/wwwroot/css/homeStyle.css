@@ -1,9 +1,171 @@
 ﻿.homeContainer {
-    height: 200vh;
+    height: 2000px;
+    width: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.image-container {
+    z-index:-1;
+    position: absolute; /* Sayfanın her zaman en üstünde olacak */
+    top: 0; /* Header yüksekliği kadar aşağıda başlayacak */
+    left: 0;
+    right: 1px; /* Sayfa genişliği kadar uzanacak */
+    bottom: 0; /* Footer yüksekliği kadar yukarıda bitecek */
+    overflow: hidden; /* Taşan kısımları kesecektir */
+}
+
+.image-container img {
+    width: 100%; /* Genişlik tam sayfa genişliği kadar olacak */
+    height: 100%; /* Orantılı olarak yükseklik ayarlanacak, kırpma olmayacak */
+    position: relative; /* Diğer öğelerin içine girecek */
+    top: 50%; /* Sayfanın ortasına gelecek */
+    left: 50%; /* Sayfanın ortasına gelecek */
+    transform: translate(-50%, -50%); /* Dikey ve yatay olarak merkezlemek için */
+}
+
+.enter-button {
+    z-index: 2;
+    position: absolute; /* Giriş butonunun pozisyonunu ayarlamak için */
+    top: 63%; /* Sayfanın ortasına gelecek */
+    left: 51%; /* Sayfanın ortasına gelecek */
+    transform: translate(-50%, -50%); /* Dikey ve yatay olarak merkezlemek için */
+    padding: 33px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent; /* Butonu şeffaf yapmak için */
+    font-size: 20px; /* Yazı boyutu */
+    font-family: Arial, sans-serif; /* Yazı tipi */
+    font-weight: bold; /* Yazı kalınlığı */
+    text-transform: uppercase; /* Yazıları büyük harfe dönüştür */
+    letter-spacing: 1px; /* Harfler arası boşluk */
+    text-decoration: none; /* Yazı altı çizgisi */
+    border: groove;
+    border-color: black;
+}
+.enter-button:hover{
+    color:blue;
+    background-color:white;
+}
+
+
+/* General Style */
+/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}*/
+
+/*body {
+    height: 100vh;
+    width: 100%;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.wrapperDoor {
+    left: 0.86%;
+    top:15%;
+    z-index:1;
+    height: 15%;
+    width: 9%;
+    border: 5px solid #61412d;
+    position: relative;
+    /* 3D */
+    perspective: 1000px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.door {
+    background-color: #61412d;
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    /* inner layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#left-door {
+    top: 0;
+    left: 0;
+    border-right: 1px solid black;
+    /* transition */
+    transform-origin: left;
+    transition: transform 0.5s;
+}
+
+#right-door {
+    top: 0;
+    right: 0;
+    border-left: 1px solid black;
+    /* transition */
+    transform-origin: right;
+    transition: transform 0.5s;
+}
+
+.shape {
+    border: 2px solid black;
+    width: 85%;
+    height: 45%;
+}
+
+.knob {
+    width: 10%;
+    height: 20%;
+    background-color: #d7dade;
+    position: absolute;
+}
+
+#left-knob {
+    top: 50%;
+    right: 10px;
+}
+
+#right-knob {
+    top: 50%;
+    left: 10px;
+}
+
+#door-text{
+    z-index:2;
+    left:15%;
+    bottom: 55px;
+    position: absolute;
+    font-size: 40px;
+    color: sandybrown;
+    font-weight:500;
+    text-shadow: -6px 5px 6px rgba(0,0,0,0.67);
+}
+
+
+/* Door swing effect */
+
+.wrapperDoor:hover #door-text {
+    opacity: 0;
+}
+
+.wrapperDoor:hover #left-door {
+    transform: rotateY(-140deg);
+}
+
+.wrapperDoor:hover #right-door {
+    transform: rotateY(140deg);
+}
+
 
 
