@@ -28,7 +28,7 @@
 }
 
 .enter-button {
-    z-index: 1;
+    z-index: 2;
     position: absolute; /* Giriş butonunun pozisyonunu ayarlamak için */
     top: 63%; /* Sayfanın ortasına gelecek */
     left: 51%; /* Sayfanın ortasına gelecek */
@@ -71,9 +71,11 @@
 }*/
 
 .wrapperDoor {
+    left: 0.86%;
+    top:15%;
     z-index:1;
-    height: 300px;
-    width: 250px;
+    height: 15%;
+    width: 9%;
     border: 5px solid #61412d;
     position: relative;
     /* 3D */
@@ -117,14 +119,14 @@ img {
 }
 
 .shape {
-    border: 4px solid black;
-    width: 100px;
-    height: 130px;
+    border: 2px solid black;
+    width: 85%;
+    height: 45%;
 }
 
 .knob {
-    width: 10px;
-    height: 50px;
+    width: 10%;
+    height: 20%;
     background-color: #d7dade;
     position: absolute;
 }
@@ -139,7 +141,24 @@ img {
     left: 10px;
 }
 
+#door-text{
+    z-index:2;
+    left:15%;
+    bottom: 55px;
+    position: absolute;
+    font-size: 40px;
+    color: sandybrown;
+    font-weight:500;
+    text-shadow: -6px 5px 6px rgba(0,0,0,0.67);
+}
+
+
 /* Door swing effect */
+
+.wrapperDoor:hover #door-text {
+    opacity: 0;
+}
+
 .wrapperDoor:hover #left-door {
     transform: rotateY(-140deg);
 }
@@ -147,5 +166,6 @@ img {
 .wrapperDoor:hover #right-door {
     transform: rotateY(140deg);
 }
+
 
 

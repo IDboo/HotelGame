@@ -6,22 +6,20 @@
     <div class="image-container">
         <img src="/img/home1.png" alt="Home Image">
     </div>
-    <a class="enter-button" asp-area="" asp-controller="Account" asp-action="Login">GİRİŞ YAP</a>
-    <body>
-        <div class="wrapperDoor">
-            <img src="https://source.unsplash.com/mou0S7ViElQ" alt="minion">
-            <div id="left-door" class="door">
-                <div class="shape"></div>
-                <div class="shape"></div>
-                <div id="left-knob" class="knob"></div>
-            </div>
-            <div id="right-door" class="door">
-                <div class="shape"></div>
-                <div class="shape"></div>
-                <div id="right-knob" class="knob"></div>
-            </div>
+
+    <a class="wrapperDoor" asp-area="" asp-controller="Account" asp-action="Login">
+        <text id="door-text">GİRİŞ</text>
+        <div id="left-door" class="door">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div id="left-knob" class="knob"></div>
         </div>
-    </body>
+        <div id="right-door" class="door">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div id="right-knob" class="knob"></div>
+        </div>
+    </a>
 </div>
 
 

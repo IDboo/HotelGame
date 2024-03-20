@@ -15,7 +15,7 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="Users" asp-area="Admins" asp-action="GetAllUsers">
+                    <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
                         <i class="bi bi-circle"></i><span>Kullanıcı Listesi</span>
                     </a>
                 </li>
@@ -24,17 +24,17 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>Yazarlar</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-gem"></i><span>Item-1</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="Writers" asp-area="Admins" asp-action="GetAllWriters">
-                        <i class="bi bi-circle"></i><span>Yazar Listesi</span>
+                    <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Item-1.1</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Writers" asp-area="Admins" asp-action="Add">
-                        <i class="bi bi-circle"></i><span>Yeni Yazar Ekle</span>
+                    <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Item-1.2</span>
                     </a>
                 </li>
             </ul>
@@ -42,17 +42,17 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Yazılar</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-journal-text"></i><span>Item-2</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="Articles" asp-area="Admins" asp-action="GetAllArticles">
-                        <i class="bi bi-circle"></i><span>Yazı Listesi</span>
+                    <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Item-2.1</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Articles" asp-area="Admins" asp-action="Add">
-                        <i class="bi bi-circle"></i><span>Yeni Yazı Ekle</span>
+                    <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Item-2.2</span>
                     </a>
                 </li>
             </ul>
@@ -95,8 +95,8 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" asp-controller="ArticleComments" asp-area="Admins" asp-action="GetAllArticleComments">
-                <i class="ri-align-center"></i><span>Yorumlar</span>
+            <a class="nav-link collapsed" asp-controller="Account" asp-area="" asp-action="Logout">
+                <i class="ri-align-center"></i><span>Çıkış</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
