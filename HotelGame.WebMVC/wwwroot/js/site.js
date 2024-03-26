@@ -10,11 +10,3 @@ function sw() {
         document.getElementById('loginButtonText').innerHTML = 'Devam Et';
     }
 }
-
-function openLoginPopup() {
-    document.getElementById("loginPopup").style.display = "block";
-}
-
-function closeLoginPopup() {
-    document.getElementById("loginPopup").style.display = "none";
-}

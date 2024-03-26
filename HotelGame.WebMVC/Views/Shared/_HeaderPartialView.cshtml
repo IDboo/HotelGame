@@ -1,18 +1,26 @@
 ﻿
-<header class="header">
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
-        <div class="container">
-
-            <div class="col-sm-4">
+<header class="header border-bottom">
+    <nav class="navbar h-100 d-flex align-items-center">
+        <div id="headerLogo" class="col-2">
+            logo
+        </div>
+        <div class="container m-0 col-6">
+            <div class="col-2">
                 <a class="w3-bar-item w3-button btn-" asp-area="" asp-controller="Account" asp-action="Login">Giriş Yap</a>
             </div>
-            <div class="col-sm-4 ">
+            <div class="col-2 ">
                 <a class="w3-bar-item w3-button" asp-area="" asp-controller="Account" asp-action="SignUp">Kayıt Ol</a>
             </div>
-            <div class="col-sm-4">
+            <div class="col-2">
                 <a class="w3-bar-item w3-button" asp-area="" asp-controller="" asp-action="Index">Anasayfa</a>
             </div>
-
+        </div>
+        <div id='headerLogin' class="col-4">
+            <button class="button-30" role="button" onclick="sw()" onchange="sw()">
+                <p class="m-2" id="loginButtonText">
+                    Oyna
+                </p>
+            </button>
         </div>
     </nav>
 </header>
