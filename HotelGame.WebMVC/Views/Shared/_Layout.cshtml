@@ -10,16 +10,22 @@
 </head>
 <body>
 
-    <partial name="_HeaderPartialView" />
+    <div id="wrapper" class="wrapper clearfix">
+
+        <partial name="_HeaderPartialView" />
 
 
-    <div class="container-fluid" id="mainBody">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        <div class="container-fluid" id="mainBody">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <partial name="_FooterPartialView" />
+
     </div>
 
-    <partial name="_FooterPartialView" />
+
 
     @await Html.PartialAsync("_JsPartialView")
 

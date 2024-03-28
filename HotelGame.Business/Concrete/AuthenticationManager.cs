@@ -1,10 +1,7 @@
 ﻿using HotelGame.Business.Abstract;
 using HotelGame.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelGame.Business.Concrete
@@ -47,7 +44,7 @@ namespace HotelGame.Business.Concrete
             if (result.Succeeded)
             {
 
-                var res = _userManager.AddToRoleAsync(user, "User").Result;
+                var res = _userManager.AddToRoleAsync(user, "Admin").Result;
                 if (res.Succeeded)
                 {
                     return true;
