@@ -2,6 +2,7 @@
 using HotelGame.Entities.Concrete;
 using HotelGame.WebMVC.Models.Account;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,7 +34,10 @@ namespace HotelGame.WebMVC.Controllers
                 if (user != null)
                 {
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        
                         return Redirect(returnUrl);
+                    }
 
                     if (user.Roles.Contains("Admin"))
                     {
