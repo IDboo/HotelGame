@@ -1,4 +1,5 @@
-﻿<header class="header border-bottom">
+﻿@model HotelGame.WebMVC.Models.Account.LoginViewModel
+<header class="header border-bottom">
     <nav class="navbar h-100 d-flex align-items-center">
         <div id="headerLogo" class="col-2">
             logo
@@ -18,7 +19,7 @@
             </div>
         </div>
         <div id='headerLogin' class="col-4">
-            <button class="button-30" role="button" onclick="sw(),openLoginPopup()"  onchange="sw()">
+            <button class="button-30" role="button" data-bs-toggle="modal" onclick="sw(),openLoginPopup()"  onchange="sw()">
                 <p class="m-2" id="loginButtonText">
                     Oyna
                 </p>
@@ -26,6 +27,25 @@
             <div id="loginPopup" class="popup">
                 <div class="popup-content">
                     <span class="close" onclick="closeLoginPopup()">&times;</span>
+                    <form class="p-4" asp-action="Login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group mt-5">
+            <span class="far fa-user"></span>
+            <label asp-for="Email" class="control-label">E-Posta</label>
+            <input asp-for="Email" type="text" class="form-control" id="userName" placeholder="E-Posta">
+        </div>
+        <div class="form-group">
+            <span class="fas fa-key"></span>
+            <label asp-for="Password" class="control-label">Şifre</label>
+            <input asp-for="Password" type="password" class="form-control" id="pwd" placeholder="Şifre">
+        </div>
+        <div class="form-group">
+            <button class="btn mt-3 btn-success" type="submit" value="Login">Giriş Yap</button>
+        </div>
+    </form>
+    <div class="text-center fs-6">
+        <a href="#">Şifremi Unuttum</a> veya <a asp-area="" asp-controller="Account" asp-action="SignUp">Kayıt Ol</a>
+    </div>
                 </div>
             </div>
 
