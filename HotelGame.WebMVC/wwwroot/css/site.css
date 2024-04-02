@@ -78,6 +78,7 @@ body {
     text-align:center;
     top:0px;
     background-color:white;
+    z-index:3;
 }
 .footer {
     z-index: 2;
@@ -151,7 +152,6 @@ body {
 .popup {
     display: none;
     position: fixed;
-    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
