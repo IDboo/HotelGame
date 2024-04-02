@@ -4,71 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="w-100 h-100 container d-flex">
-    
-    <table class="table col-10">
-        <thead>
-            <tr>
-                <th scope="col" class="col-2"></th>
-                <th scope="col" class="col-2"></th>
-                <th scope="col" class="col-2"></th>
-                <th scope="col" class="col-2"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row"></th>
-                <td class="col-2"><div class="box"><img src="~/img/exchange.png" class="alt"/><img src="~/img/concrete-1001.png" class="ust"/></div></td>
-                <td class="col-2"><div class="box"><img src="~/img/exchange.png" class="alt" /><img src="~/img/concrete-1001.png" class="ust" /></div></td>
-                <td class="col-2">d</td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>Jacob</td>
-                <td class="col-2"><div class="box"><img src="~/img/exchange.png" class="alt" /><img src="~/img/concrete-1001.png" class="ust" /></div></td>
-                <td>f</td>
-            </tr>
-            </tbody>
-    </table>
-    @*Login Modal Start*@
-    <div class="card">
-        <div class="card-body">
-            <!-- Vertically centered Modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
-                Oyna
-            </button>
-            <div class="modal fade" id="verticalycentered" tabindex="-1" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Giriş Yap</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Vertical Form -->
-                            <form class="row g-3" asp-controller="Account" asp-action="Login" method="post" enctype="multipart/form-data">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <div class="col-12">
-                                    <label for="inputNanme4" class="form-label">E-Mail</label>
-                                    <input asp-for="Email" id="Name" type="text" class="form-control" placeholder="E-Mail">
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputNanme4" class="form-label">Şifre</label>
-                                    <input asp-for="Password" id="Name" type="password" class="form-control" placeholder="Şifre">
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
-                                    <button type="submit" class="btn btn-primary" value="Add">Giriş Yap</button>
-                                </div>
-                            </form><!-- Vertical Form -->
-                        </div>
-                    </div>
-                </div>
-            </div><!-- End Vertically centered Modal-->
-        </div>
+<div style="display:flex;width:100vw;height:100vh;background-color:aqua; justify-content:center; align-items:center">
+    <div style="display:flex;width:70%;height:50%;background-color:red;">
+        <div class="box"><img src="~/img/exchange.png" class="alt" /><img src="~/img/concrete-1001.png" class="ust" /></div>
+        <div class="box" style="top:64px; right:39px;z-index:2;"><img src="~/img/exchange.png" class="alt" /><img src="~/img/concrete-1001.png" class="ust" /></div>
     </div>
-    @*Login Modal End*@
-</div>
 
+</div>
