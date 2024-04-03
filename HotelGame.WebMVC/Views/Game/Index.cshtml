@@ -4,10 +4,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="display:flex;width:98vw;height:100vh;background-color:aqua; justify-content:center; align-items:center">
-    <div style="display:flex;width:70%;height:50%;background-color:red;">
-        <a href="/Bac" class="box"><img src="~/img/exchange.png" class="alt" /><img src="~/img/concrete-1001.png" class="ust" /></a>
-        <a class="box" style="top:64px; right:39px;z-index:2;"><img src="~/img/exchange.png" class="alt" /><img src="~/img/concrete-1001.png" class="ust" /></a>
+<div style="display:flex;width:100%;height:88vh;background-color:lightgray; justify-content:center; align-items:center">
+    <div style="display:flex;width:70%;height:50%;background-color:lightgray;">
+        @*<a href="/Bac" class="box"><img src="~/img/exchange.png" class="alt" /><img src="~/img/concrete-1001.png"
+        class="ust" /></a>
+        <a asp-area="" asp-controller="Bac" asp-action="Index" class="box" style="top:64px; right:39px;z-index:2;"><img
+        src="~/img/exchange.png" class="alt" /><img src="~/img/concrete-1001.png" class="ust" /></a>*@
+        <a href="/Bac" class="box">
+            <img src="~/img/room.png" class="png" />
+            <span style="z-index:5;display: flex;width:75px; justify-content:center;background-color: rgba(51, 51, 51, 0.6);border-radius: 3px;position:absolute;bottom:0px;">
+                <text style="color: rgb(242, 242, 242);">ODALAR</text>
+            </span>
+        </a>
+        <a href="/Bac" class="box">
+            <img src="~/img/reception.png" class="png" /><span style="z-index:5;display: flex;width:120px; justify-content:center;background-color: rgba(51, 51, 51, 0.6);border-radius: 3px;position:absolute;bottom:0px;">
+                <text style="color: rgb(242, 242, 242);">RESEPSİYON</text>
+            </span>
+        </a>
+        <a href="/Bac" class="box">
+            <img src="~/img/dining_room.png" class="png" /><span style="z-index:5;display: flex;width:110px; justify-content:center;background-color: rgba(51, 51, 51, 0.6);border-radius: 3px;position:absolute;bottom:0px;">
+                <text style="color: rgb(242, 242, 242);">YEMEKHANE</text>
+            </span>
+        </a>
     </div>
 
 </div>
