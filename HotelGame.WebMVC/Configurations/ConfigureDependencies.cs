@@ -14,6 +14,7 @@ namespace HotelGame.WebMVC.Configurations
             //services.AddScoped<IAuthenticationService, AuthenticationManager>();
 
             services.AddTransient<IUserAccessor, UserAccessor>();
+            services.AddTransient<IFileHelper, FileHelper>();
 
 
         }

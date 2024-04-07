@@ -7,7 +7,7 @@
                 <i class="bi bi-grid"></i>
                 <span>Anasayfa</span>
             </a>
-        </li><!-- End Dashboard Nav -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -16,89 +16,69 @@
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Kullanıcı Listesi</span>
+                        <i class="bi bi-circle"></i><span>Yönetici Listesi</span>
+                    </a>
+                </li>
+                                <li>
+                    <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Oyuncu Listesi</span>
                     </a>
                 </li>
             </ul>
-        </li><!-- End Components Nav -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>Item-1</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-gem"></i><span>Oyun Nesneleri</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Item-1.1</span>
+                    <a asp-controller="HotelTypes" asp-area="Admins" asp-action="GetAllHotelTypes">
+                        <i class="bi bi-circle"></i><span>Otel Tipleri</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="RoomTypes" asp-area="Admins" asp-action="GetAllRoomTypes">
+                        <i class="bi bi-circle"></i><span>Oda Tipleri</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="RoomMaterials" asp-area="Admins" asp-action="GetAllRoomMaterials">
+                        <i class="bi bi-circle"></i><span>Oda Malzemeleri</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Customers" asp-area="Admins" asp-action="GetAllCustomers">
+                        <i class="bi bi-circle"></i><span>Müşteri Çeşitleri</span>
                     </a>
                 </li>
                 <li>
                     <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Item-1.2</span>
+                        <i class="bi bi-circle"></i><span>Personel Çeşitleri</span>
                     </a>
                 </li>
             </ul>
-        </li><!-- End Icons Nav -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Item-2</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-journal-text"></i><span>Oyun Yönetimi</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Item-2.1</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Item-2.2</span>
+                        <i class="bi bi-circle"></i><span>Yönetim</span>
                     </a>
                 </li>
             </ul>
-        </li><!-- End Forms Nav -->
-        @*        <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-layout-text-window-reverse"></i><span>Şiirler</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-        <a href="tables-general.html">
-        <i class="bi bi-circle"></i><span>Şiir Listesi</span>
-        </a>
-        </li>
-        <li>
-        <a href="tables-data.html">
-        <i class="bi bi-circle"></i><span>Yeni Şiir Ekle</span>
-        </a>
-        </li>
-        </ul>
-        </li><!-- End Tables Nav -->*@
-
-        @*        <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-bar-chart"></i><span>Kategoriler</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-        <a asp-controller="Categories" asp-area="Admins" asp-action="GetAllCategories">
-        <i class="bi bi-circle"></i><span>Kategori Listesi</span>
-        </a>
-        </li>
-        </ul>
-        </li><!-- End Charts Nav -->*@
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" asp-controller="HotelTypes" asp-area="Admins" asp-action="GetAllHotelTypes">
-                <i class="bi bi-bar-chart"></i><span>Otel Tipleri</span>
-            </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" asp-controller="Account" asp-area="" asp-action="Logout">
                 <i class="ri-align-center"></i><span>Çıkış</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
+
 
     </ul>
 

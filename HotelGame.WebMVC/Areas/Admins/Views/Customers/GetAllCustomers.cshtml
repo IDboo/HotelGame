@@ -1,0 +1,205 @@
+﻿@model HotelGame.WebMVC.Models.Customers.GetAllCustomerViewModel;
+
+@{
+    ViewData["Title"] = "GetAllCustomers";
+    Layout = "~/Areas/Admins/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main id="main" class="main">
+
+    @*Add Category Modal Start*@
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Malzeme Ekle</h5>
+            <p>Müşteri Eklemek İçin Tıklayın</p>
+
+            <!-- Vertically centered Modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                Ekle
+            </button>
+            <div class="modal fade" id="verticalycentered" tabindex="-1" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Müteri Bilgileri Yazın</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Vertical Form -->
+                            <form class="row g-3" asp-controller="Customers" asp-action="Add" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Müşteri Adı</label>
+                                    <input asp-for="Name" id="Name" type="text" class="form-control" placeholder="Müşteri Adı">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Kişi Sayısı</label>
+                                    <input asp-for="PeopleCount" id="Name" type="text" class="form-control" placeholder="Kişi Sayısı">
+                                    <span asp-validation-for="PeopleCount" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Malzeme Resmi</label>
+                                    <input asp-for="ImageUrl" id="Name" type="file" class="form-control" placeholder="Resim Seçiniz">
+                                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                    <button type="submit" class="btn btn-primary" value="Add">Ekle</button>
+                                </div>
+                            </form><!-- Vertical Form -->
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Vertically centered Modal-->
+
+        </div>
+    </div>
+    @*Add Category Modal End*@
+
+    @*Category Data Table Start*@
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Otel Tipleri Listesi</h5>
+                        @if (Model != null)
+                        {
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable" id="categoriesTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Müşteri Adı</th>
+                                        <th scope="col">Kişi Sayısı</th>
+                                        <th scope="col">Resim</th>
+                                        <th scope="col">Eklenme Tarihi</th>
+                                        <th scope="col">Güncelle</th>
+                                        <th scope="col">Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var category in Model.Customers)
+                                    {
+                                        <tr>
+                                            <th scope="row">@category.Id</th>
+                                            <td>@category.Name</td>
+                                            <td>@category.PeopleCount</td>
+                                            <td><img src="@category.ImageUrl" style="height:100px; width:100px;" /></td>
+                                            <td>@category.CreatedTime</td>
+                                            <td><button type="button" onclick="showUpdateModal(@category.Id, '@category.Name', '@category.PeopleCount','@category.ImageUrl')" class="btn btn-outline-warning">Güncelle</button></td>
+
+                                            <td><a type="submit" onclick="submitResult(event)" data-category-id="@category.Id" id="btn-delete" href="/Admins/Customers/Delete/@category.Id" class="btn btn-outline-danger">Sil</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!-- End Table with stripped rows -->
+                        }
+                        else
+                        {
+                            <p>Hiç Otel Tipi Bulunamadı</p>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*Category Data Table End*@
+
+
+    @*Update Category Modal Start*@
+    <div class="modal fade" id="updateCategory" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Yeni Malzeme Yazın</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Vertical Form -->
+                    <form class="row g-3" asp-controller="Customers" asp-action="Update" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Müşteri Adı</label>
+                            <input asp-for="Name" id="Name" type="text" class="form-control" placeholder="Yeni Müşteri Adı">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Kişi Sayısı</label>
+                            <input asp-for="PeopleCount" id="Name" type="text" class="form-control" placeholder="Kişi Sayısı">
+                            <span asp-validation-for="PeopleCount" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Resim</label>
+                            <input asp-for="ImageUrl" id="Name" type="file" class="form-control" placeholder="Resim Seçiniz">
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                            <button type="submit" class="btn btn-primary" value="Update">Güncelle</button>
+                        </div>
+                    </form><!-- Vertical Form -->
+                </div>
+            </div>
+        </div>
+    </div><!-- End Vertically centered Modal-->
+    @*Update Category Modal End*@
+
+
+    <script>
+
+        function showUpdateModal(categoryId, categoryName) {
+            debugger;
+            // item bilgilerini modal içine doldur
+            document.getElementById("Name").value = categoryName; // Yeni item adı alanına bilgiyi yerleştir
+            var updateForm = document.querySelector("#updateCategory form");
+            updateForm.action = `/Admins/Customers/Update/${categoryId}`; // Formun gönderileceği URL'yi güncelle
+
+            // Modalı göster
+            var updateCategoryModal = new bootstrap.Modal(document.getElementById("updateCategory"));
+            updateCategoryModal.show();
+        }
+
+        function submitResult(e) {
+            e.preventDefault();
+            const categoryId = e.target.getAttribute("data-category-id");
+            if (!categoryId) {
+                console.error("Veri kimliği alınamadı.");
+                return;
+            }
+
+            Swal.fire({
+                title: 'Müşteriyi Silmek İstediğinize Emin Misiniz?',
+                text: "Eğer kabul ederseniz seçtiğiniz müşteri silinecektir.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet Kabul Ediyorum',
+                cancelButtonText: 'Vazgeç',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/Admins/Customers/Delete/${categoryId}`, {
+                        method: 'DELETE',
+                    });
+                    Swal.fire(
+                        'Müşteri Silindi',
+                        'Seçili müşteri başarıyla silinmiştir',
+                        'success'
+                    );
+                    location.reload();
+                }
+            });
+        }
+
+
+
+
+    </script>
+
+
+</main><!-- End #main -->
+
