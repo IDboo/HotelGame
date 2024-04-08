@@ -916,6 +916,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admins\Views\Multipliers\" />
     <Folder Include="wwwroot\img\uploadImage\" />
     <Folder Include="wwwroot\mainThemplate\assets\icons\" />
   </ItemGroup>

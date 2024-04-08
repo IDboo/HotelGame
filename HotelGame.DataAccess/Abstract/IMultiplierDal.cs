@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelGame.DataAccess.Abstract
 {
-    public interface IPlayerRoomDal : IEntityRepository<PlayerRoom>
+    public interface IMultiplierDal : IEntityRepository<Multiplier>
     {
-        public int GetLastId();
-
     }
 }

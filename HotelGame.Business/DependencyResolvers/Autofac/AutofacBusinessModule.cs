@@ -60,6 +60,11 @@ namespace HotelGame.Business.DependencyResolvers.Autofac
             builder.RegisterType<EfPlayerHotelStaffDal>().As<IPlayerHotelStaffDal>();
             builder.RegisterType<PlayerHotelStaffManager>().As<IPlayerHotelStaffService>();
 
+            builder.RegisterType<EfMultiplierDal>().As<IMultiplierDal>();
+            builder.RegisterType<MultiplierManager>().As<IMultiplierService>();
+
+            builder.RegisterType<AutoCreaterManager>().As<IAutoCreaterService>();
+
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public int HotelTypeId { get; set; }
         public int UserId { get; set; }
-        public int HotelName { get; set; }
+        public string HotelName { get; set; }
         public int HotelQuality { get; set; }
         public int HotelLevel { get; set; }
         public int HotelMoney { get; set; }

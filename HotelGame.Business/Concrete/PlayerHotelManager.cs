@@ -90,5 +90,10 @@ namespace HotelGame.Business.Concrete
                 return new ErrorDataResult<PlayerHotel>(null, Messages.PlayerHotelNotFound);
             }
         }
+
+        public int LastId()
+        {
+            return _playerHotelDal.GetLastId();
+        }
     }
 }

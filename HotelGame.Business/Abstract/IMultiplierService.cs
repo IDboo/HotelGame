@@ -1,6 +1,7 @@
 ﻿using HotelGame.Core.Utilities.Result.Abstract;
 using HotelGame.Entities.Concrete;
 using HotelGame.Entities.DTOs.HotelTypes;
+using HotelGame.Entities.DTOs.Multipliers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +10,16 @@ using System.Threading.Tasks;
 
 namespace HotelGame.Business.Abstract
 {
-    public interface IHotelTypeService
+    public interface IMultiplierService
     {
         //Bir veriyi getiren fonksiyon
-        Task<IDataResult<HotelType>> GetByIdAsync(int Id);
+        Task<IDataResult<Multiplier>> GetByIdAsync(int Id);
 
         //Bİrden fazla veriyi listeleme fonksiyonu
-        Task<IDataResult<List<HotelType>>> GetAllAsync();
-
-        //Ekleme fonksiyonu
-        Task<IResult> AddAsync(HotelTypeAddDto hotelTypeAddDto);
+        Task<IDataResult<List<Multiplier>>> GetAllAsync();
 
         //Güncelleme Fonksiyonu
-        Task<IResult> UpdateAsync(HotelTypeUpdateDto hotelTypeUpdateDto);
-
-        //Silme Fonksiyonu
-        Task<IResult> DeleteAsync(int Id);
+        Task<IResult> UpdateAsync(MultiplierUpdateDto multiplierUpdateDto);
 
     }
 }

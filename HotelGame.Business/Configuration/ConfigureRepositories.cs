@@ -1,4 +1,5 @@
 ﻿using HotelGame.DataAccess.Concrete.EntitiyFramework;
+using HotelGame.DataAccess.Concrete.EntityFramework;
 using HotelGame.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;

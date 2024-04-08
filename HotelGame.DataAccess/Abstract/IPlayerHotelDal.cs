@@ -10,7 +10,7 @@ namespace HotelGame.DataAccess.Abstract
 {
     public interface IPlayerHotelDal : IEntityRepository<PlayerHotel>
     {
-
+        public int GetLastId();
 
     }
 }

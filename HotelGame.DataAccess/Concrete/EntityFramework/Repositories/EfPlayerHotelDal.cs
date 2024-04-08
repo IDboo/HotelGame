@@ -1,5 +1,6 @@
 ﻿using HotelGame.Core.DataAccess.Concrete;
 using HotelGame.DataAccess.Abstract;
+using HotelGame.DataAccess.Concrete.EntitiyFramework;
 using HotelGame.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,6 +17,15 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Repositories
         {
         }
 
-
+        public int GetLastId()
+        {
+            using (HotelGameContext context = new HotelGameContext())
+            {
+                var result = from q in context.PlayerHotels
+                             orderby q.Id ascending
+                             select q.Id;
+                return result.Last();
+            }
+        }
     }
 }

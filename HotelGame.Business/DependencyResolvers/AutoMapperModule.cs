@@ -25,6 +25,7 @@ namespace HotelGame.Business.DependencyResolvers
                 typeof(PlayerRoomProfile),
                 typeof(RoomMaterialProfile),
                 typeof(RoomTypeProfile),
+                typeof(MultiplierProfile),
                 typeof(StaffProfile)
                 );
         }

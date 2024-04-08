@@ -4,6 +4,7 @@ using HotelGame.Business.Constans;
 using HotelGame.Core.Utilities.Result.Abstract;
 using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.DataAccess.Abstract;
+using HotelGame.DataAccess.Concrete.EntityFramework.Repositories;
 using HotelGame.Entities.Concrete;
 using HotelGame.Entities.DTOs.PlayerRooms;
 using System;
@@ -92,6 +93,11 @@ namespace HotelGame.Business.Concrete
             {
                 return new ErrorDataResult<PlayerRoom>(null, Messages.PlayerRoomNotFound);
             }
+        }
+
+        public int LastId()
+        {
+            return _playerRoomDal.GetLastId();
         }
     }
 }
