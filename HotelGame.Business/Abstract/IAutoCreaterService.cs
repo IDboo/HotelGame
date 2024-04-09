@@ -9,7 +9,7 @@ namespace HotelGame.Business.Abstract
 {
     public interface IAutoCreaterService
     {
-        IResult NewHotelCreater(int userId);
+        IResult NewHotelCreater(int userId, string hotelName);
 
     }
 }

@@ -23,6 +23,6 @@ namespace HotelGame.Business.Abstract
         // Bir oyuncu odasını silen fonksiyon
         Task<IResult> DeleteAsync(int Id);
 
-        int LastId();
+        public int LastId();
     }
 }

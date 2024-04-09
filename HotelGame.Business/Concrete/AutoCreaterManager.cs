@@ -31,14 +31,14 @@ namespace HotelGame.Business.Concrete
             _playerRoomMaterialService = playerRoomMaterialService;
         }
 
-        public IResult NewHotelCreater(int userId)
+        public IResult NewHotelCreater(int userId, string hotelName)
         {
             _playerHotelService.AddAsync(new PlayerHotelAddDto
             {
                 UserId = userId,
                 HotelLevel = 1,
                 HotelMoney = 1500,
-                HotelName = "Yeni Otelim",
+                HotelName = hotelName,
                 HotelTypeId= 1,
                 CustomerCommentPointAvarage = 3,
                 HotelQuality = 0

@@ -1,0 +1,48 @@
+﻿@model HotelGame.WebMVC.Models.Test.HotelCreaterViewModel;
+@{
+    ViewData["Title"] = "HotelCreater";
+    Layout = "~/Areas/Admins/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*Add Category Modal Start*@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Otel Tipi Ekle</h5>
+        <p>Yeni Otel Tipi Eklemek İçin Tıklayın</p>
+
+        <!-- Vertically centered Modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+            Ekle
+        </button>
+        <div class="modal fade" id="verticalycentered" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Otel Tipi Adını Yazın</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3" asp-controller="Test" asp-action="HotelCreater" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="col-12">
+
+                                <label for="inputNanme4" class="form-label">Otel Adı</label>
+                                <input asp-for="HotelName" id="Name" type="text" class="form-control" placeholder="Otel Adı">
+                                <span asp-validation-for="HotelName" class="text-danger"></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                <button type="submit" class="btn btn-primary" value="Add">Ekle</button>
+                            </div>
+                        </form><!-- Vertical Form -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Vertically centered Modal-->
+
+    </div>
+</div>
+@*Add Category Modal End*@
+
+
+

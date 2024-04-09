@@ -5,14 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admins\Views\Multipliers\**" />
     <Compile Remove="DependencyResolvers\**" />
     <Compile Remove="wwwroot\AdminLayout\**" />
+    <Content Remove="Areas\Admins\Views\Multipliers\**" />
     <Content Remove="DependencyResolvers\**" />
     <Content Remove="wwwroot\AdminLayout\**" />
+    <EmbeddedResource Remove="Areas\Admins\Views\Multipliers\**" />
     <EmbeddedResource Remove="DependencyResolvers\**" />
     <EmbeddedResource Remove="wwwroot\AdminLayout\**" />
+    <None Remove="Areas\Admins\Views\Multipliers\**" />
     <None Remove="DependencyResolvers\**" />
     <None Remove="wwwroot\AdminLayout\**" />
+    <TypeScriptCompile Remove="Areas\Admins\Views\Multipliers\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -916,7 +921,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admins\Views\Multipliers\" />
     <Folder Include="wwwroot\img\uploadImage\" />
     <Folder Include="wwwroot\mainThemplate\assets\icons\" />
   </ItemGroup>
