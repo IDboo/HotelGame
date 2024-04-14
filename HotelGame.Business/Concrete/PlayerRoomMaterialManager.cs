@@ -96,5 +96,13 @@ namespace HotelGame.Business.Concrete
         {
             return _playerRoomMaterialDal.GetLastId();
         }
+
+        public IResult Add(PlayerRoomMaterialAddDto playerRoomMaterialAddDto)
+        {
+            var playerRoomMaterial = _mapper.Map<PlayerRoomMaterial>(playerRoomMaterialAddDto);
+            _playerRoomMaterialDal.Add(playerRoomMaterial);
+            _playerRoomMaterialDal.Save();
+            return new SuccessResult(Messages.PlayerRoomMaterialAdded);
+        }
     }
 }

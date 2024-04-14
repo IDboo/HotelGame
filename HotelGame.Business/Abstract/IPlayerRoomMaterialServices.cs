@@ -22,5 +22,7 @@ namespace HotelGame.Business.Abstract
 
         // Bir oyuncu oda malzemesini silen fonksiyon
         Task<IResult> DeleteAsync(int Id);
+
+        IResult Add(PlayerRoomMaterialAddDto playerRoomMaterialAddDto);
     }
 }

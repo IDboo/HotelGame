@@ -109,5 +109,15 @@ namespace HotelGame.Core.DataAccess.Concrete
             return _context.Set<IEntity>().AsNoTracking().ToList();
         }
 
+        public IEntity Add(IEntity entity)
+        {
+            _context.Set<IEntity>().Add(entity);
+            return entity;
+        }
+
+        public int Save()
+        {
+            return _context.SaveChanges();
+        }
     }
 }

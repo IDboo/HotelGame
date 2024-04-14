@@ -20,6 +20,54 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
             builder.Property(x => x.PeopleCount);
 
             builder.ToTable("RoomTypes");
+
+            builder.HasData(
+                new RoomType
+                {
+                    Id = 1,
+                    Name = "Standart Double Oda",
+                    IsActive = true,
+                    PeopleCount = 2,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                },
+                new RoomType
+                {
+                    Id = 2,
+                    Name = "Standart Twin Oda",
+                    IsActive = true,
+                    PeopleCount = 2,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                },
+                new RoomType
+                {
+                    Id = 3,
+                    Name = "Superiour Double Oda",
+                    IsActive = true,
+                    PeopleCount = 2,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                },
+                new RoomType
+                {
+                    Id = 4,
+                    Name = "Aile Odası",
+                    IsActive = true,
+                    PeopleCount = 4,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                },
+                new RoomType
+                {
+                    Id = 5,
+                    Name = "King Size Oda",
+                    IsActive = true,
+                    PeopleCount = 2,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                }
+                );
         }
     }
 }

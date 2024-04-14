@@ -18,6 +18,17 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
 
             builder.ToTable("HotelTypes");
+
+            builder.HasData(
+                new HotelType
+                {
+                    Id = 1,
+                    Name = "Butik Otel",
+                    IsActive = true,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                }
+                );
         }
     }
 }

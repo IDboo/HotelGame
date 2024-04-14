@@ -37,5 +37,8 @@ namespace HotelGame.Core.DataAccess.Abstract
 
         List<IEntity> GetAll();
 
+        IEntity Add(IEntity entity);
+
+        int Save();
     }
 }

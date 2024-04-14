@@ -99,5 +99,26 @@ namespace HotelGame.Business.Concrete
         {
             return _playerRoomDal.GetLastId();
         }
+
+        public IResult Add(PlayerRoomAddDto playerRoomAddDto)
+        {
+            var playerRoom = _mapper.Map<PlayerRoom>(playerRoomAddDto);
+            _playerRoomDal.Add(playerRoom);
+            _playerRoomDal.Save();
+            return new SuccessResult(Messages.PlayerRoomAdded);
+        }
+
+        public async Task<IDataResult<List<PlayerRoom>>> GetAllByUserIdAsync(int playerHotelId)
+        {
+            var playerRooms = await _playerRoomDal.GetAllAsync(x => x.PlayerHotelId == playerHotelId);
+            if (playerRooms != null)
+            {
+                return new SuccessDataResult<List<PlayerRoom>>(playerRooms);
+            }
+            else
+            {
+                return new ErrorDataResult<List<PlayerRoom>>(null , "Hata"); 
+            }
+        }
     }
 }

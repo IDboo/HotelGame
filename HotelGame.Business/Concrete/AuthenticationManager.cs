@@ -44,7 +44,7 @@ namespace HotelGame.Business.Concrete
             if (result.Succeeded)
             {
 
-                var res = _userManager.AddToRoleAsync(user, "Admin").Result;
+                var res = _userManager.AddToRoleAsync(user, "User").Result;
                 if (res.Succeeded)
                 {
                     return true;

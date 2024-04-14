@@ -20,8 +20,7 @@ namespace HotelGame.WebMVC.Areas.Admins.Controllers
         [HttpGet]
         public IActionResult HotelCreater()
         {
-            var userId = CurrentUser.Id;
-            return View(userId);
+            return View();
         }
 
         [HttpPost]

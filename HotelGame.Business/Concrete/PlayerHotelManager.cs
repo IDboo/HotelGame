@@ -95,5 +95,26 @@ namespace HotelGame.Business.Concrete
         {
             return _playerHotelDal.GetLastId();
         }
+
+        public IResult Add(PlayerHotelAddDto playerHotelAddDto)
+        {
+            var playerHotel = _mapper.Map<PlayerHotel>(playerHotelAddDto);
+            _playerHotelDal.Add(playerHotel);
+            _playerHotelDal.Save();
+            return new SuccessResult(Messages.PlayerHotelAdded);
+        }
+
+        public async Task<IDataResult<PlayerHotel>> CheckPlayerHotel(int userId)
+        {
+            var checkPlayerHotel = await _playerHotelDal.GetAsync(x => x.UserId == userId);
+            if (checkPlayerHotel != null)
+            {
+                return new SuccessDataResult<PlayerHotel>(checkPlayerHotel);
+            }
+            else
+            {
+                return new ErrorDataResult<PlayerHotel>(null, "Bulunamadı");
+            }
+        }
     }
 }

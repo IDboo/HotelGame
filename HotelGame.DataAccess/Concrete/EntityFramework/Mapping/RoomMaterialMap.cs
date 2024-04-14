@@ -22,6 +22,75 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
             builder.Property(x => x.QualityPoint);
 
             builder.ToTable("RoomMaterial");
+
+            builder.HasData(
+                new RoomMaterial
+                {
+                    Id = 1,
+                    Name = "Televizyon",
+                    Level = 1,
+                    Price = 1,
+                    QualityPoint = 1,
+                    IsActive = true,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow, 
+                },
+                new RoomMaterial
+                {
+                    Id = 2,
+                    Name = "Yatak",
+                    Level = 1,
+                    Price = 1,
+                    QualityPoint = 1,
+                    IsActive = true,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                },
+                new RoomMaterial
+                {
+                    Id = 3,
+                    Name = "Klima",
+                    Level = 1,
+                    Price = 1,
+                    QualityPoint = 1,
+                    IsActive = true,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                },
+                new RoomMaterial
+                {
+                    Id = 4,
+                    Name = "Süs Eşyaları",
+                    Level = 1,
+                    Price = 1,
+                    QualityPoint = 1,
+                    IsActive = true,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                },
+                new RoomMaterial
+                {
+                    Id = 5,
+                    Name = "Banyo",
+                    Level = 1,
+                    Price = 1,
+                    QualityPoint = 1,
+                    IsActive = true,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                },
+                new RoomMaterial
+                {
+                    Id = 6,
+                    Name = "Tuvalet",
+                    Level = 1,
+                    Price = 1,
+                    QualityPoint = 1,
+                    IsActive = true,
+                    CreatedTime = DateTime.UtcNow,
+                    UpdatedTime = DateTime.UtcNow,
+                }
+                );
         }
     }
 }

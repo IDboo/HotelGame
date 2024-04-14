@@ -24,5 +24,9 @@ namespace HotelGame.Business.Abstract
         Task<IResult> DeleteAsync(int Id);
 
         public int LastId();
+
+        IResult Add(PlayerRoomAddDto playerRoomAddDto);
+
+        Task<IDataResult<List<PlayerRoom>>> GetAllByUserIdAsync(int playerHotelId);
     }
 }

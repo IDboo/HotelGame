@@ -10,18 +10,20 @@
 </head>
 <body>
 
+    <script src="~/lib/jquery/dist/jquery-3.3.1.js"></script>
+
     <partial name="_UserHeaderPartialView" />
 
 
-    <div class="container">
-        <main role="main" class="pb-3">
+    <main role="main" class="main">
+        <div class="pagetitle">
             @RenderBody()
-        </main>
-    </div>
+        </div>
+    </main>
 
     <partial name="_UserFooterPartialView" />
 
-    @await Html.PartialAsync("_UserJsPartialView");
+    @await Html.PartialAsync("_UserJsPartialView")
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -33,20 +33,20 @@ namespace HotelGame.Business.Concrete
 
         public IResult NewHotelCreater(int userId, string hotelName)
         {
-            _playerHotelService.AddAsync(new PlayerHotelAddDto
+            _playerHotelService.Add(new PlayerHotelAddDto
             {
                 UserId = userId,
                 HotelLevel = 1,
                 HotelMoney = 1500,
                 HotelName = hotelName,
-                HotelTypeId= 1,
+                HotelTypeId = 1,
                 CustomerCommentPointAvarage = 3,
-                HotelQuality = 0
+                HotelQuality = 65
             });
             int lastHotelId = _playerHotelService.LastId();
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < 6; i++)
             {
-                _playerRoomService.AddAsync(new PlayerRoomAddDto
+                _playerRoomService.Add(new PlayerRoomAddDto
                 {
                     PlayerHotelId = lastHotelId,
                     RoomTypeId = i,
@@ -54,30 +54,17 @@ namespace HotelGame.Business.Concrete
                     RoomDailyPrice = 25
                 });
                 int lastplayerRoomId = _playerRoomService.LastId();
-                for (int j = 1; j < 6; j++)
+                for (int j = 1; j < 7; j++)
                 {
-                    _playerRoomMaterialService.AddAsync(new PlayerRoomMaterialAddDto
+                    _playerRoomMaterialService.Add(new PlayerRoomMaterialAddDto
                     {
                         PlayerRoomId = lastplayerRoomId,
                         RoomMaterialId = j,
                     });
                 }
             }
-            var roomMaterials = _roomMaterialService.GetAllAsync();
-            var roomMaterialsQualityPoint = 0;
-            foreach (var item in roomMaterials.Result.Data)
-            {
-                roomMaterialsQualityPoint = roomMaterialsQualityPoint + item.QualityPoint;
-
-            }
-            _playerHotelService.UpdateAsync(new PlayerHotelUpdateDto
-            {
-
-                HotelQuality = roomMaterialsQualityPoint,
-            });
 
             return new SuccessResult("Otel Oluşturuldu");
         }
-
     }
 }
