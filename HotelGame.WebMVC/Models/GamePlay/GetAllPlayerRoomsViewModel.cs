@@ -7,9 +7,13 @@ namespace HotelGame.WebMVC.Models.GamePlay
     {
         public List<PlayerRoom> PlayerRooms { get; set; }
 
+        public PlayerHotel PlayerHotel { get; set; }
+
         public string HotelName { get; set; }
 
         public bool CheckPlayerHotel { get; set; }
+
+        public List<PlayerRoomMaterial> PlayerRoomMaterials { get; set; }
 
     }
 }

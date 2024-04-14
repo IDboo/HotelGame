@@ -24,5 +24,11 @@ namespace HotelGame.Business.Abstract
         Task<IResult> DeleteAsync(int Id);
 
         IResult Add(PlayerRoomMaterialAddDto playerRoomMaterialAddDto);
+
+        Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByPlayerRoomIdAsync(int playerRoomId);
+
+        Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByMaterialNameAsync(string materialName);
+
+
     }
 }

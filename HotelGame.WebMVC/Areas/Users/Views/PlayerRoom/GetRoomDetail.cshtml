@@ -1,0 +1,31 @@
+﻿@model HotelGame.WebMVC.Models.GamePlay.GetAllPlayerRoomsViewModel
+@{
+    ViewData["Title"] = "GetRoomDetail";
+    Layout = "~/Areas/Users/Views/Shared/_UserLayout.cshtml";
+}
+
+
+@foreach (var item in Model.PlayerRoomMaterials)
+{
+    <body>
+        <div class="baccontainer">
+            <h1>............</h1>
+            <div class="product">
+                <img src="@item.RoomMaterial.ImageUrl" alt="@item.RoomMaterial.Name">
+                <h2>@item.RoomMaterial.Name</h2>
+                <p>Kalite Puani : @item.RoomMaterial.QualityPoint</p>
+            </div>
+        </div>
+    </body>
+
+    <body>
+        <div class="baccontainer">
+            <h1>............</h1>
+            <div class="product">
+                <p>Yükseltme Ücreti : @item.RoomMaterial.Price</p>
+                <button type="submit">Ürünü Yükselt</button>
+            </div>
+        </div>
+    </body>
+}
+

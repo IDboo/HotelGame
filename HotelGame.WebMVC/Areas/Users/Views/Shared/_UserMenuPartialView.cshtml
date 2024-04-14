@@ -1,10 +1,33 @@
-﻿<nav class="header-nav ms-auto">
+﻿@model HotelGame.WebMVC.Models.GamePlay.GetAllPlayerRoomsViewModel;
+<nav class="header-nav ms-auto">
 
     @if (CurrentUser != null)
     {
         <ul class="d-flex align-items-center">
-            <li class="nav-item dropdown pe-3">
-
+            @if (Model.PlayerHotel != null)
+            {
+            <li>
+                <h5>Bakiyem</h5>
+                <p>@Model.PlayerHotel.HotelMoney TL</p>
+            </li>
+            <li>
+                <h5>Kalite Puanı</h5>
+                <p>@Model.PlayerHotel.HotelQuality *</p>
+            </li>
+            <li>
+                <h5>Yorum Puanı</h5>
+                <p>@Model.PlayerHotel.CustomerCommentPointAvarage </p>
+            </li>
+            <li>
+                <h5>Otel Seviyesi</h5>
+                <p>@Model.PlayerHotel.HotelLevel </p>
+            </li>
+            }
+            else
+            {
+                <p>Hoşgeldiniz.</p>
+            }
+            <li>
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <span class="d-none d-md-block dropdown-toggle ps-2">@CurrentUser.Name @CurrentUser.LastName</span>
                 </a><!-- End Profile Iamge Icon -->

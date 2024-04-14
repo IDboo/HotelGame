@@ -1,8 +1,6 @@
 ﻿using HotelGame.Business.Abstract;
-using HotelGame.Entities.Concrete;
 using HotelGame.WebMVC.Helper.Abstract;
 using HotelGame.WebMVC.Models.GamePlay;
-using HotelGame.WebMVC.Models.Test;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -28,13 +26,15 @@ namespace HotelGame.WebMVC.Areas.Users.Controllers
         {
             var roomTypes = await _roomTypeService.GetAllAsync();
             var userId = CurrentUser.Id;
-            var result = await _playerHotelService.CheckPlayerHotel(userId);
+            var result = await _playerHotelService.PlayerHotelByUserId(userId);
             if (result.Success)
             {
+                var playerHotelDetail = await _playerHotelService.PlayerHotelByUserId(userId);
                 var currentPlayerRooms = await _playerRoomService.GetAllByUserIdAsync(result.Data.Id);
                 var playerHotel = new GetAllPlayerRoomsViewModel
                 {
-                    PlayerRooms = currentPlayerRooms.Data,
+                    PlayerHotel = playerHotelDetail.Data,
+                    PlayerRooms = currentPlayerRooms.Data
                 };
                 return View(playerHotel);
             }
@@ -60,6 +60,8 @@ namespace HotelGame.WebMVC.Areas.Users.Controllers
             }
             return View();
         }
+
+
 
 
     }

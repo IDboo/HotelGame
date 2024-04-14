@@ -1,4 +1,6 @@
 ﻿using HotelGame.Business.Abstract;
+using HotelGame.DataAccess.Abstract;
+using HotelGame.Entities.DTOs.RoomMaterial;
 using HotelGame.Entities.DTOs.RoomMaterials;
 using HotelGame.WebMVC.Helper.Abstract;
 using HotelGame.WebMVC.Models.RoomMaterials;
@@ -10,11 +12,23 @@ namespace HotelGame.WebMVC.Areas.Admins.Controllers
     public class RoomMaterialsController : BaseController
     {
         private readonly IRoomMaterialService _roomMaterialService;
+        private readonly IRMTelevisionService _rMTelevisionService;
+        private readonly IRMToiletService _rMToiletService;
+        private readonly IRMBedService _rMbedService;
+        private readonly IRMCarpetService _rMCarpetService;
+        private readonly IRMAirConditionDal _rMAirConditionDal;
+        private readonly IRMBathRoomService _rMBathRoomService;
         private readonly IFileHelper _fileHelper;
-        public RoomMaterialsController(IUserAccessor userAccessor, IRoomMaterialService roomMaterialService, IFileHelper fileHelper) : base(userAccessor)
+        public RoomMaterialsController(IUserAccessor userAccessor, IRoomMaterialService roomMaterialService, IFileHelper fileHelper, IRMTelevisionService rMTelevisionService, IRMToiletService rMToiletService, IRMBedService rMbedService, IRMCarpetService rMCarpetService, IRMAirConditionDal rMAirConditionDal, IRMBathRoomService rMBathRoomService) : base(userAccessor)
         {
             _roomMaterialService = roomMaterialService;
             _fileHelper = fileHelper;
+            _rMTelevisionService = rMTelevisionService;
+            _rMToiletService = rMToiletService;
+            _rMbedService = rMbedService;
+            _rMCarpetService = rMCarpetService;
+            _rMAirConditionDal = rMAirConditionDal;
+            _rMBathRoomService = rMBathRoomService;
         }
 
         public IActionResult Index()
@@ -38,12 +52,28 @@ namespace HotelGame.WebMVC.Areas.Admins.Controllers
             return View();
         }
 
+        public async Task<IActionResult> GetAllRMTelevisions()
+        {
+            var result = await _roomMaterialService.GetAllAsync();
+            if (result != null)
+            {
+                var roomMaterials = new GetAllRoomMaterialsViewModel()
+                {
+                    RoomMaterials = result.Data,
+                    Message = result.Message
+                };
+                return View(roomMaterials);
+            }
+            return View();
+        }
+
+
         [HttpPost]
-        public async Task<IActionResult> Add(GetAllRoomMaterialsViewModel getAllRoomMaterialsViewModel)
+        public async Task<IActionResult> AddRMTelevision(GetAllRoomMaterialsViewModel getAllRoomMaterialsViewModel)
         {
             if (ModelState.IsValid)
             {
-                var roomType = new RoomMaterialAddDto()
+                var roomType = new RMTelevisionAddDto()
                 {
                     Name = getAllRoomMaterialsViewModel.Name,
                     Level = getAllRoomMaterialsViewModel.Level,
@@ -58,7 +88,7 @@ namespace HotelGame.WebMVC.Areas.Admins.Controllers
                     roomType.ImageUrl = imageFile;
                 }
 
-                var result = await _roomMaterialService.AddAsync(roomType);
+                var result = await _rMTelevisionService.AddAsync(roomType);
                 if (result.Success)
                 {
                     return RedirectToAction("GetAllRoomMaterials");

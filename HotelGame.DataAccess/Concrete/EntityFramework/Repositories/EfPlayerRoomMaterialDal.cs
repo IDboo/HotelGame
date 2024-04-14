@@ -27,5 +27,6 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Repositories
                 return result.Last();
             }
         }
+
     }
 }

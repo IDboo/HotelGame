@@ -23,7 +23,7 @@ namespace HotelGame.Business.Abstract
         // Bir oyuncu otelini silen fonksiyon
         Task<IResult> DeleteAsync(int Id);
 
-        Task<IDataResult<PlayerHotel>> CheckPlayerHotel(int userId);
+        Task<IDataResult<PlayerHotel>> PlayerHotelByUserId(int userId);
 
         int LastId();
 

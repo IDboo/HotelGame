@@ -104,7 +104,7 @@ namespace HotelGame.Business.Concrete
             return new SuccessResult(Messages.PlayerHotelAdded);
         }
 
-        public async Task<IDataResult<PlayerHotel>> CheckPlayerHotel(int userId)
+        public async Task<IDataResult<PlayerHotel>> PlayerHotelByUserId(int userId)
         {
             var checkPlayerHotel = await _playerHotelDal.GetAsync(x => x.UserId == userId);
             if (checkPlayerHotel != null)

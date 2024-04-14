@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HotelGame.Business.Abstract;
 using HotelGame.Business.Constans;
+using HotelGame.Core.Utilities.Business;
 using HotelGame.Core.Utilities.Result.Abstract;
 using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.DataAccess.Abstract;
@@ -104,5 +105,33 @@ namespace HotelGame.Business.Concrete
             _playerRoomMaterialDal.Save();
             return new SuccessResult(Messages.PlayerRoomMaterialAdded);
         }
+
+        public async Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByPlayerRoomIdAsync(int playerRoomId)
+        {
+            var playerRoomMaterial = await _playerRoomMaterialDal.GetAllAsync(x => x.PlayerRoomId == playerRoomId);
+            if (playerRoomMaterial != null)
+            {
+                return new SuccessDataResult<List<PlayerRoomMaterial>>(playerRoomMaterial);
+            }
+            else
+            {
+                return new ErrorDataResult<List<PlayerRoomMaterial>>(null, "Hata");
+            }
+        }
+
+
+        public Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByMaterialNameAsync(string materialName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+
+
     }
+
+
+
+
+
 }

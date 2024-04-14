@@ -65,6 +65,26 @@ namespace HotelGame.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<AutoCreaterManager>().As<IAutoCreaterService>();
 
+            builder.RegisterType<EfRMTelevisionDal>().As<IRMTelevisionDal>();
+            builder.RegisterType<RMTelevisionManager>().As<IRMTelevisionService>();
+
+            builder.RegisterType<EfRMBedDal>().As<IRMBedDal>();
+            builder.RegisterType<RMBedManager>().As<IRMBedService>();
+
+            builder.RegisterType<EfRMBathRoomDal>().As<IRMBathRoomDal>();
+            builder.RegisterType<RMBathRoomManager>().As<IRMBathRoomService>();
+
+            builder.RegisterType<EfRMAirConditionDal>().As<IRMAirConditionDal>();
+            builder.RegisterType<RMAirConditionManager>().As<IRMAirConditionService>();
+
+            builder.RegisterType<EfRMCarpetDal>().As<IRMCarpetDal>();
+            builder.RegisterType<RMCarpetManager>().As<IRMCarpetService>();
+
+            builder.RegisterType<EfRMToiletDal>().As<IRMToiletDal>();
+            builder.RegisterType<RMToiletManager>().As<IRMToiletService>();
+
+
+
         }
     }
 }
