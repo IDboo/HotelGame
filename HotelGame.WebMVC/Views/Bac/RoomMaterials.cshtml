@@ -1,22 +1,6 @@
-﻿@model HotelGame.WebMVC.Models.Test.RoomMaterialViewTest;
+﻿
 @{
     ViewData["Title"] = "RoomMaterials";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@foreach (var item in Model.RoomMaterials)
-{
-    <body>
-        <div class="baccontainer">
-            <h1>............</h1>
-            <div class="product">
-                <img src="@item.ImageUrl" alt="@item.Name">
-                <h2>@item.Name</h2>
-                <p>Kalite Puani : @item.QualityPoint</p>
-                <p>Yükseltme Ücreti : @item.Price</p>
-                <button type="submit">Ürünü Yükselt</button>
-            </div>
-        </div>
-    </body>
 }
 

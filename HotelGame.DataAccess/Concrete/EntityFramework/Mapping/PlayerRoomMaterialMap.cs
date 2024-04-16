@@ -16,7 +16,6 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.PlayerRoomId);
-            builder.Property(x => x.RoomMaterialId);
 
             builder.ToTable("PlayerRoomMaterials");
         }

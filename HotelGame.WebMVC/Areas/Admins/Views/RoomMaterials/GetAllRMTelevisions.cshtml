@@ -1,4 +1,4 @@
-﻿@model HotelGame.WebMVC.Models.RoomMaterials.GetAllRoomMaterialsViewModel;
+﻿@model HotelGame.WebMVC.Models.RoomMaterials.GetAllRMTelevisionViewModel;
 @{
     ViewData["Title"] = "GetAllRoomMaterials";
     Layout = "~/Areas/Admins/Views/Shared/_AdminLayout.cshtml";
@@ -25,12 +25,32 @@
                         </div>
                         <div class="modal-body">
                             <!-- Vertical Form -->
-                            <form class="row g-3" asp-controller="RoomMaterials" asp-action="Add" method="post" enctype="multipart/form-data">
+                            <form class="row g-3" asp-controller="RoomMaterials" asp-action="AddRMTelevision" method="post" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="col-12">
                                     <label for="inputNanme4" class="form-label">Malzeme Adı</label>
                                     <input asp-for="Name" id="Name" type="text" class="form-control" placeholder="Malzeme Adı">
                                     <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Malzeme Seviyesi</label>
+                                    <input asp-for="Level" id="Name" type="text" class="form-control" placeholder="Malzeme Seviyesi">
+                                    <span asp-validation-for="Level" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Yükseltme Ücreti</label>
+                                    <input asp-for="Price" id="Name" type="text" class="form-control" placeholder="Ücreti">
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Kalite Puanı</label>
+                                    <input asp-for="QualityPoint" id="Name" type="text" class="form-control" placeholder="Kalite Puanı">
+                                    <span asp-validation-for="QualityPoint" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Malzeme Resmi</label>
+                                    <input asp-for="ImageUrl" id="Name" type="file" class="form-control" placeholder="Resim Seçiniz">
+                                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
@@ -61,21 +81,29 @@
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col">Malzeme Adı</th>
+                                        <th scope="col">Seviyesi</th>
+                                        <th scope="col">Ücreti</th>
+                                        <th scope="col">Kalite Puani</th>
+                                        <th scope="col">Resim</th>
                                         <th scope="col">Eklenme Tarihi</th>
                                         <th scope="col">Güncelle</th>
                                         <th scope="col">Sil</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var category in Model.RoomMaterials)
+                                    @foreach (var category in Model.RMTelevisions)
                                     {
                                         <tr>
                                             <th scope="row">@category.Id</th>
                                             <td>@category.Name</td>
+                                            <td>@category.Level</td>
+                                            <td>@category.Price</td>
+                                            <td>@category.QualityPoint</td>
+                                            <td><img src="@category.ImageUrl" style="height:100px; width:100px;" /></td>
                                             <td>@category.CreatedTime</td>
-                                            <td><button type="button" onclick="showUpdateModal(@category.Id, '@category.Name')" class="btn btn-outline-warning">Güncelle</button></td>
+                                            <td><button type="button" onclick="showUpdateModal(@category.Id, '@category.Name', '@category.Level','@category.Price','@category.QualityPoint','@category.ImageUrl')" class="btn btn-outline-warning">Güncelle</button></td>
 
-                                            <td><a type="submit" onclick="submitResult(event)" data-category-id="@category.Id" id="btn-delete" href="/Admins/RoomMaterials/Delete/@category.Id" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a type="submit" onclick="submitResult(event)" data-category-id="@category.Id" id="btn-delete" href="/Admins/RoomMaterials/DeleteRMTelevision/@category.Id" class="btn btn-outline-danger">Sil</a></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -105,12 +133,32 @@
                 </div>
                 <div class="modal-body">
                     <!-- Vertical Form -->
-                    <form class="row g-3" asp-controller="RoomMaterials" asp-action="Update" method="post" enctype="multipart/form-data">
+                    <form class="row g-3" asp-controller="RoomMaterials" asp-action="UpdateRMTelevision" method="post" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="col-12">
                             <label for="inputNanme4" class="form-label">Yeni Malzeme Adı</label>
                             <input asp-for="Name" id="Name" type="text" class="form-control" placeholder="Yeni Malzeme Adı">
                             <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Malzeme Seviyesi</label>
+                            <input asp-for="Level" id="Name" type="text" class="form-control" placeholder="Yeni Seviye">
+                            <span asp-validation-for="Level" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Yükseltme Ücreti</label>
+                            <input asp-for="Price" id="Name" type="text" class="form-control" placeholder="Yeni Ücret">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Kalite Puani</label>
+                            <input asp-for="QualityPoint" id="Name" type="text" class="form-control" placeholder="Yeni Kalite Puanı">
+                            <span asp-validation-for="QualityPoint" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Resim</label>
+                            <input asp-for="ImageUrl" id="Name" type="file" class="form-control" placeholder="Resim Seçiniz">
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
@@ -131,7 +179,7 @@
             // item bilgilerini modal içine doldur
             document.getElementById("Name").value = categoryName; // Yeni item adı alanına bilgiyi yerleştir
             var updateForm = document.querySelector("#updateCategory form");
-            updateForm.action = `/Admins/RoomMaterials/Update/${categoryId}`; // Formun gönderileceği URL'yi güncelle
+            updateForm.action = `/Admins/RoomMaterials/UpdateRMTelevision/${categoryId}`; // Formun gönderileceği URL'yi güncelle
 
             // Modalı göster
             var updateCategoryModal = new bootstrap.Modal(document.getElementById("updateCategory"));
@@ -157,7 +205,7 @@
                 cancelButtonText: 'Vazgeç',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`/Admins/RoomMaterials/Delete/${categoryId}`, {
+                    fetch(`/Admins/RoomMaterials/DeleteRMTelevision/${categoryId}`, {
                         method: 'DELETE',
                     });
                     Swal.fire(

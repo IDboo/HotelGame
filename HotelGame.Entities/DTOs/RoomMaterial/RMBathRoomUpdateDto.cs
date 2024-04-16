@@ -3,7 +3,6 @@
     public class RMBathRoomUpdateDto
     {
         public int Id { get; set; }
-        public int RoomMaterialId { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public int Level { get; set; }

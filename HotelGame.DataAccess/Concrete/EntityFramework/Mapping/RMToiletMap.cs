@@ -16,7 +16,66 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
             builder.Property(x => x.Price);
             builder.Property(x => x.QualityPoint);
 
+
             builder.ToTable("RMToilets");
+
+            builder.HasData(
+                new RMToilet
+                {
+                    Id = 1,
+                    Name = "1 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 1,
+                    
+                },
+                new RMToilet
+                {
+                    Id = 2,
+                    Name = "2 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 2,
+                },
+                new RMToilet
+                {
+                    Id = 3,
+                    Name = "3 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 3,
+                },
+                new RMToilet
+                {
+                    Id = 4,
+                    Name = "4 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 4,
+                },
+                new RMToilet
+                {
+                    Id = 5,
+                    Name = "5 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 5,
+                },
+                new RMToilet
+                {
+                    Id = 6,
+                    Name = "6 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 6,
+                }
+                );
 
         }
     }

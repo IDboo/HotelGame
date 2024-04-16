@@ -2,7 +2,6 @@
 {
     public class RMBathRoomAddDto
     {
-        public int RoomMaterialId { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public int Level { get; set; }

@@ -18,6 +18,64 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
 
             builder.ToTable("RMBeds");
 
+            builder.HasData(
+                new RMBed
+                {
+                    Id = 1,
+                    Name = "1 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 1,
+                },
+
+                new RMBed
+                {
+                    Id = 2,
+                    Name = "2 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 2,
+                },
+                new RMBed
+                {
+                    Id = 3,
+                    Name = "3 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 3,
+                },
+                new RMBed
+                {
+                    Id = 4,
+                    Name = "4 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 4,
+                },
+                new RMBed
+                {
+                    Id = 5,
+                    Name = "5 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 5,
+                },
+                new RMBed
+                {
+                    Id = 6,
+                    Name = "6 Seviye",
+                    Price = 20,
+                    QualityPoint = 20,
+                    IsActive = true,
+                    Level = 6,
+                }
+                );
+
         }
     }
 }

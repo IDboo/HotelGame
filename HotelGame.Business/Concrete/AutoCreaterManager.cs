@@ -4,6 +4,7 @@ using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.Entities.DTOs.PlayerHotels;
 using HotelGame.Entities.DTOs.PlayerRoomMaterials;
 using HotelGame.Entities.DTOs.PlayerRooms;
+using HotelGame.Entities.DTOs.RoomMaterial;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,14 @@ namespace HotelGame.Business.Concrete
         private readonly IPlayerHotelService _playerHotelService;
         private readonly IPlayerRoomService _playerRoomService;
         private readonly IPlayerRoomMaterialService _playerRoomMaterialService;
+        private readonly IRMTelevisionService _rMTelevisionService;
+        private readonly IRMAirConditionService _rMAirConditionService;
+        private readonly IRMToiletService _rMToiletService;
+        private readonly IRMBedService _rMBedService;
+        private readonly IRMBathRoomService _rMBathRoomService;
+        private readonly IRMCarpetService _rMCarpetService;
 
-        public AutoCreaterManager(IHotelTypeService hotelTypeService, IRoomTypeService roomTypeService, IRoomMaterialService roomMaterialService, IPlayerHotelService playerHotelService, IPlayerRoomService playerRoomService, IPlayerRoomMaterialService playerRoomMaterialService)
+        public AutoCreaterManager(IHotelTypeService hotelTypeService, IRoomTypeService roomTypeService, IRoomMaterialService roomMaterialService, IPlayerHotelService playerHotelService, IPlayerRoomService playerRoomService, IPlayerRoomMaterialService playerRoomMaterialService, IRMTelevisionService rMTelevisionService, IRMAirConditionService rMAirConditionService, IRMToiletService rMToiletService, IRMBedService rMBedService, IRMBathRoomService rMBathRoomService, IRMCarpetService rMCarpetService)
         {
             _hotelTypeService = hotelTypeService;
             _roomTypeService = roomTypeService;
@@ -29,6 +36,12 @@ namespace HotelGame.Business.Concrete
             _playerHotelService = playerHotelService;
             _playerRoomService = playerRoomService;
             _playerRoomMaterialService = playerRoomMaterialService;
+            _rMTelevisionService = rMTelevisionService;
+            _rMAirConditionService = rMAirConditionService;
+            _rMToiletService = rMToiletService;
+            _rMBedService = rMBedService;
+            _rMBathRoomService = rMBathRoomService;
+            _rMCarpetService = rMCarpetService;
         }
 
         public IResult NewHotelCreater(int userId, string hotelName)
@@ -54,16 +67,18 @@ namespace HotelGame.Business.Concrete
                     RoomDailyPrice = 25
                 });
                 int lastplayerRoomId = _playerRoomService.LastId();
-                for (int j = 1; j < 7; j++)
-                {
-                    _playerRoomMaterialService.Add(new PlayerRoomMaterialAddDto
-                    {
-                        PlayerRoomId = lastplayerRoomId,
-                        RoomMaterialId = j,
-                    });
-                }
-            }
 
+                _playerRoomMaterialService.Add(new PlayerRoomMaterialAddDto
+                {
+                    PlayerRoomId = lastplayerRoomId,
+                    RMTelevisionId = 1,
+                    RMBedId = 1,
+                    RMAirConditionId = 1,
+                    RMBathRoomId = 1,
+                    RMCarpetId = 1,
+                    RMToiletId = 1,
+                });
+            }
             return new SuccessResult("Otel Oluşturuldu");
         }
     }
