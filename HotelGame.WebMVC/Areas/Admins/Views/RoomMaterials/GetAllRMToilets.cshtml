@@ -1,0 +1,227 @@
+﻿@model HotelGame.WebMVC.Models.RoomMaterials.GetAllRMToiletViewModel;
+@{
+    ViewData["Title"] = "GetAllRoomMaterials";
+    Layout = "~/Areas/Admins/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main id="main" class="main">
+
+    @*Add Category Modal Start*@
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Malzeme Ekle</h5>
+            <p>Yeni Malzeme Eklemek İçin Tıklayın</p>
+
+            <!-- Vertically centered Modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                Ekle
+            </button>
+            <div class="modal fade" id="verticalycentered" tabindex="-1" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Malzeme Yazın</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Vertical Form -->
+                            <form class="row g-3" asp-controller="RoomMaterials" asp-action="AddRMToilet" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Malzeme Adı</label>
+                                    <input asp-for="Name" id="Name" type="text" class="form-control" placeholder="Malzeme Adı">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Malzeme Seviyesi</label>
+                                    <input asp-for="Level" id="Name" type="text" class="form-control" placeholder="Malzeme Seviyesi">
+                                    <span asp-validation-for="Level" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Yükseltme Ücreti</label>
+                                    <input asp-for="Price" id="Name" type="text" class="form-control" placeholder="Ücreti">
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Kalite Puanı</label>
+                                    <input asp-for="QualityPoint" id="Name" type="text" class="form-control" placeholder="Kalite Puanı">
+                                    <span asp-validation-for="QualityPoint" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputNanme4" class="form-label">Malzeme Resmi</label>
+                                    <input asp-for="ImageUrl" id="Name" type="file" class="form-control" placeholder="Resim Seçiniz">
+                                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                    <button type="submit" class="btn btn-primary" value="Add">Ekle</button>
+                                </div>
+                            </form><!-- Vertical Form -->
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Vertically centered Modal-->
+
+        </div>
+    </div>
+    @*Add Category Modal End*@
+
+    @*Category Data Table Start*@
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Otel Tipleri Listesi</h5>
+                        @if (Model != null)
+                        {
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable" id="categoriesTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Malzeme Adı</th>
+                                        <th scope="col">Seviyesi</th>
+                                        <th scope="col">Ücreti</th>
+                                        <th scope="col">Kalite Puani</th>
+                                        <th scope="col">Resim</th>
+                                        <th scope="col">Eklenme Tarihi</th>
+                                        <th scope="col">Güncelle</th>
+                                        <th scope="col">Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var category in Model.RMToilets)
+                                    {
+                                        <tr>
+                                            <th scope="row">@category.Id</th>
+                                            <td>@category.Name</td>
+                                            <td>@category.Level</td>
+                                            <td>@category.Price</td>
+                                            <td>@category.QualityPoint</td>
+                                            <td><img src="@category.ImageUrl" style="height:100px; width:100px;" /></td>
+                                            <td>@category.CreatedTime</td>
+                                            <td><button type="button" onclick="showUpdateModal(@category.Id, '@category.Name', '@category.Level','@category.Price','@category.QualityPoint','@category.ImageUrl')" class="btn btn-outline-warning">Güncelle</button></td>
+
+                                            <td><a type="submit" onclick="submitResult(event)" data-category-id="@category.Id" id="btn-delete" href="/Admins/RoomMaterials/DeleteRMToilet/@category.Id" class="btn btn-outline-danger">Sil</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!-- End Table with stripped rows -->
+                        }
+                        else
+                        {
+                            <p>Hiç Otel Tipi Bulunamadı</p>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*Category Data Table End*@
+
+
+    @*Update Category Modal Start*@
+    <div class="modal fade" id="updateCategory" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Yeni Malzeme Yazın</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Vertical Form -->
+                    <form class="row g-3" asp-controller="RoomMaterials" asp-action="UpdateRMToilet" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Malzeme Adı</label>
+                            <input asp-for="Name" id="Name" type="text" class="form-control" placeholder="Yeni Malzeme Adı">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Malzeme Seviyesi</label>
+                            <input asp-for="Level" id="Name" type="text" class="form-control" placeholder="Yeni Seviye">
+                            <span asp-validation-for="Level" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Yükseltme Ücreti</label>
+                            <input asp-for="Price" id="Name" type="text" class="form-control" placeholder="Yeni Ücret">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Kalite Puani</label>
+                            <input asp-for="QualityPoint" id="Name" type="text" class="form-control" placeholder="Yeni Kalite Puanı">
+                            <span asp-validation-for="QualityPoint" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Yeni Resim</label>
+                            <input asp-for="ImageUrl" id="Name" type="file" class="form-control" placeholder="Resim Seçiniz">
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                            <button type="submit" class="btn btn-primary" value="Update">Güncelle</button>
+                        </div>
+                    </form><!-- Vertical Form -->
+                </div>
+            </div>
+        </div>
+    </div><!-- End Vertically centered Modal-->
+    @*Update Category Modal End*@
+
+
+    <script>
+
+        function showUpdateModal(categoryId, categoryName) {
+            debugger;
+            // item bilgilerini modal içine doldur
+            document.getElementById("Name").value = categoryName; // Yeni item adı alanına bilgiyi yerleştir
+            var updateForm = document.querySelector("#updateCategory form");
+            updateForm.action = `/Admins/RoomMaterials/UpdateRMToilet/${categoryId}`; // Formun gönderileceği URL'yi güncelle
+
+            // Modalı göster
+            var updateCategoryModal = new bootstrap.Modal(document.getElementById("updateCategory"));
+            updateCategoryModal.show();
+        }
+
+        function submitResult(e) {
+            e.preventDefault();
+            const categoryId = e.target.getAttribute("data-category-id");
+            if (!categoryId) {
+                console.error("Veri kimliği alınamadı.");
+                return;
+            }
+
+            Swal.fire({
+                title: 'Malzemeyi Silmek İstediğinize Emin Misiniz?',
+                text: "Eğer kabul ederseniz seçtiğiniz malzeme silinecektir.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet Kabul Ediyorum',
+                cancelButtonText: 'Vazgeç',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/Admins/RoomMaterials/DeleteRMToilet/${categoryId}`, {
+                        method: 'DELETE',
+                    });
+                    Swal.fire(
+                        'Malzeme Silindi',
+                        'Seçili malzeme başarıyla silinmiştir',
+                        'success'
+                    );
+                    location.reload();
+                }
+            });
+        }
+
+
+
+
+    </script>
+
+
+</main><!-- End #main -->

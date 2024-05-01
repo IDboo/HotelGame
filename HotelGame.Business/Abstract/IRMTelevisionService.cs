@@ -26,6 +26,8 @@ namespace HotelGame.Business.Abstract
 
         // Bir oda malzemesini silen fonksiyon
         Task<IResult> DeleteAsync(int Id);
+
+        Task<IDataResult<RMTelevision>> GetByLevelAsync(int level);
     }
 
 

@@ -7,6 +7,7 @@ using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.DataAccess.Abstract;
 using HotelGame.DataAccess.Concrete.EntityFramework.Repositories;
 using HotelGame.Entities.Concrete;
+using HotelGame.Entities.DTOs.PlayerRoomMaterial;
 using HotelGame.Entities.DTOs.PlayerRoomMaterials;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,11 +20,13 @@ namespace HotelGame.Business.Concrete
 
         private readonly IPlayerRoomMaterialDal _playerRoomMaterialDal;
         private readonly IMapper _mapper;
+        private readonly IRMTelevisionService _rMTelevisionService;
 
-        public PlayerRoomMaterialManager(IPlayerRoomMaterialDal playerRoomMaterialDal, IMapper mapper)
+        public PlayerRoomMaterialManager(IPlayerRoomMaterialDal playerRoomMaterialDal, IMapper mapper, IRMTelevisionService rMTelevisionService)
         {
             _playerRoomMaterialDal = playerRoomMaterialDal;
             _mapper = mapper;
+            _rMTelevisionService = rMTelevisionService;
         }
 
         #endregion
@@ -119,10 +122,28 @@ namespace HotelGame.Business.Concrete
             }
         }
 
-
-        public Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByMaterialNameAsync(string materialName)
+        public async Task<IDataResult<PlayerRoomMaterial>> GetUpperLevelMaterial(int playerRoomId)
         {
-            throw new System.NotImplementedException();
+            var defaultRoomMaterials = await GetAllByPlayerRoomIdAsync(playerRoomId);
+
+            foreach (var roomMaterial in defaultRoomMaterials.Data)
+            {
+                var checkRMTelevisionId = await _rMTelevisionService.GetByIdAsync(roomMaterial.RMTelevisionId);
+
+                var checkRMTelevisonLevel = await _rMTelevisionService.GetByLevelAsync(checkRMTelevisionId.Data.Level);
+
+                var upperTelevisionLevel = checkRMTelevisonLevel.Data.Level + 1;
+
+                var checkUpperLevelTelevision = await _rMTelevisionService.GetByLevelAsync(upperTelevisionLevel);
+
+                var upperLevelMaterials = new PlayerRoomMaterial
+                {
+                    RMTelevisionId = checkUpperLevelTelevision.Data.Id,
+                };
+                return new SuccessDataResult<PlayerRoomMaterial>(upperLevelMaterials);
+            }
+            return new ErrorDataResult<PlayerRoomMaterial>(null, "Hata");
+
         }
 
 

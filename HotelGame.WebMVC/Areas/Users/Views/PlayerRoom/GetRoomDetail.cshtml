@@ -5,15 +5,51 @@
 }
 
 
-@* @foreach (var item in Model.PlayerRoomMaterials)
+@foreach (var item in Model.PlayerRoomMaterials)
 {
     <body>
         <div class="baccontainer">
             <h1>............</h1>
             <div class="product">
-                <img src="@item.RoomMaterial.ImageUrl" alt="@item.RoomMaterial.Name">
-                <h2>@item.RoomMaterial.Name</h2>
-                <p>Kalite Puani : @item.RoomMaterial.QualityPoint</p>
+                @if (item.RMAirCondition.ImageUrl != null)
+                {
+                    <img src="@item.RMAirCondition.ImageUrl" alt="@item.RMAirCondition.Name">
+                }
+                else
+                {
+                     <p>yok </p>
+                }
+                <h2>@item.RMAirCondition.Name</h2>
+                <p>Kalite Puani : @item.RMAirCondition.QualityPoint</p>
+            </div>
+        </div>
+    </body>
+
+@*     <body>
+        <div class="baccontainer">
+            <h1>............</h1>
+            <div class="product">
+                <p>Yükseltme Ücreti : @Model.UpperRoomMaterial.RMTelevision.Name</p>
+                <button type="submit">Ürünü Yükselt</button>
+            </div>
+        </div>
+    </body> *@
+
+    <body>
+        <div class="baccontainer">
+            <h1>............</h1>
+            <div class="product">
+
+                @if (item.RMTelevision.ImageUrl != null)
+                {
+                    <img src="@item.RMTelevision.ImageUrl" alt="@item.RMTelevision.Name">
+                }
+                else
+                {
+                    <p>yok </p>
+                }
+                <h2>@item.RMAirCondition.Name</h2>
+                <p>Kalite Puani : @item.RMTelevision.QualityPoint</p>
             </div>
         </div>
     </body>
@@ -22,10 +58,20 @@
         <div class="baccontainer">
             <h1>............</h1>
             <div class="product">
-                <p>Yükseltme Ücreti : @item.RoomMaterial.Price</p>
+                <p>Yükseltme Ücreti : @item.RMTelevision.Price</p>
                 <button type="submit">Ürünü Yükselt</button>
             </div>
         </div>
     </body>
-} *@
+}
+
+<body>
+    <div class="baccontainer">
+        <h1>............</h1>
+        <div class="product">
+            <p>Yükseltme Ücreti : @Model.UpperRoomMaterial.RMTelevision.Name</p>
+            <button type="submit">Ürünü Yükselt</button>
+        </div>
+    </div>
+</body>
 

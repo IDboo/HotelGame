@@ -1,14 +1,12 @@
 ﻿using HotelGame.Entities.Concrete;
-using HotelGame.WebMVC.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
 namespace HotelGame.WebMVC.Models.RoomMaterials
 {
-    public class GetAllRMTelevisionViewModel : BaseViewModel
+    public class GetAllRMAirConditionViewModel : BaseViewModel
     {
-        public List<RMTelevision> RMTelevisions { get; set; }
+        public List<RMAirCondition> RMAirConditions { get; set; }
 
         public int Id { get; set; }
         public int RoomMaterialId { get; set; }

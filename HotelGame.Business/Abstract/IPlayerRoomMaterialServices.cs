@@ -1,5 +1,6 @@
 ﻿using HotelGame.Core.Utilities.Result.Abstract;
 using HotelGame.Entities.Concrete;
+using HotelGame.Entities.DTOs.PlayerRoomMaterial;
 using HotelGame.Entities.DTOs.PlayerRoomMaterials;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -28,8 +29,7 @@ namespace HotelGame.Business.Abstract
         IResult Add(PlayerRoomMaterialAddDto playerRoomMaterialAddDto);
 
         Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByPlayerRoomIdAsync(int playerRoomId);
-
-        Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByMaterialNameAsync(string materialName);
+        Task<IDataResult<PlayerRoomMaterial>> GetUpperLevelMaterial(int playerRoomId);
 
 
     }

@@ -1,4 +1,5 @@
 ﻿using HotelGame.Entities.Concrete;
+using HotelGame.Entities.DTOs.PlayerRoomMaterial;
 using System.Collections.Generic;
 
 namespace HotelGame.WebMVC.Models.GamePlay
@@ -14,6 +15,8 @@ namespace HotelGame.WebMVC.Models.GamePlay
         public bool CheckPlayerHotel { get; set; }
 
         public List<PlayerRoomMaterial> PlayerRoomMaterials { get; set; }
+
+        public PlayerRoomMaterial UpperRoomMaterial { get; set; }
 
     }
 }

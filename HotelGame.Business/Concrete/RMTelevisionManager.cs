@@ -77,6 +77,20 @@ namespace HotelGame.Business.Concrete
             }
         }
 
+        public async Task<IDataResult<RMTelevision>> GetByLevelAsync(int level)
+        {
+            var rmTelevision = await _rMTelevisionDal.GetAsync(x=> x.Level == level);
+
+            if (rmTelevision != null)
+            {
+                return new SuccessDataResult<RMTelevision>(rmTelevision);
+            }
+            else
+            {
+                return new ErrorDataResult<RMTelevision>(null, "Hata");
+            }
+        }
+
         public async Task<IResult> UpdateAsync(RMTelevisionUpdateDto rMTelevisionUpdateDto)
         {
             var oldRMTelevision = await _rMTelevisionDal.GetAsync(rm => rm.Id == rMTelevisionUpdateDto.Id);

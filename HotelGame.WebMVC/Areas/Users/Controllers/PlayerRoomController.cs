@@ -10,16 +10,17 @@ namespace HotelGame.WebMVC.Areas.Users.Controllers
     {
 
         private readonly IPlayerRoomMaterialService _playerRoomMaterialService;
-        private readonly IRoomMaterialService _roomMaterialService;
         private readonly IPlayerRoomService _playerRoomService;
         private readonly IPlayerHotelService _playerHotelService;
-
-        public PlayerRoomController(IUserAccessor userAccessor, IPlayerRoomMaterialService playerRoomMaterialService, IRoomMaterialService roomMaterialService, IPlayerRoomService playerRoomService, IPlayerHotelService playerHotelService) : base(userAccessor)
+        private readonly IRMTelevisionService _rMTelevisionService;
+        private readonly IRMAirConditionService _rMAirConditionService;
+        public PlayerRoomController(IUserAccessor userAccessor, IPlayerRoomMaterialService playerRoomMaterialService, IPlayerRoomService playerRoomService, IPlayerHotelService playerHotelService, IRMTelevisionService rMTelevisionService, IRMAirConditionService rMAirConditionService) : base(userAccessor)
         {
             _playerRoomMaterialService = playerRoomMaterialService;
-            _roomMaterialService = roomMaterialService;
             _playerRoomService = playerRoomService;
             _playerHotelService = playerHotelService;
+            _rMTelevisionService = rMTelevisionService;
+            _rMAirConditionService = rMAirConditionService;
         }
 
         public IActionResult Index()
@@ -30,16 +31,19 @@ namespace HotelGame.WebMVC.Areas.Users.Controllers
         public async Task<IActionResult> GetRoomDetail(int Id)
         {
             var userId = CurrentUser.Id;
-            var roomMaterial = await _roomMaterialService.GetAllAsync();
+            var rMTelevision = await _rMTelevisionService.GetAllAsync();
+            var rMAirCondition = await _rMAirConditionService.GetAllAsync();
             var result = await _playerRoomMaterialService.GetAllByPlayerRoomIdAsync(Id);
             var playerHotelDetail = await _playerHotelService.PlayerHotelByUserId(userId);
+            var upperLevelMaterial = await _playerRoomMaterialService.GetUpperLevelMaterial(Id);
 
             if (result.Success)
             {
                 var playerRoomMaterials = new GetAllPlayerRoomsViewModel
                 {
                     PlayerHotel = playerHotelDetail.Data,
-                    PlayerRoomMaterials = result.Data
+                    PlayerRoomMaterials = result.Data,
+                    UpperRoomMaterial = upperLevelMaterial.Data,
                 };
 
                 return View(playerRoomMaterials);
