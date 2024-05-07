@@ -4,8 +4,9 @@ a.navbar-brand {
     text-align: center;
     word-break: break-all;
 }
-.navbar{
-    padding:0rem 0rem;
+
+.navbar {
+    padding: 0rem 0rem;
 }
 
 /* Linkler */
@@ -16,6 +17,7 @@ a {
 .close {
     color: #03e9f4;
 }
+
     .close:hover {
         color: red;
     }
@@ -28,7 +30,8 @@ a {
 }
 
 /* Aktif olan sekme */
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
@@ -66,7 +69,8 @@ button.accept-policy {
 }
 
 /* Sticky footer stilleri */
-html, body {
+html,
+body {
     position: relative;
     height: 100%;
     margin: 0;
@@ -81,7 +85,7 @@ html, body {
     height: 7vh;
     background: rgba(25, 25, 25, 0.99);
     text-align: center;
-    z-index: 3;
+    z-index: 100;
 }
 
 .footer {
@@ -90,9 +94,16 @@ html, body {
     left: 0;
     width: 100%;
     height: 5vh;
-    background: rgba(25, 25, 25, 0.98);
     text-align: center;
-    z-index: 3;
+    background-color: #000000;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.footer1 {
+    margin-bottom: 0px;
+    color: rgb(255, 255, 255);
+    font-size: 2vh;
 }
 
 #mainBody {
@@ -119,6 +130,12 @@ html, body {
 
     .login-box h2 {
         margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+    }
+    .login-box h6 {
+        margin: 0 0 10px;
         padding: 0;
         color: #fff;
         text-align: center;
@@ -158,120 +175,6 @@ html, body {
             color: #03e9f4;
             font-size: 14px;
         }
-
-    .login-box form a {
-        position: relative;
-        display: inline-block;
-        padding: 10px 20px;
-        color: #03e9f4;
-        font-size: 16px;
-        text-decoration: none;
-        text-transform: uppercase;
-        overflow: hidden;
-        transition: .5s;
-        margin-top: 40px;
-        letter-spacing: 4px
-    }
-
-    .login-box a:hover {
-        background: #03e9f4;
-        color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
-    }
-
-    .login-box a span {
-        position: absolute;
-        display: block;
-    }
-
-        .login-box a span:nth-child(1) {
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #03e9f4);
-            animation: btn-anim1 1s linear infinite;
-        }
-
-@keyframes btn-anim1 {
-    0% {
-        left: -100%;
-    }
-
-    50%, 100% {
-        left: 100%;
-    }
-}
-
-.login-box a span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
-    animation: btn-anim2 1s linear infinite;
-    animation-delay: .25s
-}
-
-@keyframes btn-anim2 {
-    0% {
-        top: -100%;
-    }
-
-    50%, 100% {
-        top: 100%;
-    }
-}
-
-.login-box a span:nth-child(3) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
-    animation: btn-anim3 1s linear infinite;
-    animation-delay: .5s
-}
-
-@keyframes btn-anim3 {
-    0% {
-        right: -100%;
-    }
-
-    50%, 100% {
-        right: 100%;
-    }
-}
-
-.login-box a span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #03e9f4);
-    animation: btn-anim4 1s linear infinite;
-    animation-delay: .75s
-}
-
-@keyframes btn-anim4 {
-    0% {
-        bottom: -100%;
-    }
-
-    50%, 100% {
-        bottom: 100%;
-    }
-}
-
-/* Resim */
-.gorsel {
-    width: 100%;
-    height: 88vh;
-    object-fit: fill;
-}
-
-
 
 .login-button {
     position: relative;
@@ -379,6 +282,25 @@ html, body {
     }
 }
 
+/* Resim */
+.gorsel {
+    width: 100%;
+    height: 88vh;
+    object-fit: fill;
+}
+
+.bellButton {
+    position: absolute;
+    top: 73%;
+    left: 45%;
+    width: 10%;
+    height: 12%;
+    cursor: pointer;
+}
+
+    .bellButton:hover {
+        filter: drop-shadow(0px 0px 12px #ffea00);
+    }
 
 .play-login-button {
     position: relative;
