@@ -1,6 +1,25 @@
 ﻿@model HotelGame.WebMVC.Models.GamePlay.GetAllPlayerRoomsViewModel;
 
-<!-- ======= Header ======= -->
+<header class="header border-bottom">
+    <nav class="navbar h-100 d-flex align-items-center">
+        <div id="headerLogo" class="col-3">
+            @if (Model.PlayerHotel != null)
+            {
+                <span class="hotelName">@Model.PlayerHotel.HotelName</span>
+            }
+            else
+            {
+                <p class="hotelName">Otelini Oluştur</p>
+            }
+        </div>
+        <partial name="_UserMenuPartialView" />
+    </nav>
+</header>
+
+
+
+
+@* <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -8,7 +27,7 @@
             <img src="assets/img/logo.png" alt="">
             @if (Model.PlayerHotel != null)
             {
-                <span class="d-none d-lg-block">@Model.PlayerHotel.HotelName</span>
+                <span class="text">@Model.PlayerHotel.HotelName</span>
             }
             else
             {
@@ -19,4 +38,4 @@
 
     <partial name="_UserMenuPartialView" />
 
-</header><!-- End Header -->
+</header><!-- End Header --> *@
