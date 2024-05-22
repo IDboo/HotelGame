@@ -1,20 +1,12 @@
-﻿@model HotelGame.WebMVC.Models.GamePlay.GetAllPlayerRoomsViewModel;
+﻿@model HotelGame.WebMVC.Models.GamePlay.GetAllPlayerRoomsViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Users/Views/Shared/_UserLayout.cshtml";
 }
 
-
 @if (Model.CheckPlayerHotel == true)
 {
-@*     <button class="button-30" role="button" onclick="sw(),openLoginPopup()" onchange="sw()">
-        <p class="m-2" id="loginButtonText">
-            Oyna
-        </p>
-    </button> *@
-
-    @*Add Category Modal Start*@
-    <div class="card" >
+    <div class="card">
         <div class="card-body">
             <h5 class="card-title">Otel Macerasına Başla</h5>
             <p>İlk Otelini Eklemek İçin Oteline Bir İsim Ver !!!!</p>
@@ -23,7 +15,7 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
                 Ekle
             </button>
-            <div class="modal fade" id="verticalycentered" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal fade" id="verticalycentered" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -34,8 +26,7 @@
                             <form class="row g-3" asp-controller="Dashboard" asp-action="HotelCreater" method="post" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="col-12">
-
-                                    <label for="inputNanme4" class="form-label">Otel Adı</label>
+                                    <label for="inputName4" class="form-label">Otel Adı</label>
                                     <input asp-for="HotelName" id="Name" type="text" class="form-control" placeholder="Benim Güzel Otelim">
                                     <span asp-validation-for="HotelName" class="text-danger"></span>
                                 </div>
@@ -43,29 +34,43 @@
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
                                     <button type="submit" class="btn btn-primary" value="Add">Oteli Oluştur</button>
                                 </div>
-                            </form><!-- Vertical Form -->
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div><!-- End Vertically centered Modal-->
-
+            </div>
         </div>
     </div>
-    @*Add Category Modal End*@
 }
 else
 {
-    @foreach (var item in Model.PlayerRooms)
-    {
-        <div style="display:flex;width:100%;height:88vh;background-color:lightgray; justify-content:center; align-items:center">
-            <div style="display:flex;width:70%;height:50%;background-color:lightgray;">
-                <a href="/Users/PlayerRoom/GetRoomDetail/@item.Id" class="box">
-                    <img src="~/img/room.png" class="png"/>
-                    <span style="z-index:5;display: flex;width:75px; justify-content:center;background-color: rgba(51, 51, 51, 0.6);border-radius: 3px;position:absolute;bottom:0px;">
-                        <text style="color: rgb(242, 242, 242);">@item.RoomType.Name</text>
+    <div class="grid-container">
+        @for (var i = 0; i < Model.PlayerRooms.Count; i++)
+        {
+            var item = Model.PlayerRooms[i];
+            <div class="grid-item grid-item-@i" data-room-id="@item.Id">
+                <a href="/Users/PlayerRoom/GetRoomDetail/@item.Id">
+                    <img src="~/img/room.png" alt="Room Image" />
+                    <span>
+                        <text>@item.RoomType.Name</text>
                     </span>
                 </a>
             </div>
-        </div>
-    }
+        }
+    </div>
+     @* <div class="containerBox">
+        @foreach (var item in Model.PlayerRooms)
+        {
+            <div class="box" data-room-id="@item.Id">
+                <a href="/Users/PlayerRoom/GetRoomDetail/@item.Id">
+                    <img src="~/img/room.png" alt="Room Image" class="png" />
+                    <span style="z-index: 5; display: flex; max-width: 75%; padding-left: 5px; padding-right: 5px; justify-content: center; background-color: rgba(51, 51, 51, 0.6); border-radius: 3px; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">
+                        <text style="color: rgb(242, 242, 242); width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            @item.RoomType.Name
+                        </text>
+                    </span>
+                </a>
+            </div>
+        }
+    </div> *@
 }

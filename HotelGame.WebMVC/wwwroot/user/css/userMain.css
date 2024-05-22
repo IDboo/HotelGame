@@ -1,2 +1,257 @@
-﻿body {
+﻿html,
+body {
+    background: url('../../img/background.webp') no-repeat center center fixed;
+    background-size: cover;
+    height: 88vh;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7vh;
+    background: rgba(25, 25, 25, 0.99);
+    text-align: center;
+    z-index: 100;
+    padding: 0px 20px 0px 20px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5vh;
+    text-align: center;
+    background-color: #000000;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.footer1 {
+    margin-bottom: 0px;
+    color: rgb(255, 255, 255);
+    font-size: 2vh;
+}
+
+#mainBody {
+    margin-top: 7vh;
+    margin-bottom: 5vh;
+    height: 88vh;
+    padding: 0;
+}
+
+/*.containerBox {
+    margin-top: 7vh;*/ /* Header'dan uzaklaştırmak için margin-top ekleyin */
+    /*margin-bottom: 5vh;*/ /* Footer'dan uzaklaştırmak için margin-bottom ekleyin */
+    /*align-items:center;
+    justify-content:center;
+    height:88vh;
+    width:100%;
+}*/
+
+.box {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s ease-in-out transform, 0.4s ease-in-out box-shadow;
+    width: 250px;
+    height: 100px;
+}
+
+    .box:hover {
+        transform: translate3d(0px, -16px, 0px);
+        z-index: 3;
+    }
+
+.ust {
+    filter: brightness(90%);
+    position: absolute;
+    pointer-events: none;
+    width: 242px;
+    z-index: 0;
+}
+
+.alt {
+    filter: brightness(90%);
+    width: 250px;
+    z-index: 1;
+    position: absolute;
+    pointer-events: none;
+}
+
+.png {
+    filter: brightness(90%);
+    position: absolute;
+    pointer-events: none;
+    width: 250px;
+    z-index: 0;
+}
+
+.hotelName {
+    color: lightgray;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.grid-container {
+    display:block;
+    align-items: center;
+    justify-content: center;
+    height: 88vh;
+    width: 100%;
+    margin-top: 7vh; /* Header'dan uzaklaştırmak için margin-top ekleyin */
+    margin-bottom: 5vh; /* Footer'dan uzaklaştırmak için margin-bottom ekleyin */
+}
+
+.grid-item {
+    position: absolute;
+    transition: 0.4s ease-in-out transform, 0.4s ease-in-out box-shadow;
+    width: 250px;
+    height: 100px;
+}
+
+    .grid-item:hover {
+        transform: translate3d(0px, -16px, 0px);
+        z-index: 5;
+    }
+
+    .grid-item img {
+        filter: brightness(90%);
+        position: absolute;
+        pointer-events: none;
+        width: 250px;
+        z-index: 0;
+        top:-15px;
+    }
+
+    .grid-item span {
+        z-index: 3;
+        display: flex;
+        max-width: 75%;
+        padding-left: 5px;
+        padding-right: 5px;
+        justify-content: center;
+        background-color: rgba(51, 51, 51, 0.6);
+        border-radius: 3px;
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .grid-item text {
+        justify-items:center;
+        align-items:center;
+        text-align:center;
+        color: rgb(242, 242, 242);
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    } 
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(25, 25, 25, 0);
+}
+
+/*    .header-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }*/
+
+    .header-nav li {
+        margin-left: 10px;
+        margin-right:10px;
+        color: lightgray;
+    }
+
+    .header-nav .info-box {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        margin-inline-end:50vh;
+        margin-inline-start:50vh;
+    }
+
+        .header-nav .info-box div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-nav .info-box span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .header-nav .info-box .highlight {
+            color: #1abc9c;
+            font-weight: bold;
+        }
+
+    .header-nav .nav-profile {
+        display: flex;
+        align-items: center;
+        color: lightgray;
+    }
+
+    .header-nav .dropdown-menu {
+        transform: translate3d(-20px,50px,0px) !important;
+        background-color: rgba(25, 25, 25, 0.99);
+        color: lightgray;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        margin-top: 0;
+        margin-left: -50px;
+    }
+
+        .header-nav .dropdown-menu a {
+            color: lightgray;
+        }
+
+            .header-nav .dropdown-menu a:hover {
+                background: #03e9f4 !important;
+                color: #fff;
+                border-radius: 5px;
+            }
+
+element.style {
+    transform: translate3d(-20px,50px,0px);
+}
+
+.grid-item-0 {
+    top: 70px;
+    left: 700px;
+}
+
+.grid-item-1 {
+    top: 107px;
+    left: 566px;
+}
+
+.grid-item-2 {
+    top: 107px;
+    left: 800px;
+}
+
+.grid-item-3 {
+    top: 144px;
+    left: 431px;
+}
+
+.grid-item-4 {
+    top: 144px;
+    left: 664px;
 }

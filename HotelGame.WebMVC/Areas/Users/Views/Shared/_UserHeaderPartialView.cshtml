@@ -1,6 +1,6 @@
 ﻿@model HotelGame.WebMVC.Models.GamePlay.GetAllPlayerRoomsViewModel;
 
-<header class="header border-bottom">
+@* <header class="header border-bottom">
     <nav class="navbar h-100 d-flex align-items-center">
         <div id="headerLogo" class="col-3">
             @if (Model.PlayerHotel != null)
@@ -14,28 +14,29 @@
         </div>
         <partial name="_UserMenuPartialView" />
     </nav>
-</header>
+</header> *@
 
 
 
 
-@* <!-- ======= Header ======= -->
+<!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="Dashboard" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
+        <a href="Dashboard" class="d-flex align-items-center">
             @if (Model.PlayerHotel != null)
             {
-                <span class="text">@Model.PlayerHotel.HotelName</span>
+                <span class="hotelName">@Model.PlayerHotel.HotelName</span>
             }
             else
             {
-                <p>Otelini Oluştur</p>
+                <p class="hotelName">Otelini Oluştur</p>
             }
         </a>
     </div><!-- End Logo -->
 
     <partial name="_UserMenuPartialView" />
 
-</header><!-- End Header --> *@
+</header><!-- End Header -->
+
+

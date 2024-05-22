@@ -4,35 +4,37 @@
     @if (CurrentUser != null)
     {
         <ul class="d-flex align-items-center">
-            @if (Model.PlayerHotel != null)
-            {
-            <li>
-                <h5>Bakiyem</h5>
-                <p>@Model.PlayerHotel.HotelMoney TL</p>
-            </li>
-            <li>
-                <h5>Kalite Puanı</h5>
-                <p>@Model.PlayerHotel.HotelQuality *</p>
-            </li>
-            <li>
-                <h5>Yorum Puanı</h5>
-                <p>@Model.PlayerHotel.CustomerCommentPointAvarage </p>
-            </li>
-            <li>
-                <h5>Otel Seviyesi</h5>
-                <p>@Model.PlayerHotel.HotelLevel </p>
-            </li>
-            }
-            else
-            {
-                <p>Hoşgeldiniz.</p>
-            }
+            <div class="info-box">
+                @if (Model.PlayerHotel != null)
+                {
+                    <div>
+                        <span>Bakiye:</span>
+                        <span class="highlight">@Model.PlayerHotel.HotelMoney TL</span>
+                    </div>
+                    <div>
+                        <span>Kalite Puanı:</span>
+                        <span class="highlight">@Model.PlayerHotel.HotelQuality *</span>
+                    </div>
+                    <div>
+                        <span>Yorum Puanı:</span>
+                        <span class="highlight">@Model.PlayerHotel.CustomerCommentPointAvarage</span>
+                    </div>
+                    <div>
+                        <span>Otel Seviyesi:</span>
+                        <span class="highlight">@Model.PlayerHotel.HotelLevel</span>
+                    </div>
+                }
+                else
+                {
+                    <p>Hoşgeldiniz.</p>
+                }
+            </div>
             <li>
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">@CurrentUser.Name @CurrentUser.LastName</span>
+                    <span class="d-none d-md-block dropdown-toggle">@CurrentUser.Name @CurrentUser.LastName</span>
                 </a><!-- End Profile Iamge Icon -->
 
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" style="transform: translate3d(-20px,50px,0px);">
                     <li class="dropdown-header">
                         <h6>@CurrentUser.Name @CurrentUser.LastName</h6>
                     </li>
@@ -71,7 +73,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" asp-controller="Account" asp-area="" asp-action="Logout">
+                        <a class="dropdown-item d-flex align-items-center mb-2" asp-controller="Account" asp-area="" asp-action="Logout">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Çıkış Yap</span>
                         </a>
