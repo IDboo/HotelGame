@@ -28,12 +28,63 @@
     position: absolute;
     pointer-events: none;
 }
+
 .png {
     filter: brightness(90%);
     position: absolute;
     pointer-events: none;
-    width: 250px;
+    width: 242px;
     z-index: 0;
+}
+
+.yatak {
+    top:-30px;
+    left:0px;
+    filter: brightness(90%);
+    width: 150px;
+    z-index: 1;
+    position: absolute;
+    pointer-events: none;
+}
+
+.tv {
+    top: -44px;
+    right: 32px;
+    filter: brightness(90%);
+    width: 90px;
+    z-index: 2;
+    position: absolute;
+    pointer-events: none;
+}
+
+.tvunit {
+    top: -35px;
+    right: 30px;
+    filter: brightness(90%);
+    width: 100px;
+    z-index: 1;
+    position: absolute;
+    pointer-events: none;
+}
+
+.corridor-1 {
+    top: 200px;
+    left: 369px;
+    filter: brightness(90%);
+    width: 159px;
+    z-index: 1;
+    position: absolute;
+    pointer-events: none;
+}
+
+.corridor-2 {
+    top: 257px;
+    left: 210px;
+    filter: brightness(90%);
+    width: 273px;
+    z-index: 1;
+    position: absolute;
+    pointer-events: none;
 }
 
 
