@@ -4,74 +4,112 @@
     Layout = "~/Areas/Users/Views/Shared/_UserLayout.cshtml";
 }
 
+<div class="baccontainer">
+    <h1 class="title">Oda Detayları</h1>
 
-@foreach (var item in Model.PlayerRoomMaterials)
-{
-    <body>
-        <div class="baccontainer">
-            <h1>............</h1>
+    @if (Model.PlayerRoomMaterials != null && Model.PlayerRoomMaterials.Count > 0)
+    {
+        foreach (var item in Model.PlayerRoomMaterials)
+        {
             <div class="product">
-                @if (item.RMAirCondition.ImageUrl != null)
+                <h2 class="product-title">@item.RMAirCondition?.Name ?? "Bilgi Yok"</h2>
+                @if (item.RMAirCondition?.ImageUrl != null)
                 {
-                    <img src="@item.RMAirCondition.ImageUrl" alt="@item.RMAirCondition.Name">
+                    <img src="@item.RMAirCondition.ImageUrl" alt="@item.RMAirCondition?.Name">
                 }
                 else
                 {
-                     <p>yok </p>
+                    <p class="no-image">Görsel Yok</p>
                 }
-                <h2>@item.RMAirCondition.Name</h2>
-                <p>Kalite Puani : @item.RMAirCondition.QualityPoint</p>
-            </div>
-        </div>
-    </body>
-
-@*     <body>
-        <div class="baccontainer">
-            <h1>............</h1>
-            <div class="product">
-                <p>Yükseltme Ücreti : @Model.UpperRoomMaterial.RMTelevision.Name</p>
+                <p>Kalite Puanı: @(item.RMAirCondition != null ? item.RMAirCondition.QualityPoint.ToString() : "Bilgi Yok")</p>
+                <h2 class="product-title">Yükseltme Ücreti</h2>
+                <p>Yükseltme Ücreti: @(item.RMAirCondition != null ? item.RMAirCondition.Price.ToString() : "Bilgi Yok")</p>
                 <button type="submit">Ürünü Yükselt</button>
             </div>
-        </div>
-    </body> *@
 
-    <body>
-        <div class="baccontainer">
-            <h1>............</h1>
             <div class="product">
-
-                @if (item.RMTelevision.ImageUrl != null)
+                <h2 class="product-title">@item.RMTelevision?.Name ?? "Bilgi Yok"</h2>
+                @if (item.RMTelevision?.ImageUrl != null)
                 {
-                    <img src="@item.RMTelevision.ImageUrl" alt="@item.RMTelevision.Name">
+                    <img src="@item.RMTelevision.ImageUrl" alt="@item.RMTelevision?.Name">
                 }
                 else
                 {
-                    <p>yok </p>
+                    <p class="no-image">Görsel Yok</p>
                 }
-                <h2>@item.RMAirCondition.Name</h2>
-                <p>Kalite Puani : @item.RMTelevision.QualityPoint</p>
-            </div>
-        </div>
-    </body>
-
-    <body>
-        <div class="baccontainer">
-            <h1>............</h1>
-            <div class="product">
-                <p>Yükseltme Ücreti : @item.RMTelevision.Price</p>
+                <p>Kalite Puanı: @(item.RMTelevision != null ? item.RMTelevision.QualityPoint.ToString() : "Bilgi Yok")</p>
+                <h2 class="product-title">Yükseltme Ücreti</h2>
+                <p>Yükseltme Ücreti: @(item.RMTelevision != null ? item.RMTelevision.Price.ToString() : "Bilgi Yok")</p>
                 <button type="submit">Ürünü Yükselt</button>
             </div>
-        </div>
-    </body>
-}
 
-<body>
-    <div class="baccontainer">
-        <h1>............</h1>
-        <div class="product">
-            <p>Yükseltme Ücreti : @Model.UpperRoomMaterial.RMTelevision.Name</p>
-            <button type="submit">Ürünü Yükselt</button>
-        </div>
-    </div>
-</body>
+            <div class="product">
+                <h2 class="product-title">@item.RMBed?.Name ?? "Bilgi Yok"</h2>
+                @if (item.RMBed?.ImageUrl != null)
+                {
+                    <img src="@item.RMBed.ImageUrl" alt="@item.RMBed?.Name">
+                }
+                else
+                {
+                    <p class="no-image">Görsel Yok</p>
+                }
+                <p>Kalite Puanı: @(item.RMBed != null ? item.RMBed.QualityPoint.ToString() : "Bilgi Yok")</p>
+                <h2 class="product-title">Yükseltme Ücreti</h2>
+                <p>Yükseltme Ücreti: @(item.RMBed != null ? item.RMBed.Price.ToString() : "Bilgi Yok")</p>
+                <button type="submit">Ürünü Yükselt</button>
+            </div>
 
+            <div class="product">
+                <h2 class="product-title">@item.RMBathRoom?.Name ?? "Bilgi Yok"</h2>
+                @if (item.RMBathRoom?.ImageUrl != null)
+                {
+                    <img src="@item.RMBathRoom.ImageUrl" alt="@item.RMBathRoom?.Name">
+                }
+                else
+                {
+                    <p class="no-image">Görsel Yok</p>
+                }
+                <p>Kalite Puanı: @(item.RMBathRoom != null ? item.RMBathRoom.QualityPoint.ToString() : "Bilgi Yok")</p>
+                <h2 class="product-title">Yükseltme Ücreti</h2>
+                <p>Yükseltme Ücreti: @(item.RMBathRoom != null ? item.RMBathRoom.Price.ToString() : "Bilgi Yok")</p>
+                <button type="submit">Ürünü Yükselt</button>
+            </div>
+
+            <div class="product">
+                <h2 class="product-title">@item.RMCarpet?.Name ?? "Bilgi Yok"</h2>
+                @if (item.RMCarpet?.ImageUrl != null)
+                {
+                    <img src="@item.RMCarpet.ImageUrl" alt="@item.RMCarpet?.Name">
+                }
+                else
+                {
+                    <p class="no-image">Görsel Yok</p>
+                }
+                <p>Kalite Puanı: @(item.RMCarpet != null ? item.RMCarpet.QualityPoint.ToString() : "Bilgi Yok")</p>
+                <h2 class="product-title">Yükseltme Ücreti</h2>
+                <p>Yükseltme Ücreti: @(item.RMCarpet != null ? item.RMCarpet.Price.ToString() : "Bilgi Yok")</p>
+                <button type="submit">Ürünü Yükselt</button>
+            </div>
+
+            <div class="product">
+                <h2 class="product-title">@item.RMToilet?.Name ?? "Bilgi Yok"</h2>
+                @if (item.RMToilet?.ImageUrl != null)
+                {
+                    <img src="@item.RMToilet.ImageUrl" alt="@item.RMToilet?.Name">
+                }
+                else
+                {
+                    <p class="no-image">Görsel Yok</p>
+                }
+                <p>Kalite Puanı: @(item.RMToilet != null ? item.RMToilet.QualityPoint.ToString() : "Bilgi Yok")</p>
+                <h2 class="product-title">Yükseltme Ücreti</h2>
+                <p>Yükseltme Ücreti: @(item.RMToilet != null ? item.RMToilet.Price.ToString() : "Bilgi Yok")</p>
+                <button type="submit">Ürünü Yükselt</button>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Oda materyalleri bulunamadı.</p>
+    }
+</div>

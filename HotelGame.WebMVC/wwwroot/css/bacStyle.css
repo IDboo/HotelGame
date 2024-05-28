@@ -1,42 +1,113 @@
-﻿body {
-    font-family: Arial, sans-serif;
+﻿html, body {
+    background: url('../../img/background.webp') no-repeat center center fixed;
+    background-size: cover;
+    height: 88vh;
+    position: relative;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7vh;
+    background: rgba(25, 25, 25, 0.99);
+    text-align: center;
+    z-index: 100;
+    padding: 0px 20px 0px 20px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5vh;
+    text-align: center;
+    background-color: #000000;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.footer1 {
+    margin-bottom: 0px;
+    color: rgb(255, 255, 255);
+    font-size: 2vh;
+}
+
+#mainBody {
+    margin-top: 7vh;
+    margin-bottom: 5vh;
+    height: 88vh;
+    padding: 0;
 }
 
 .baccontainer {
-    width: 80%;
-    margin: 100px auto;
-    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 8vh;
 }
 
-h1 {
+.title {
     text-align: center;
-    color: #333;
+    margin-bottom: 20px;
+    color: #03e9f4 !important;
 }
 
 .product {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(25, 25, 25, 0.99);
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: center;
 }
 
     .product img {
         max-width: 100px;
-        display: block;
-        margin: 0 auto;
+        margin-bottom: 10px;
     }
 
     .product h2 {
-        margin-top: 0;
-        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
     }
 
     .product p {
-        margin-bottom: 5px;
+        font-size: 1rem;
+        margin-bottom: 10px;
     }
+
+    .product button {
+        padding: 10px 20px;
+        background-color: #1abc9c;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .product button:hover {
+            background-color: #16a085;
+        }
+
+.no-image {
+    font-style: italic;
+    color: #666;
+}

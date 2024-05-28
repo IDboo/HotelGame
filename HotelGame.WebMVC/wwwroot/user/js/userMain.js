@@ -1,4 +1,4 @@
-﻿<script>
+﻿
     document.addEventListener("DOMContentLoaded", function() {
     var gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach(function(item, index) {
@@ -6,4 +6,4 @@
         console.log('Item ID:', item.getAttribute('data-room-id'), 'Class Name:', 'grid-item-' + index);
     });
 });
-</script>
+

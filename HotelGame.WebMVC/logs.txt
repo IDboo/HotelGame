@@ -1,0 +1,28 @@
+UserId: 2
+RMTelevision Count: 6
+RMAirCondition Count: 6
+PlayerHotelDetail: deneme
+PlayerRoomMaterials Count: 1
+UpperLevelMaterial: HotelGame.Entities.Concrete.PlayerRoomMaterial
+PlayerRoomMaterials: 1 Seviye
+UpperRoomMaterial: 
+UserId: 2
+RMTelevision Count: 6
+RMAirCondition Count: 6
+PlayerHotelDetail: deneme
+PlayerRoomMaterials Count: 0
+UpperLevelMaterial: 
+Failed to retrieve player room materials or upper level material is null.
+UserId: 2
+RMTelevision Count: 6
+RMAirCondition Count: 6
+RMBed Count: 6
+RMBathRoom Count: 6
+RMToilet Count: 6
+RMCarpet Count: 6
+PlayerHotelDetail: deneme
+PlayerRoomMaterials Count: 1
+UpperLevelMaterial: HotelGame.Entities.Concrete.PlayerRoomMaterial
+Material Id: 4, RMAirCondition: 1 Seviye, RMTelevision: 1 Seviye
+PlayerRoomMaterials: 1 Seviye
+UpperRoomMaterial: Null
