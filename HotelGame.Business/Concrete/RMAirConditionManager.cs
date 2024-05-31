@@ -5,10 +5,7 @@ using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.DataAccess.Abstract;
 using HotelGame.Entities.Concrete;
 using HotelGame.Entities.DTOs.RoomMaterial;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelGame.Business.Concrete
@@ -77,6 +74,19 @@ namespace HotelGame.Business.Concrete
             }
         }
 
+        public async Task<IDataResult<RMAirCondition>> GetByLevelAsync(int level)
+        {
+            var rMAirCondition = await _rMAirConditionDal.GetAsync(x => x.Level == level);
+            if (rMAirCondition != null)
+            {
+                return new SuccessDataResult<RMAirCondition>(rMAirCondition);
+            }
+            else
+            {
+                return new ErrorDataResult<RMAirCondition>(null, "Hata");
+            }
+        }
+
         public async Task<IResult> UpdateAsync(RMAirConditionUpdateDto rMAirConditionUpdateDto)
         {
             var oldRMAirCondition = await _rMAirConditionDal.GetAsync(rm => rm.Id == rMAirConditionUpdateDto.Id);
@@ -85,14 +95,12 @@ namespace HotelGame.Business.Concrete
                 var mappedRMAirCondition = _mapper.Map<RMAirConditionUpdateDto, RMAirCondition>(rMAirConditionUpdateDto, oldRMAirCondition);
                 var newRMAirCondition = await _rMAirConditionDal.UpdateAsync(mappedRMAirCondition);
                 await _rMAirConditionDal.SaveAsync();
-                return new SuccessDataResult<RMAirCondition>(newRMAirCondition, "Gübcellendi");
+                return new SuccessDataResult<RMAirCondition>(newRMAirCondition, "Güncellendi");
             }
             else
             {
                 return new ErrorDataResult<RMAirCondition>(null, "Bulunamadı");
             }
         }
-
-
     }
 }

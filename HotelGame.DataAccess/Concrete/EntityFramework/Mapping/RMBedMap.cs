@@ -22,7 +22,7 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
                 new RMBed
                 {
                     Id = 1,
-                    Name = "1 Seviye",
+                    Name = "Yatak",
                     Price = 20,
                     QualityPoint = 20,
                     IsActive = true,
@@ -32,7 +32,7 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
                 new RMBed
                 {
                     Id = 2,
-                    Name = "2 Seviye",
+                    Name = "Yatak",
                     Price = 20,
                     QualityPoint = 20,
                     IsActive = true,
@@ -41,7 +41,7 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
                 new RMBed
                 {
                     Id = 3,
-                    Name = "3 Seviye",
+                    Name = "Yatak",
                     Price = 20,
                     QualityPoint = 20,
                     IsActive = true,
@@ -50,7 +50,7 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
                 new RMBed
                 {
                     Id = 4,
-                    Name = "4 Seviye",
+                    Name = "Yatak",
                     Price = 20,
                     QualityPoint = 20,
                     IsActive = true,
@@ -59,7 +59,7 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
                 new RMBed
                 {
                     Id = 5,
-                    Name = "5 Seviye",
+                    Name = "Yatak",
                     Price = 20,
                     QualityPoint = 20,
                     IsActive = true,
@@ -68,7 +68,7 @@ namespace HotelGame.DataAccess.Concrete.EntityFramework.Mapping
                 new RMBed
                 {
                     Id = 6,
-                    Name = "6 Seviye",
+                    Name = "Yatak",
                     Price = 20,
                     QualityPoint = 20,
                     IsActive = true,

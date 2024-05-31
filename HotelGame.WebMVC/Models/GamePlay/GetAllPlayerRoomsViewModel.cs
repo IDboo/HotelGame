@@ -17,6 +17,6 @@ namespace HotelGame.WebMVC.Models.GamePlay
         public List<PlayerRoomMaterial> PlayerRoomMaterials { get; set; }
 
         public PlayerRoomMaterial UpperRoomMaterial { get; set; }
-
     }
+
 }

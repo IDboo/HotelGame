@@ -12,104 +12,230 @@
         foreach (var item in Model.PlayerRoomMaterials)
         {
             <div class="product">
-                <h2 class="product-title">@item.RMAirCondition?.Name ?? "Bilgi Yok"</h2>
-                @if (item.RMAirCondition?.ImageUrl != null)
-                {
-                    <img src="@item.RMAirCondition.ImageUrl" alt="@item.RMAirCondition?.Name">
-                }
-                else
-                {
-                    <p class="no-image">Görsel Yok</p>
-                }
-                <p>Kalite Puanı: @(item.RMAirCondition != null ? item.RMAirCondition.QualityPoint.ToString() : "Bilgi Yok")</p>
-                <h2 class="product-title">Yükseltme Ücreti</h2>
-                <p>Yükseltme Ücreti: @(item.RMAirCondition != null ? item.RMAirCondition.Price.ToString() : "Bilgi Yok")</p>
-                <button type="submit">Ürünü Yükselt</button>
+                <h2 class="product-title centered-title">@item.RMAirCondition?.Name</h2>
+                <div class="product dual-column">
+                    <div class="product-column">
+                        @if (item.RMAirCondition?.ImageUrl != null)
+                        {
+                            <img src="@item.RMAirCondition.ImageUrl" alt="@item.RMAirCondition?.Name">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(item.RMAirCondition?.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(item.RMAirCondition?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(item.RMAirCondition?.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(Model.UpperRoomMaterial.RMAirCondition.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMAirCondition.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMAirCondition.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        @if (Model.UpperRoomMaterial?.RMAirCondition?.ImageUrl != null)
+                        {
+                            <img src="@Model.UpperRoomMaterial.RMAirCondition.ImageUrl" alt="Görsel Yok">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                </div>
+                <button>Ürünü Yükselt</button>
             </div>
 
             <div class="product">
-                <h2 class="product-title">@item.RMTelevision?.Name ?? "Bilgi Yok"</h2>
-                @if (item.RMTelevision?.ImageUrl != null)
-                {
-                    <img src="@item.RMTelevision.ImageUrl" alt="@item.RMTelevision?.Name">
-                }
-                else
-                {
-                    <p class="no-image">Görsel Yok</p>
-                }
-                <p>Kalite Puanı: @(item.RMTelevision != null ? item.RMTelevision.QualityPoint.ToString() : "Bilgi Yok")</p>
-                <h2 class="product-title">Yükseltme Ücreti</h2>
-                <p>Yükseltme Ücreti: @(item.RMTelevision != null ? item.RMTelevision.Price.ToString() : "Bilgi Yok")</p>
-                <button type="submit">Ürünü Yükselt</button>
+                <h2 class="product-title centered-title">@item.RMTelevision?.Name</h2>
+                <div class="product dual-column">
+                    <div class="product-column">
+                        @if (item.RMTelevision?.ImageUrl != null)
+                        {
+                            <img src="@item.RMTelevision.ImageUrl" alt="@item.RMTelevision?.Name">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(item.RMTelevision?.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(item.RMTelevision?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(item.RMTelevision?.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(Model.UpperRoomMaterial.RMTelevision.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMTelevision.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMTelevision.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        @if (Model.UpperRoomMaterial?.RMTelevision?.ImageUrl != null)
+                        {
+                            <img src="@Model.UpperRoomMaterial.RMTelevision.ImageUrl" alt="Görsel Yok">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                </div>
+                <button>Ürünü Yükselt</button>
             </div>
 
             <div class="product">
-                <h2 class="product-title">@item.RMBed?.Name ?? "Bilgi Yok"</h2>
-                @if (item.RMBed?.ImageUrl != null)
-                {
-                    <img src="@item.RMBed.ImageUrl" alt="@item.RMBed?.Name">
-                }
-                else
-                {
-                    <p class="no-image">Görsel Yok</p>
-                }
-                <p>Kalite Puanı: @(item.RMBed != null ? item.RMBed.QualityPoint.ToString() : "Bilgi Yok")</p>
-                <h2 class="product-title">Yükseltme Ücreti</h2>
-                <p>Yükseltme Ücreti: @(item.RMBed != null ? item.RMBed.Price.ToString() : "Bilgi Yok")</p>
-                <button type="submit">Ürünü Yükselt</button>
+                <h2 class="product-title centered-title">@item.RMBed?.Name</h2>
+                <div class="product dual-column">
+                    <div class="product-column">
+                        @if (item.RMBed?.ImageUrl != null)
+                        {
+                            <img src="@item.RMBed.ImageUrl" alt="@item.RMBed?.Name">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(item.RMBed?.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(item.RMBed?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(item.RMBed?.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(@Model.UpperRoomMaterial.RMBed.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(@Model.UpperRoomMaterial.RMBed.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(@Model.UpperRoomMaterial.RMBed.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        @if (Model.UpperRoomMaterial?.RMBed?.ImageUrl != null)
+                        {
+                            <img src="@Model.UpperRoomMaterial.RMBed.ImageUrl" alt="Görsel Yok">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                </div>
+                <button>Ürünü Yükselt</button>
             </div>
 
             <div class="product">
-                <h2 class="product-title">@item.RMBathRoom?.Name ?? "Bilgi Yok"</h2>
-                @if (item.RMBathRoom?.ImageUrl != null)
-                {
-                    <img src="@item.RMBathRoom.ImageUrl" alt="@item.RMBathRoom?.Name">
-                }
-                else
-                {
-                    <p class="no-image">Görsel Yok</p>
-                }
-                <p>Kalite Puanı: @(item.RMBathRoom != null ? item.RMBathRoom.QualityPoint.ToString() : "Bilgi Yok")</p>
-                <h2 class="product-title">Yükseltme Ücreti</h2>
-                <p>Yükseltme Ücreti: @(item.RMBathRoom != null ? item.RMBathRoom.Price.ToString() : "Bilgi Yok")</p>
-                <button type="submit">Ürünü Yükselt</button>
+                <h2 class="product-title centered-title">@item.RMBathRoom?.Name</h2>
+                <div class="product dual-column">
+                    <div class="product-column">
+                        @if (item.RMBathRoom?.ImageUrl != null)
+                        {
+                            <img src="@item.RMBathRoom.ImageUrl" alt="@item.RMBathRoom?.Name">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(item.RMBathRoom?.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(item.RMBathRoom?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(item.RMBathRoom?.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(Model.UpperRoomMaterial.RMBathRoom.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMBathRoom.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMBathRoom.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        @if (Model.UpperRoomMaterial?.RMBathRoom?.ImageUrl != null)
+                        {
+                            <img src="@Model.UpperRoomMaterial.RMBathRoom.ImageUrl" alt="Görsel Yok">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                </div>
+                <button>Ürünü Yükselt</button>
             </div>
 
             <div class="product">
-                <h2 class="product-title">@item.RMCarpet?.Name ?? "Bilgi Yok"</h2>
-                @if (item.RMCarpet?.ImageUrl != null)
-                {
-                    <img src="@item.RMCarpet.ImageUrl" alt="@item.RMCarpet?.Name">
-                }
-                else
-                {
-                    <p class="no-image">Görsel Yok</p>
-                }
-                <p>Kalite Puanı: @(item.RMCarpet != null ? item.RMCarpet.QualityPoint.ToString() : "Bilgi Yok")</p>
-                <h2 class="product-title">Yükseltme Ücreti</h2>
-                <p>Yükseltme Ücreti: @(item.RMCarpet != null ? item.RMCarpet.Price.ToString() : "Bilgi Yok")</p>
-                <button type="submit">Ürünü Yükselt</button>
+                <h2 class="product-title centered-title">@item.RMToilet?.Name</h2>
+                <div class="product dual-column">
+                    <div class="product-column">
+                        @if (item.RMToilet?.ImageUrl != null)
+                        {
+                            <img src="@item.RMToilet.ImageUrl" alt="@item.RMToilet?.Name">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(item.RMToilet?.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(item.RMToilet?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(item.RMToilet?.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(Model.UpperRoomMaterial.RMToilet.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMToilet.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMToilet.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        @if (Model.UpperRoomMaterial?.RMToilet?.ImageUrl != null)
+                        {
+                            <img src="@Model.UpperRoomMaterial.RMToilet.ImageUrl" alt="Görsel Yok">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                </div>
+                <button>Ürünü Yükselt</button>
             </div>
 
             <div class="product">
-                <h2 class="product-title">@item.RMToilet?.Name ?? "Bilgi Yok"</h2>
-                @if (item.RMToilet?.ImageUrl != null)
-                {
-                    <img src="@item.RMToilet.ImageUrl" alt="@item.RMToilet?.Name">
-                }
-                else
-                {
-                    <p class="no-image">Görsel Yok</p>
-                }
-                <p>Kalite Puanı: @(item.RMToilet != null ? item.RMToilet.QualityPoint.ToString() : "Bilgi Yok")</p>
-                <h2 class="product-title">Yükseltme Ücreti</h2>
-                <p>Yükseltme Ücreti: @(item.RMToilet != null ? item.RMToilet.Price.ToString() : "Bilgi Yok")</p>
-                <button type="submit">Ürünü Yükselt</button>
+                <h2 class="product-title centered-title">@item.RMCarpet?.Name</h2>
+                <div class="product dual-column">
+                    <div class="product-column">
+                        @if (item.RMCarpet?.ImageUrl != null)
+                        {
+                            <img src="@item.RMCarpet.ImageUrl" alt="@item.RMCarpet?.Name">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(item.RMCarpet?.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(item.RMCarpet?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(item.RMCarpet?.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        <p>Seviye: @(Model.UpperRoomMaterial.RMCarpet.Level.ToString() ?? "Bilgi Yok")</p>
+                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMCarpet.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMCarpet.Price.ToString() ?? "Bilgi Yok")</p>
+                    </div>
+                    <div class="product-column">
+                        @if (Model.UpperRoomMaterial?.RMCarpet?.ImageUrl != null)
+                        {
+                            <img src="@Model.UpperRoomMaterial.RMCarpet.ImageUrl" alt="Görsel Yok">
+                        }
+                        else
+                        {
+                            <p class="no-image">Görsel Yok</p>
+                        }
+                    </div>
+                </div>
+                <button>Ürünü Yükselt</button>
             </div>
         }
     }
     else
     {
-        <p>Oda materyalleri bulunamadı.</p>
+        <p>Bu odada henüz materyal yok.</p>
     }
 </div>

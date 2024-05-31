@@ -5,10 +5,7 @@ using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.DataAccess.Abstract;
 using HotelGame.Entities.Concrete;
 using HotelGame.Entities.DTOs.RoomMaterial;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelGame.Business.Concrete
@@ -77,6 +74,19 @@ namespace HotelGame.Business.Concrete
             }
         }
 
+        public async Task<IDataResult<RMToilet>> GetByLevelAsync(int level)
+        {
+            var rMToilet = await _rMToiletDal.GetAsync(x => x.Level == level);
+            if (rMToilet != null)
+            {
+                return new SuccessDataResult<RMToilet>(rMToilet);
+            }
+            else
+            {
+                return new ErrorDataResult<RMToilet>(null, "Hata");
+            }
+        }
+
         public async Task<IResult> UpdateAsync(RMToiletUpdateDto rMToiletUpdateDto)
         {
             var oldRMToilet = await _rMToiletDal.GetAsync(rm => rm.Id == rMToiletUpdateDto.Id);
@@ -85,14 +95,12 @@ namespace HotelGame.Business.Concrete
                 var mappedRMToilet = _mapper.Map<RMToiletUpdateDto, RMToilet>(rMToiletUpdateDto, oldRMToilet);
                 var newRMToilet = await _rMToiletDal.UpdateAsync(mappedRMToilet);
                 await _rMToiletDal.SaveAsync();
-                return new SuccessDataResult<RMToilet>(newRMToilet, "Gübcellendi");
+                return new SuccessDataResult<RMToilet>(newRMToilet, "Güncellendi");
             }
             else
             {
                 return new ErrorDataResult<RMToilet>(null, "Bulunamadı");
             }
         }
-
-
     }
 }

@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function handleBellClick() {
     const bellButton = document.getElementById('bellButton');
-    const normalBellSrc = '/img/Çizgisiz Zil.png';
-    const pressedBellSrc = '/img/Çizgili ve Basık Zil.png';
-    const ringingBellSrc = '/img/Zil.png';
+    const normalBellSrc = '/img/Bell.png';
+    const pressedBellSrc = '/img/Bell_Line_Down.png';
+    const ringingBellSrc = '/img/Bell_Line.png';
 
     bellButton.src = pressedBellSrc;
     bellButton.classList.add('pressed');

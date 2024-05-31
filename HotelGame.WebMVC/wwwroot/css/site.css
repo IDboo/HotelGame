@@ -291,11 +291,12 @@ body {
 
 .bellButton {
     position: absolute;
-    top: 74%;
-    left: 46%;
-    width: 8%;
-    height: 10%;
+    top: 75%;
+    left: 50%;
+    width: 15%;
+    height: 30%;
     cursor: pointer;
+    transform: translate(-50%, -50%);
 }
 
     .bellButton:hover {

@@ -5,10 +5,7 @@ using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.DataAccess.Abstract;
 using HotelGame.Entities.Concrete;
 using HotelGame.Entities.DTOs.RoomMaterial;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelGame.Business.Concrete
@@ -77,6 +74,19 @@ namespace HotelGame.Business.Concrete
             }
         }
 
+        public async Task<IDataResult<RMBathRoom>> GetByLevelAsync(int level)
+        {
+            var rMBathRoom = await _rMBathRoomDal.GetAsync(x => x.Level == level);
+            if (rMBathRoom != null)
+            {
+                return new SuccessDataResult<RMBathRoom>(rMBathRoom);
+            }
+            else
+            {
+                return new ErrorDataResult<RMBathRoom>(null, "Hata");
+            }
+        }
+
         public async Task<IResult> UpdateAsync(RMBathRoomUpdateDto rMBathRoomUpdateDto)
         {
             var oldRMBathRoom = await _rMBathRoomDal.GetAsync(rm => rm.Id == rMBathRoomUpdateDto.Id);
@@ -85,14 +95,12 @@ namespace HotelGame.Business.Concrete
                 var mappedRMBathRoom = _mapper.Map<RMBathRoomUpdateDto, RMBathRoom>(rMBathRoomUpdateDto, oldRMBathRoom);
                 var newRMBathRoom = await _rMBathRoomDal.UpdateAsync(mappedRMBathRoom);
                 await _rMBathRoomDal.SaveAsync();
-                return new SuccessDataResult<RMBathRoom>(newRMBathRoom, "Gübcellendi");
+                return new SuccessDataResult<RMBathRoom>(newRMBathRoom, "Güncellendi");
             }
             else
             {
                 return new ErrorDataResult<RMBathRoom>(null, "Bulunamadı");
             }
         }
-
-
     }
 }

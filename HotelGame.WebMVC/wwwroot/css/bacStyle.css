@@ -1,5 +1,6 @@
-﻿html, body {
-    background: url('../../img/background.webp') no-repeat center center fixed;
+﻿/* Mevcut CSS kodları */
+html, body {
+    background: url('../../img/City Background.png') no-repeat center center fixed;
     background-size: cover;
     height: 88vh;
     position: relative;
@@ -67,9 +68,9 @@
 
 .product {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     padding: 20px;
     background: rgba(25, 25, 25, 0.99);
     border-radius: 10px;
@@ -110,4 +111,22 @@
 .no-image {
     font-style: italic;
     color: #666;
+}
+
+.dual-column {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    flex-direction:row;
+}
+
+.product-column {
+    width: 48%;
+}
+
+.centered-title {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
 }

@@ -366,3 +366,4 @@ FodyWeavers.xsd
 /HotelGame.WebMVC/appsettings.Development.json
 /HotelGame.DataAccess/Migrations/*
 /HotelGame.DataAccess/Concrete/EntityFramework/HotelGameContext.cs
+/HotelGame.WebMVC/logs.txt

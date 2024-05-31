@@ -47,30 +47,53 @@ else
     <div class="grid-container">
         @for (var i = 0; i < Model.PlayerRooms.Count; i++)
         {
-            var item = Model.PlayerRooms[i];
-            <div class="grid-item grid-item-@i" data-room-id="@item.Id">
-                <a href="/Users/PlayerRoom/GetRoomDetail/@item.Id">
-                    <img src="~/img/room.png" alt="Room Image" />
+            var room = Model.PlayerRooms[i];
+            <div class="grid-item grid-item-@i" data-room-id="@room.Id">
+                <a href="/Users/PlayerRoom/GetRoomDetail/@room.Id">
+                    <img src="~/img/Zemin.png" alt="Room Image" />
+                    @if (Model.PlayerRoomMaterials != null && Model.PlayerRoomMaterials.Any(m => m.PlayerRoomId == room.Id))
+                    {
+                        var roomMaterials = Model.PlayerRoomMaterials.Where(m => m.PlayerRoomId == room.Id).ToList();
+                        foreach (var material in roomMaterials)
+                        {
+                            <img src="@material.RMAirCondition.ImageUrl" alt="Material Image" />
+                            <!-- Diğer materyalleri ekleyin -->
+                            @if (material.RMTelevision != null)
+                            {
+                                <img src="@material.RMTelevision.ImageUrl" alt="Television" />
+                            }
+                            @if (material.RMBed != null)
+                            {
+                                <img src="@material.RMBed.ImageUrl" alt="Bed" />
+                            }
+                            @if (material.RMBathRoom != null)
+                            {
+                                <img src="@material.RMBathRoom.ImageUrl" alt="Bath Room" />
+                            }
+                            @if (material.RMToilet != null)
+                            {
+                                <img src="@material.RMToilet.ImageUrl" alt="Toilet" />
+                            }
+                            @if (material.RMCarpet != null)
+                            {
+                                <img src="@material.RMCarpet.ImageUrl" alt="Carpet" />
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <p>Bu odada henüz materyal yok.</p>
+                    }
                     <span>
-                        <text>@item.RoomType.Name</text>
+                        <text>@room.RoomType.Name</text>
                     </span>
                 </a>
             </div>
         }
+        <img src="~/img/right corridor.png" class="corridor-1" />
+        <img src="~/img/right corridor.png" class="corridor-2" />
+        <img src="~/img/Left Corridor.png" class="corridor-3" />
+        <img src="~/img/Left Corridor.png" class="corridor-5" />
+        <img src="~/img/Square Corridor.png" class="corridor-4" />
     </div>
-     @* <div class="containerBox">
-        @foreach (var item in Model.PlayerRooms)
-        {
-            <div class="box" data-room-id="@item.Id">
-                <a href="/Users/PlayerRoom/GetRoomDetail/@item.Id">
-                    <img src="~/img/room.png" alt="Room Image" class="png" />
-                    <span style="z-index: 5; display: flex; max-width: 75%; padding-left: 5px; padding-right: 5px; justify-content: center; background-color: rgba(51, 51, 51, 0.6); border-radius: 3px; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">
-                        <text style="color: rgb(242, 242, 242); width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                            @item.RoomType.Name
-                        </text>
-                    </span>
-                </a>
-            </div>
-        }
-    </div> *@
 }

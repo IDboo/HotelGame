@@ -38,10 +38,10 @@
 }
 
 .yatak {
-    top:-30px;
-    left:0px;
+    top: -30px;
+    left: -5px;
     filter: brightness(90%);
-    width: 150px;
+    width: 125px;
     z-index: 1;
     position: absolute;
     pointer-events: none;
@@ -65,11 +65,12 @@
     z-index: 1;
     position: absolute;
     pointer-events: none;
+    filter: drop-shadow(34px -5px 28px #000000);
 }
 
 .corridor-1 {
-    top: 200px;
-    left: 369px;
+    top: 202px;
+    left: 729px;
     filter: brightness(90%);
     width: 159px;
     z-index: 1;
