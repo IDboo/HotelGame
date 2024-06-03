@@ -407,3 +407,8 @@ body {
         bottom: 100%;
     }
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}

@@ -5,74 +5,90 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 <div class="homeContainer"></div>
-<div style="height:100%;width:100%;">
-    <img src="~/img/Reception_Edited.png" class="gorsel" />
-    @* <img src="~/img/resepsiyon zili.png" class="bellButton" role="button" onclick="openLoginPopup()" id="loginButton" /> *@
-    <img src="~/img/Bell.png" class="bellButton" role="button" onclick="handleBellClick()" id="bellButton" />
-    <div id="loginPopup" class="login-box">
-        <button class="close" onclick="closeLoginPopup()">&times;</button>
-        <h2>Giriş Yap</h2>
-        <form class="p-4" asp-action="Login" asp-controller="Account" asp-route-returnurl="@Context.Request.Query[" ReturnUrl "]">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="user-box">
-                <input asp-for="Email" type="text" class="form-control" id="userName" required>
-                <label>E-Posta</label>
+    <div style="height:100%;width:100%;">
+        <img src="~/img/Reception_Edited.png" class="gorsel" />
+        <img src="~/img/Bell.png" class="bellButton" role="button" onclick="handleBellClick()" id="bellButton" />
+        <div id="loginPopup" class="login-box">
+            <button class="close" onclick="closeLoginPopup()">&times;</button>
+            <h2>Giriş Yap</h2>
+            <form class="p-4" asp-action="Login" asp-controller="Account" asp-route-returnurl="@Context.Request.Query[" ReturnUrl "]">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="user-box">
+                    <input asp-for="Email" type="text" class="form-control" id="userName" required>
+                    <label>E-Posta</label>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Password" type="password" class="form-control" id="pwd" required>
+                    <label>Şifre</label>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="login-button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Giriş Yap
+                    </button>
+                </div>
+            </form>
+            <h6>Henüz bir hesabınız yok mu?</h6>
+            <div class="button-container">
+                <button class="login-button" style="margin:0px;" role="button" onclick="openSigninPopup()" id="signinButton">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Kayıt Ol
+                </button>
             </div>
-            <div class="user-box">
-                <input asp-for="Password" type="password" class="form-control" id="pwd" required>
-                <label>Şifre</label>
+        </div>
+        <div id="SigninPopup" class="login-box" style="display: none;">
+            <button class="close" onclick="closeSigninPopup()">&times;</button>
+            <h2>Kayıt Ol</h2>
+            <form class="p-4" asp-action="SignUp" asp-controller="Account" asp-route-returnurl="@Context.Request.Query[" ReturnUrl "]">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="user-box">
+                    <input asp-for="Email" type="text" class="form-control" id="userName" required>
+                    <label>E-Posta</label>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Name" type="text" class="form-control" id="name" required>
+                    <label>İsim</label>
+                </div>
+                <div class="user-box">
+                    <input asp-for="LastName" type="text" class="form-control" id="lastName" required>
+                    <label>Soyisim</label>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Password" type="password" class="form-control" id="pwd" required>
+                    <label>Şifre</label>
+                </div>
+                <div class="user-box">
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" id="cnfrmPwd" required>
+                    <label>Şifre Yeniden</label>
+                </div>
+            <div class="button-container">
+                <button type="submit" class="login-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Kayıt Ol
+                </button>
             </div>
-            <button type="submit" class="login-button">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Giriş Yap
-            </button>
-        </form>
-        <button class="login-button" style="margin:0px;" role="button" onclick="openSigninPopup()" id="signinButton">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Kayıt Ol
-        </button>
+            </form>
+            <h6>Zaten hesabınız var mı?</h6>
+            <div class="button-container">
+                <button class="login-button" style="margin:0px;" role="button" onclick="openLoginPopup()" id="loginButton">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Giriş Yap
+                </button>
+            </div>
+        </div>
     </div>
-    <div id="SigninPopup" class="login-box" style="display: none;">
-        <button class="close" onclick="closeSigninPopup()">&times;</button>
-        <h2>Kayıt Ol</h2>
-        <form class="p-4" asp-action="SignUp" asp-controller="Account" asp-route-returnurl="@Context.Request.Query[" ReturnUrl "]">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="user-box">
-                <input asp-for="Email" type="text" class="form-control" id="userName">
-                <label>E-Posta</label>
-            </div>
-            <div class="user-box">
-                <input asp-for="Name" type="text" class="form-control" id="userName">
-                <label>İsim</label>
-            </div>
-            <div class="user-box">
-                <input asp-for="LastName" type="text" class="form-control" id="userName">
-                <label>Soyisim</label>
-            </div>
-            <div class="user-box">
-                <input asp-for="Password" type="password" class="form-control" id="pwd">
-                <label>Şifre</label>
-            </div>
-            <div class="user-box">
-                <input asp-for="ConfirmPassword" type="password" class="form-control" id="pwd">
-                <label>Şifre Yeniden</label>
-            </div>
-            <button type="submit" class="login-button">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Kayıt Ol
-            </button>
-        </form>
-    </div>
-</div>
 <div style="height:200vh;"></div>
 
 
