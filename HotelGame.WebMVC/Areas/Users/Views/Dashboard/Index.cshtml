@@ -47,48 +47,57 @@ else
     <div class="grid-container">
         @for (var i = 0; i < Model.PlayerRooms.Count; i++)
         {
+
             var room = Model.PlayerRooms[i];
             <div class="grid-item grid-item-@i" data-room-id="@room.Id">
                 <a href="/Users/PlayerRoom/GetRoomDetail/@room.Id">
                     <img src="~/img/Zemin.png" alt="Room Image" />
-                    @if (Model.PlayerRoomMaterials != null && Model.PlayerRoomMaterials.Any(m => m.PlayerRoomId == room.Id))
-                    {
-                        var roomMaterials = Model.PlayerRoomMaterials.Where(m => m.PlayerRoomId == room.Id).ToList();
-                        foreach (var material in roomMaterials)
+            @foreach (var playerRoom in Model.PlayerRooms)
+            {
+                
+                        @if (playerRoom.PlayerRoomMaterials != null && playerRoom.PlayerRoomMaterials.Any(m => m.PlayerRoomId == room.Id))
                         {
-                            <img src="@material.RMAirCondition.ImageUrl" alt="Material Image" />
-                            <!-- Diğer materyalleri ekleyin -->
-                            @if (material.RMTelevision != null)
+                            var roomMaterials = playerRoom.PlayerRoomMaterials.Where(m => m.PlayerRoomId == room.Id).ToList();
+                            foreach (var material in roomMaterials)
                             {
-                                <img src="@material.RMTelevision.ImageUrl" alt="Television" />
-                            }
-                            @if (material.RMBed != null)
-                            {
-                                <img src="@material.RMBed.ImageUrl" alt="Bed" />
-                            }
-                            @if (material.RMBathRoom != null)
-                            {
-                                <img src="@material.RMBathRoom.ImageUrl" alt="Bath Room" />
-                            }
-                            @if (material.RMToilet != null)
-                            {
-                                <img src="@material.RMToilet.ImageUrl" alt="Toilet" />
-                            }
-                            @if (material.RMCarpet != null)
-                            {
-                                <img src="@material.RMCarpet.ImageUrl" alt="Carpet" />
+                                @if (material.RMTelevision != null)
+                                {
+                                    <img src="@material.RMAirCondition.ImageUrl" alt="Material Image" />
+                                }
+                                @if (material.RMTelevision != null)
+                                {
+                                    <img src="@material.RMTelevision.ImageUrl" alt="Television" />
+                                }
+                                @if (material.RMBed != null)
+                                {
+                                    <img src="@material.RMBed.ImageUrl" alt="Bed" />
+                                }
+                                @if (material.RMBathRoom != null)
+                                {
+                                    <img src="@material.RMBathRoom.ImageUrl" alt="Bath Room" />
+                                }
+                                @if (material.RMToilet != null)
+                                {
+                                    <img src="@material.RMToilet.ImageUrl" alt="Toilet" />
+                                }
+                                @if (material.RMCarpet != null)
+                                {
+                                    <img src="@material.RMCarpet.ImageUrl" alt="Carpet" />
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        <p>Bu odada henüz materyal yok.</p>
-                    }
+                        else
+                        {
+                            <p>Bu odada henüz materyal yok.</p>
+                        }
+                        
+            }
                     <span>
                         <text>@room.RoomType.Name</text>
                     </span>
                 </a>
             </div>
+            
         }
         <img src="~/img/right corridor.png" class="corridor-1" />
         <img src="~/img/right corridor.png" class="corridor-2" />

@@ -58,32 +58,11 @@ namespace HotelGame.WebMVC.Areas.Users.Controllers
             var rMBathRooms = await _rMBathRoomService.GetAllAsync();
             var rMToilets = await _rMToiletService.GetAllAsync();
             var rMCarpet = await _rMCarpetService.GetAllAsync();
+
             var result = await _playerRoomMaterialService.GetAllByPlayerRoomIdAsync(Id);
             var playerHotelDetail = await _playerHotelService.PlayerHotelByUserId(userId);
+
             var upperLevelMaterialResult = await _playerRoomMaterialService.GetUpperLevelMaterial(Id);
-
-            string logFilePath = "C:\\AllProjects\\C#\\HotelGame\\HotelGame.WebMVC\\logs.txt";
-            using (StreamWriter writer = new StreamWriter(logFilePath, true))
-            {
-                writer.WriteLine($"UserId: {userId}");
-                writer.WriteLine($"RMTelevision Count: {rMTelevision?.Data?.Count}");
-                writer.WriteLine($"RMAirCondition Count: {rMAirCondition?.Data?.Count}");
-                writer.WriteLine($"RMBed Count: {rMBeds?.Data?.Count}");
-                writer.WriteLine($"RMBathRoom Count: {rMBathRooms?.Data?.Count}");
-                writer.WriteLine($"RMToilet Count: {rMToilets?.Data?.Count}");
-                writer.WriteLine($"RMCarpet Count: {rMCarpet?.Data?.Count}");
-                writer.WriteLine($"PlayerHotelDetail: {playerHotelDetail?.Data?.HotelName}");
-                writer.WriteLine($"PlayerRoomMaterials Count: {result?.Data?.Count}");
-                writer.WriteLine($"UpperLevelMaterial: {upperLevelMaterialResult?.Data?.ToString() ?? "Null"}");
-
-                if (result.Data != null)
-                {
-                    foreach (var material in result.Data)
-                    {
-                        writer.WriteLine($"Material Id: {material.Id}, RMAirCondition: {material.RMAirCondition?.Name ?? "Null"}, RMTelevision: {material.RMTelevision?.Name ?? "Null"}");
-                    }
-                }
-            }
 
             if (result.Success && upperLevelMaterialResult.Success && playerHotelDetail.Data != null)
             {
@@ -93,33 +72,9 @@ namespace HotelGame.WebMVC.Areas.Users.Controllers
                     PlayerRoomMaterials = result.Data,
                     UpperRoomMaterial = upperLevelMaterialResult.Data
                 };
-
-                using (StreamWriter writer = new StreamWriter(logFilePath, true))
-                {
-                    writer.WriteLine($"PlayerRoomMaterials: {string.Join(", ", playerRoomMaterials.PlayerRoomMaterials.Select(m => m.RMAirCondition?.Name ?? "Null"))}");
-                    writer.WriteLine($"UpperRoomMaterial: {playerRoomMaterials.UpperRoomMaterial?.RMAirCondition?.Name ?? "Null"}");
-                    writer.WriteLine($"UpperRoomMaterial Details: {playerRoomMaterials.UpperRoomMaterial}");
-                }
-
-                // Burada null kontrolü ekliyoruz
-                if (playerRoomMaterials.UpperRoomMaterial == null)
-                {
-                    using (StreamWriter writer = new StreamWriter(logFilePath, true))
-                    {
-                        writer.WriteLine("UpperRoomMaterial is null after assignment.");
-                    }
-                }
-
                 return View(playerRoomMaterials);
             }
-
-            using (StreamWriter writer = new StreamWriter(logFilePath, true))
-            {
-                writer.WriteLine("Failed to retrieve player room materials or upper level material is null.");
-                writer.WriteLine($"Success: {result.Success}, UpperLevelMaterialSuccess: {upperLevelMaterialResult.Success}, PlayerHotelData: {playerHotelDetail.Data != null}");
-            }
-
             return View();
-        }
+        } 
     }
 }

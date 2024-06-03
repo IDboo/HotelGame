@@ -56,10 +56,10 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link collapsed" data-bs-target="#room-materials-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Oda Malzemeleri</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <ul id="room-materials-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a asp-controller="RoomMaterials" asp-area="Admins" asp-action="GetAllRoomMaterials">
                         <i class="bi bi-circle"></i><span>Kategoriler</span>
@@ -99,10 +99,10 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link collapsed" data-bs-target="#game-management-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Oyun Yönetimi</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <ul id="game-management-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a asp-controller="Dashboard" asp-area="Admins" asp-action="Index">
                         <i class="bi bi-circle"></i><span>Yönetim</span>
@@ -115,6 +115,7 @@
                 </li>
             </ul>
         </li>
+
 
         <li class="nav-item">
             <a class="nav-link collapsed" asp-controller="Account" asp-area="" asp-action="Logout">

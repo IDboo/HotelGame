@@ -133,11 +133,6 @@ namespace HotelGame.Business.Concrete
             var playerRoomMaterial = await _playerRoomMaterialDal.GetAllAsync(x => x.PlayerRoomId == playerRoomId);
             if (playerRoomMaterial != null)
             {
-                // Loglama ekle
-                using (StreamWriter writer = new StreamWriter("log.txt", true))
-                {
-                    writer.WriteLine($"GetAllByPlayerRoomIdAsync - PlayerRoomId: {playerRoomId}, Count: {playerRoomMaterial.Count}");
-                }
                 return new SuccessDataResult<List<PlayerRoomMaterial>>(playerRoomMaterial);
             }
             else
@@ -151,26 +146,13 @@ namespace HotelGame.Business.Concrete
             var defaultRoomMaterials = await GetAllByPlayerRoomIdAsync(playerRoomId);
             var upperLevelMaterials = new PlayerRoomMaterial();
 
-            using (StreamWriter writer = new StreamWriter("log.txt", true))
-            {
-                writer.WriteLine($"GetUpperLevelMaterial - defaultRoomMaterials.Count: {defaultRoomMaterials.Data?.Count}");
-            }
-
             if (defaultRoomMaterials.Data == null || defaultRoomMaterials.Data.Count == 0)
             {
-                using (StreamWriter writer = new StreamWriter("log.txt", true))
-                {
-                    writer.WriteLine($"GetUpperLevelMaterial - defaultRoomMaterials.Data is null or empty");
-                }
                 return new ErrorDataResult<PlayerRoomMaterial>("Default room materials not found");
             }
 
             foreach (var roomMaterial in defaultRoomMaterials.Data)
             {
-                using (StreamWriter writer = new StreamWriter("log.txt", true))
-                {
-                    writer.WriteLine($"Checking Material - RoomMaterialId: {roomMaterial.Id}, RMTelevisionId: {roomMaterial.RMTelevisionId}, RMAirConditionId: {roomMaterial.RMAirConditionId}, RMBedId: {roomMaterial.RMBedId}, RMBathRoomId: {roomMaterial.RMBathRoomId}, RMToiletId: {roomMaterial.RMToiletId}, RMCarpetId: {roomMaterial.RMCarpetId}");
-                }
 
                 if (roomMaterial.RMTelevisionId != 0)
                 {
@@ -287,12 +269,48 @@ namespace HotelGame.Business.Concrete
                 }
             }
 
-            using (StreamWriter writer = new StreamWriter("log.txt", true))
-            {
-                writer.WriteLine($"GetUpperLevelMaterial - upperLevelMaterials: RMTelevisionId={upperLevelMaterials.RMTelevisionId}, RMAirConditionId={upperLevelMaterials.RMAirConditionId}, RMBedId={upperLevelMaterials.RMBedId}, RMBathRoomId={upperLevelMaterials.RMBathRoomId}, RMToiletId={upperLevelMaterials.RMToiletId}, RMCarpetId={upperLevelMaterials.RMCarpetId}");
-            }
-
-            return new SuccessDataResult<PlayerRoomMaterial>(upperLevelMaterials);
+            return new SuccessDataResult<PlayerRoomMaterial>(upperLevelMaterials) { };
         }
+
+        //public async Task<IResult> UpdatePlayerRMTelevision(int playerRoomId)
+        //{
+        //    var defaultRoomMaterials = await GetAllByPlayerRoomIdAsync(playerRoomId);
+        //    var upperLevelMaterials = new PlayerRoomMaterial();
+
+        //    if (defaultRoomMaterials.Data == null || defaultRoomMaterials.Data.Count == 0)
+        //    {
+        //        return new ErrorDataResult<PlayerRoomMaterial>("Default room materials not found");
+        //    }
+
+        //    foreach (var roomMaterial in defaultRoomMaterials.Data)
+        //    {
+
+        //        if (roomMaterial.RMTelevisionId != 0)
+        //        {
+        //            var checkRMTelevisionId = await _rMTelevisionService.GetByIdAsync(roomMaterial.RMTelevisionId);
+        //            if (checkRMTelevisionId.Data != null)
+        //            {
+        //                var checkRMTelevisonLevel = await _rMTelevisionService.GetByLevelAsync(checkRMTelevisionId.Data.Level);
+        //                if (checkRMTelevisonLevel.Data != null)
+        //                {
+        //                    var upperTelevisionLevel = checkRMTelevisonLevel.Data.Level + 1;
+        //                    var checkUpperLevelTelevision = await _rMTelevisionService.GetByLevelAsync(upperTelevisionLevel);
+        //                    if (checkUpperLevelTelevision.Data != null)
+        //                    {
+        //                        upperLevelMaterials.RMTelevisionId = checkUpperLevelTelevision.Data.Id;
+        //                        upperLevelMaterials.RMTelevision = checkUpperLevelTelevision.Data;  // İlişkiyi ekliyoruz
+        //                    }
+        //                    var roomMaterialUpdateDto = new PlayerRoomMaterialUpdateDto
+        //                    {
+        //                        RMTelevisionId = roomMaterial.RMTelevisionId,
+        //                    };
+
+        //                    UpdateAsync(roomMaterialUpdateDto);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //}
     }
 }

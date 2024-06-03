@@ -31,6 +31,8 @@ namespace HotelGame.Business.Abstract
         Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByPlayerRoomIdAsync(int playerRoomId);
         Task<IDataResult<PlayerRoomMaterial>> GetUpperLevelMaterial(int playerRoomId);
 
+        //Task<IResult> UpdatePlayerRMTelevision(int RMTelevisionId);
+
 
     }
 }
