@@ -57,15 +57,16 @@ else
                         {
                             @if (material.RMAirCondition != null)
                             {
-                                <img src="@material.RMAirCondition.ImageUrl" alt="Air Condition" />
+                                <img src="@material.RMAirCondition.ImageUrl" alt="Air Condition" class="klima"/>
                             }
                             @if (material.RMTelevision != null)
                             {
-                                <img src="@material.RMTelevision.ImageUrl" alt="Television" />
+                                <img src="@material.RMTelevision.ImageUrl" alt="Television" class="tv" />
+                                <img src="~/img/tvunit.png" alt="Tv Unit" class="tvunit" />
                             }
                             @if (material.RMBed != null)
                             {
-                                <img src="@material.RMBed.ImageUrl" alt="Bed" />
+                                <img src="@material.RMBed.ImageUrl" alt="Bed" class="yatak"/>
                             }
                             @if (material.RMBathRoom != null)
                             {
