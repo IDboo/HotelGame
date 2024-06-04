@@ -53,5 +53,40 @@ function handleBellClick() {
     setTimeout(() => {
         bellButton.src = normalBellSrc;
     }, 500); // 500ms sonra tekrar normal zil görüntüsüne dön
-
 }
+
+function login(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    fetch('/Account/Login', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirectUrl;
+            } else {
+                document.getElementById("loginError").innerText = data.message;
+            }
+        });
+}
+
+function signup(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    fetch('/Account/SignUp', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                closeSigninPopup();
+                openLoginPopup();
+            } else {
+                document.getElementById("signupError").innerText = data.message;
+            }
+        });
+}
+
+document.getElementById("loginForm").addEventListener("submit", login);
+document.getElementById("signupForm").addEventListener("submit", signup);

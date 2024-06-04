@@ -13,5 +13,7 @@ namespace HotelGame.Business.Abstract
         Task<bool> SignOut();
         User AuthenticateUser(string userName, string password);
         User GetUser(string username);
+
+        bool UserExists(string email);
     }
 }

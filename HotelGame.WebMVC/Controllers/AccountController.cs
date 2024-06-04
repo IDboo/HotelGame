@@ -2,7 +2,6 @@
 using HotelGame.Entities.Concrete;
 using HotelGame.WebMVC.Models.Account;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,8 +25,6 @@ namespace HotelGame.WebMVC.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel model, string returnUrl)
         {
-
-
             if (ModelState.IsValid)
             {
                 var user = _authenticationService.AuthenticateUser(model.Email, model.Password);
@@ -35,42 +32,30 @@ namespace HotelGame.WebMVC.Controllers
                 {
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
-                        
-                        return Redirect(returnUrl);
+                        return Json(new { success = true, redirectUrl = returnUrl });
                     }
 
                     if (user.Roles.Contains("Admin"))
                     {
-                        return RedirectToAction("Index", "Dashboard", new { area = "Admins" });
-                        //return RedirectToAction("Index", "Dashboard","Admin/Index");
+                        return Json(new { success = true, redirectUrl = Url.Action("Index", "Dashboard", new { area = "Admins" }) });
                     }
                     else if (user.Roles.Contains("User"))
                     {
-                        return RedirectToAction("Index", "Dashboard", new { area = "Users" });
-
-                        /*return RedirectToAction("Index", "Dashboard","Admin/User");*/
+                        return Json(new { success = true, redirectUrl = Url.Action("Index", "Dashboard", new { area = "Users" }) });
                     }
                     else if (user.Roles.Contains("ProjectAdmin"))
                     {
-                        return RedirectToAction("Index", "Dashboard", new { area = "ProjectAdmins" });
-
-                        /*return RedirectToAction("Index", "Dashboard","Admin/User");*/
+                        return Json(new { success = true, redirectUrl = Url.Action("Index", "Dashboard", new { area = "ProjectAdmins" }) });
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Eposta Adresiniz veya Şifreniz Yanlış");
-                    ViewBag.Error = "Eposta Adresiniz veya Şifreniz Yanlış";
-                    return View("Login");
+                    return Json(new { success = false, message = "Eposta Adresiniz veya Şifreniz Yanlış" });
                 }
             }
-            else
-            {
-                ModelState.AddModelError("", "Eposta Adresiniz veya Şifreniz Yanlış");
-
-            }
-            return View();
+            return Json(new { success = false, message = "Eposta Adresiniz veya Şifreniz Yanlış" });
         }
+
         [HttpGet]
         public IActionResult SignUp()
         {
@@ -82,38 +67,45 @@ namespace HotelGame.WebMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User
+                try
                 {
-                    Name = model.Name,
-                    LastName = model.LastName,
-                    UserName = model.Email,
-                    Email = model.Email,
-                };
-                bool result = _authenticationService.CreateUser(user, model.Password);
-                if (result)
+                    // Kullanıcı varlığını kontrol et
+                    if (_authenticationService.UserExists(model.Email))
+                    {
+                        return Json(new { success = false, message = "Bu e-posta adresi zaten kullanılıyor." });
+                    }
+
+                    User user = new User
+                    {
+                        Name = model.Name,
+                        LastName = model.LastName,
+                        UserName = model.Email, // UserName olarak e-posta adresi kullanılıyor
+                        Email = model.Email
+                    };
+
+                    bool result = _authenticationService.CreateUser(user, model.Password);
+                    if (result)
+                    {
+                        return Json(new { success = true });
+                    }
+                }
+                catch (System.Exception ex)
                 {
-                    return RedirectToAction("Login");
+                    return Json(new { success = false, message = ex.Message });
                 }
             }
-            return View();
+            return Json(new { success = false, message = "Kayıt işlemi sırasında bir hata oluştu." });
         }
 
         public async Task<IActionResult> LogOut()
         {
             await _authenticationService.SignOut();
-            return RedirectToAction("LogOutComplete");
+            return RedirectToAction("Index", "Home"); // Ana sayfaya yönlendir
         }
 
-        public IActionResult LogOutComplete()
-        {
-            return View("Login");
-        }
         public IActionResult Unauthorize()
         {
             return View();
         }
-
-
-
     }
 }

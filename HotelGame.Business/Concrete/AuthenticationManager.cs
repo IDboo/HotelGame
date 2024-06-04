@@ -8,23 +8,20 @@ namespace HotelGame.Business.Concrete
 {
     public class AuthenticationManager : IAuthenticationService
     {
-        protected SignInManager<User> _singManager;
+        protected SignInManager<User> _signInManager;
         protected UserManager<User> _userManager;
         protected RoleManager<Role> _roleManager;
 
-
-        public AuthenticationManager(SignInManager<User> singManager, UserManager<User> userManager, RoleManager<Role> roleManager)
+        public AuthenticationManager(SignInManager<User> signInManager, UserManager<User> userManager, RoleManager<Role> roleManager)
         {
-            _singManager = singManager;
+            _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
         }
 
-
         public User AuthenticateUser(string userName, string password)
         {
-
-            var result = _singManager.PasswordSignInAsync(userName, password, false, lockoutOnFailure: false).Result;
+            var result = _signInManager.PasswordSignInAsync(userName, password, false, lockoutOnFailure: false).Result;
 
             if (result.Succeeded)
             {
@@ -34,39 +31,55 @@ namespace HotelGame.Business.Concrete
                 return user;
             }
             return null;
-
         }
-        //todo: ıdentity yapısı düzgün calısmamaktadır. login haric diğer tüm metotları refactoring yapılmalıdır. 
 
         public bool CreateUser(User user, string password)
         {
+            var existingUserByName = _userManager.FindByNameAsync(user.UserName).Result;
+            if (existingUserByName != null)
+            {
+                throw new System.Exception("Kullanıcı adı zaten mevcut: " + user.UserName);
+            }
+
+            var existingUserByEmail = _userManager.FindByEmailAsync(user.Email).Result;
+            if (existingUserByEmail != null)
+            {
+                throw new System.Exception("E-posta adresi zaten mevcut: " + user.Email);
+            }
+
             var result = _userManager.CreateAsync(user, password).Result;
             if (result.Succeeded)
             {
-
                 var res = _userManager.AddToRoleAsync(user, "User").Result;
                 if (res.Succeeded)
                 {
                     return true;
                 }
+                else
+                {
+                    throw new System.Exception("Rol ekleme işlemi başarısız.");
+                }
             }
-            return false;
+            else
+            {
+                throw new System.Exception(string.Join("; ", result.Errors.Select(e => e.Description)));
+            }
         }
 
         public User GetUser(string username)
         {
             return _userManager.FindByNameAsync(username).Result;
-
         }
 
         public async Task<bool> SignOut()
         {
-            //SingOut yapısı hata mekanızması gonderir hale getirmelidir. geriye muhakak bir değer donmelidir. ve bu değer işlemin hatalı oldugunu göstermelidir. 
-
-            await _singManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return true;
+        }
 
-
+        public bool UserExists(string email)
+        {
+            return _userManager.FindByEmailAsync(email).Result != null;
         }
     }
 }
