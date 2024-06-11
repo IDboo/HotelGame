@@ -6,7 +6,7 @@ namespace HotelGame.DataAccess.Abstract
     public interface IRMCarpetDal : IEntityRepository<RMCarpet>
     {
 
-
+        public int GetMaksimumLevel();
     }
 
 }

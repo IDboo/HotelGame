@@ -10,7 +10,7 @@ namespace HotelGame.DataAccess.Abstract
 {
     public interface IRMTelevisionDal : IEntityRepository<RMTelevision>
     {
-
+        public int GetMaksimumLevel();
 
     }
 

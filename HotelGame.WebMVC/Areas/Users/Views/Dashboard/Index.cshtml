@@ -50,35 +50,80 @@ else
             var room = Model.PlayerRooms[i];
             <div class="grid-item grid-item-@i" data-room-id="@room.Id">
                 <a href="/Users/PlayerRoom/GetRoomDetail/@room.Id">
-                    <img src="~/img/Zemin.png" alt="Room Image" />
+                    <img src="~/img/Floor.png" alt="Room Image" />
                     @if (room.PlayerRoomMaterials != null && room.PlayerRoomMaterials.Any())
                     {
                         foreach (var material in room.PlayerRoomMaterials)
                         {
                             @if (material.RMAirCondition != null)
                             {
-                                <img src="@material.RMAirCondition.ImageUrl" alt="Air Condition" class="klima"/>
+                                @if (material.RMAirCondition.Level == 1)
+                                {
+                                    <img src="@material.RMAirCondition.ImageUrl" alt="Air Condition" class="klima" />
+                                }
+                                else
+                                {
+                                    <img src="@material.RMAirCondition.ImageUrl" alt="Air Condition" class="klima2" />
+                                }
+                                
                             }
                             @if (material.RMTelevision != null)
                             {
                                 <img src="@material.RMTelevision.ImageUrl" alt="Television" class="tv" />
-                                <img src="~/img/tvunit.png" alt="Tv Unit" class="tvunit" />
+                                <img src="~/img/TV Unit.png" alt="Tv Unit" class="tvunit" />
                             }
                             @if (material.RMBed != null)
                             {
-                                <img src="@material.RMBed.ImageUrl" alt="Bed" class="yatak"/>
+                                @if (room.RoomType.Name.Contains("Double"))
+                                {
+                                    @if (material.RMBed.Level == 1)
+                                    {
+                                        <img src="~/img/Double Bed/Double Bed 1.png" alt="Bed" class="yatak" />
+
+                                    }
+                                    @if (material.RMBed.Level == 2)
+                                    {
+                                        <img src="~/img/Double Bed/Double Bed 2.png" alt="Bed" class="yatak" />
+                                    }
+                                    @if (material.RMBed.Level == 3)
+                                    {
+                                        <img src="~/img/Double Bed/Double Bed 3.png" alt="Bed" class="yatak" />
+                                    }
+                                    @if (material.RMBed.Level == 4)
+                                    {
+                                        <img src="~/img/Double Bed/Double Bed 4.png" alt="Bed" class="yatak" />
+                                    }
+                                    @if (material.RMBed.Level == 5)
+                                    {
+                                        <img src="~/img/Double Bed/Double Bed 5.png" alt="Bed" class="yatak" />
+                                    }
+                                    @if (material.RMBed.Level == 6)
+                                    {
+                                        <img src="~/img/Double Bed/Double Bed 6.png" alt="Bed" class="yatak" />
+                                    }
+
+                                }
+                                else if (room.RoomType.Name.Contains("Twin"))
+                                {
+                                    <img src="@material.RMBed.ImageUrl" alt="Bed" class="yatak2" />
+                                    <img src="@material.RMBed.ImageUrl" alt="Bed" class="yatak" />
+                                }
+                                else
+                                {
+                                    <img src="@material.RMBed.ImageUrl" alt="Bed" class="yatak" />
+                                }       
                             }
                             @if (material.RMBathRoom != null)
                             {
-                                <img src="@material.RMBathRoom.ImageUrl" alt="Bath Room" />
+                                <img src="@material.RMBathRoom.ImageUrl"/>
                             }
                             @if (material.RMToilet != null)
                             {
-                                <img src="@material.RMToilet.ImageUrl" alt="Toilet" />
+                                <img src="@material.RMToilet.ImageUrl"/>
                             }
                             @if (material.RMCarpet != null)
                             {
-                                <img src="@material.RMCarpet.ImageUrl" alt="Carpet" />
+                                <img src="@material.RMCarpet.ImageUrl"/>
                             }
                         }
                     }

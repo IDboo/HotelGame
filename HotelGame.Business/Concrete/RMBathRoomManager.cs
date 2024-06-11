@@ -3,7 +3,9 @@ using HotelGame.Business.Abstract;
 using HotelGame.Core.Utilities.Result.Abstract;
 using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.DataAccess.Abstract;
+using HotelGame.DataAccess.Concrete.EntityFramework.Repositories;
 using HotelGame.Entities.Concrete;
+using HotelGame.Entities.DTOs.PlayerHotels;
 using HotelGame.Entities.DTOs.RoomMaterial;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,11 +18,13 @@ namespace HotelGame.Business.Concrete
 
         private readonly IRMBathRoomDal _rMBathRoomDal;
         private readonly IMapper _mapper;
+        private readonly IPlayerHotelService _playerHotelService;
 
-        public RMBathRoomManager(IRMBathRoomDal rMBathRoomDal, IMapper mapper)
+        public RMBathRoomManager(IRMBathRoomDal rMBathRoomDal, IMapper mapper, IPlayerHotelService playerHotelService)
         {
             _rMBathRoomDal = rMBathRoomDal;
             _mapper = mapper;
+            _playerHotelService = playerHotelService;
         }
 
         #endregion
@@ -101,6 +105,49 @@ namespace HotelGame.Business.Concrete
             {
                 return new ErrorDataResult<RMBathRoom>(null, "Bulunamadı");
             }
+        }
+
+        public int GetMaksimumLevel()
+        {
+            var maksimumLevel = _rMBathRoomDal.GetMaksimumLevel();
+            return maksimumLevel;
+        }
+        public async Task<IDataResult<int>> UpdateUperLevelAsync(int Id, int PlayerHotelId)
+        {
+            var oldBathRoom = await GetByIdAsync(Id);
+            if (oldBathRoom.Data != null)
+            {
+                var upperBathRoomLevel = oldBathRoom.Data.Level + 1;
+                var maksimumLevel = GetMaksimumLevel();
+                if (upperBathRoomLevel <= maksimumLevel)
+                {
+                    var upperBathRoom = GetByLevelAsync(upperBathRoomLevel);
+                    var PlayerHotelInformation = _playerHotelService.GetByIdAsync(PlayerHotelId);
+                    if (PlayerHotelInformation.Result.Data.HotelMoney >= upperBathRoom.Result.Data.Price)
+                    {
+                        var money = PlayerHotelInformation.Result.Data.HotelMoney - upperBathRoom.Result.Data.Price;
+                        var QualityPoint = PlayerHotelInformation.Result.Data.HotelQuality + upperBathRoom.Result.Data.QualityPoint;
+                        var updatePlayerHotel = _playerHotelService.UpdateAsync(new PlayerHotelUpdateDto
+                        {
+                            Id = PlayerHotelId,
+                            HotelMoney = money,
+                            HotelLevel = PlayerHotelInformation.Result.Data.HotelLevel,
+                            HotelName = PlayerHotelInformation.Result.Data.HotelName,
+                            HotelQuality = QualityPoint,
+                            HotelTypeId = PlayerHotelInformation.Result.Data.HotelTypeId,
+                            CustomerCommentPointAvarage = PlayerHotelInformation.Result.Data.CustomerCommentPointAvarage,
+                            UserId = PlayerHotelInformation.Result.Data.UserId
+                        });
+                        var checkUpperLevelBathRoom = await GetByLevelAsync(upperBathRoomLevel);
+                        if (checkUpperLevelBathRoom.Data != null)
+                        {
+                            var upperLevelBathRoomId = checkUpperLevelBathRoom.Data.Id;
+                            return new SuccessDataResult<int>(upperLevelBathRoomId, "Başarılı");
+                        }
+                    }
+                }
+            }
+            return new ErrorDataResult<int>("En Yüksek Seviye Televizyona Sahipsin");
         }
     }
 }

@@ -29,27 +29,48 @@
                         <p>Kalite Puanı: @(item.RMAirCondition?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
                         <p>Yükseltme Ücreti: @(item.RMAirCondition?.Price.ToString() ?? "Bilgi Yok")</p>
                     </div>
-                    <div class="product-column">
-                        <p>Seviye: @(Model.UpperRoomMaterial.RMAirCondition.Level.ToString() ?? "Bilgi Yok")</p>
-                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMAirCondition.QualityPoint.ToString() ?? "Bilgi Yok")</p>
-                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMAirCondition.Price.ToString() ?? "Bilgi Yok")</p>
-                    </div>
-                    <div class="product-column">
-                        @if (Model.UpperRoomMaterial?.RMAirCondition?.ImageUrl != null)
-                        {
-                            <img src="@Model.UpperRoomMaterial.RMAirCondition.ImageUrl" alt="Görsel Yok">
-                        }
-                        else
-                        {
-                            <p class="no-image">Görsel Yok</p>
-                        }
-                    </div>
+
+                    @if (item.RMAirCondition.Level < Model.MaksimumLevelAirCondition)
+                    {
+                        <div class="product-column">
+                            <p>Seviye: @(Model.UpperRoomMaterial.RMAirCondition.Level.ToString() ?? "Bilgi Yok")</p>
+                            <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMAirCondition.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                            <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMAirCondition.Price.ToString() ?? "Bilgi Yok")</p>
+                        </div>
+                        <div class="product-column">
+                            @if (Model.UpperRoomMaterial?.RMAirCondition?.ImageUrl != null)
+                            {
+                                <img src="@Model.UpperRoomMaterial.RMAirCondition.ImageUrl" alt="@Model.UpperRoomMaterial.RMAirCondition?.Name">
+                            }
+                            else
+                            {
+                                <p class="no-image">Görsel Yok</p>
+                            }
+                        </div>
+                    }
                 </div>
-                @* <a class="dropdown-item d-flex align-items-center mb-2" asp-controller="playerRoom" asp-area="Users" asp-action="UpdateRmTelevision">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Çıkış Yap</span>
-                </a> *@
-                <button>Ürünü Yükselt</button>
+
+                @if (item.RMAirCondition.Level < Model.MaksimumLevelAirCondition)
+                {
+                    @if (Model.PlayerHotel.HotelMoney < Model.UpperRoomMaterial.RMAirCondition.Price)
+                    {
+                        <button style="background-color:red;cursor:default">Bakiye Yetersiz</button>
+                    }
+                    else
+                    {
+                        <form asp-action="UpdateRMAirCondition" method="post">
+                            <input type="hidden" name="PlayerRoomId" value="@item.PlayerRoomId" />
+                            <input type="hidden" name="RMAirConditionId" value="@item.RMAirCondition.Id" />
+                            <input type="hidden" name="PlayerHotelId" value="@Model.PlayerHotel.Id" />
+                            <button type="submit">Yükselt</button>
+                            @ViewBag.ProjectResultMessage
+                        </form>
+                    }
+                }
+                else
+                {
+                    <button style="background-color:green;cursor:default">Klima Son Seviye</button>
+                }
             </div>
 
             <div class="product">
@@ -70,23 +91,48 @@
                         <p>Kalite Puanı: @(item.RMTelevision?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
                         <p>Yükseltme Ücreti: @(item.RMTelevision?.Price.ToString() ?? "Bilgi Yok")</p>
                     </div>
-                    <div class="product-column">
-                        <p>Seviye: @(Model.UpperRoomMaterial.RMTelevision.Level.ToString() ?? "Bilgi Yok")</p>
-                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMTelevision.QualityPoint.ToString() ?? "Bilgi Yok")</p>
-                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMTelevision.Price.ToString() ?? "Bilgi Yok")</p>
-                    </div>
-                    <div class="product-column">
-                        @if (Model.UpperRoomMaterial?.RMTelevision?.ImageUrl != null)
-                        {
-                            <img src="@Model.UpperRoomMaterial.RMTelevision.ImageUrl" alt="Görsel Yok">
-                        }
-                        else
-                        {
-                            <p class="no-image">Görsel Yok</p>
-                        }
-                    </div>
+
+                    @if (item.RMTelevision.Level < Model.MaksimumLevelTelevision)
+                    {
+                        <div class="product-column">
+                            <p>Seviye: @(Model.UpperRoomMaterial.RMTelevision.Level.ToString() ?? "Bilgi Yok")</p>
+                            <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMTelevision.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                            <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMTelevision.Price.ToString() ?? "Bilgi Yok")</p>
+                        </div>
+                        <div class="product-column">
+                            @if (Model.UpperRoomMaterial?.RMTelevision?.ImageUrl != null)
+                            {
+                                <img src="@Model.UpperRoomMaterial.RMTelevision.ImageUrl" alt="@Model.UpperRoomMaterial.RMTelevision?.Name">
+                            }
+                            else
+                            {
+                                <p class="no-image">Görsel Yok</p>
+                            }
+                        </div>
+                    }
                 </div>
-                <button>Ürünü Yükselt</button>
+
+                @if (item.RMTelevision.Level < Model.MaksimumLevelTelevision)
+                {
+                    @if (Model.PlayerHotel.HotelMoney < Model.UpperRoomMaterial.RMTelevision.Price)
+                    {
+                        <button style="background-color:red;cursor:default">Bakiye Yetersiz</button>
+                    }
+                    else
+                    {
+                        <form asp-action="UpdateRMTelevision" method="post">
+                            <input type="hidden" name="PlayerRoomId" value="@item.PlayerRoomId" />
+                            <input type="hidden" name="RMTelevisionId" value="@item.RMTelevision.Id" />
+                            <input type="hidden" name="PlayerHotelId" value="@Model.PlayerHotel.Id" />
+                            <button type="submit">Yükselt</button>
+                            @ViewBag.ProjectResultMessage
+                        </form>
+                    }
+                }
+                else
+                {
+                    <button style="background-color:green;cursor:default">Televizyon Son Seviye</button>
+                }
             </div>
 
             <div class="product">
@@ -107,23 +153,48 @@
                         <p>Kalite Puanı: @(item.RMBed?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
                         <p>Yükseltme Ücreti: @(item.RMBed?.Price.ToString() ?? "Bilgi Yok")</p>
                     </div>
-                    <div class="product-column">
-                        <p>Seviye: @(@Model.UpperRoomMaterial.RMBed.Level.ToString() ?? "Bilgi Yok")</p>
-                        <p>Kalite Puanı: @(@Model.UpperRoomMaterial.RMBed.QualityPoint.ToString() ?? "Bilgi Yok")</p>
-                        <p>Yükseltme Ücreti: @(@Model.UpperRoomMaterial.RMBed.Price.ToString() ?? "Bilgi Yok")</p>
-                    </div>
-                    <div class="product-column">
-                        @if (Model.UpperRoomMaterial?.RMBed?.ImageUrl != null)
-                        {
-                            <img src="@Model.UpperRoomMaterial.RMBed.ImageUrl" alt="Görsel Yok">
-                        }
-                        else
-                        {
-                            <p class="no-image">Görsel Yok</p>
-                        }
-                    </div>
+
+                    @if (item.RMBed.Level < Model.MaksimumLevelBed)
+                    {
+                        <div class="product-column">
+                            <p>Seviye: @(Model.UpperRoomMaterial.RMBed.Level.ToString() ?? "Bilgi Yok")</p>
+                            <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMBed.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                            <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMBed.Price.ToString() ?? "Bilgi Yok")</p>
+                        </div>
+                        <div class="product-column">
+                            @if (Model.UpperRoomMaterial?.RMBed?.ImageUrl != null)
+                            {
+                                <img src="@Model.UpperRoomMaterial.RMBed.ImageUrl" alt="@Model.UpperRoomMaterial.RMBed?.Name">
+                            }
+                            else
+                            {
+                                <p class="no-image">Görsel Yok</p>
+                            }
+                        </div>
+                    }
                 </div>
-                <button>Ürünü Yükselt</button>
+
+                @if (item.RMBed.Level < Model.MaksimumLevelBed)
+                {
+                    @if (Model.PlayerHotel.HotelMoney < Model.UpperRoomMaterial.RMBed.Price)
+                    {
+                        <button style="background-color:red;cursor:default">Bakiye Yetersiz</button>
+                    }
+                    else
+                    {
+                        <form asp-action="UpdateRMBed" method="post">
+                            <input type="hidden" name="PlayerRoomId" value="@item.PlayerRoomId" />
+                            <input type="hidden" name="RMBedId" value="@item.RMBed.Id" />
+                            <input type="hidden" name="PlayerHotelId" value="@Model.PlayerHotel.Id" />
+                            <button type="submit">Yükselt</button>
+                            @ViewBag.ProjectResultMessage
+                        </form>
+                    }
+                }
+                else
+                {
+                    <button style="background-color:green;cursor:default">Televizyon Son Seviye</button>
+                }
             </div>
 
             <div class="product">
@@ -144,23 +215,48 @@
                         <p>Kalite Puanı: @(item.RMBathRoom?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
                         <p>Yükseltme Ücreti: @(item.RMBathRoom?.Price.ToString() ?? "Bilgi Yok")</p>
                     </div>
-                    <div class="product-column">
-                        <p>Seviye: @(Model.UpperRoomMaterial.RMBathRoom.Level.ToString() ?? "Bilgi Yok")</p>
-                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMBathRoom.QualityPoint.ToString() ?? "Bilgi Yok")</p>
-                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMBathRoom.Price.ToString() ?? "Bilgi Yok")</p>
-                    </div>
-                    <div class="product-column">
-                        @if (Model.UpperRoomMaterial?.RMBathRoom?.ImageUrl != null)
-                        {
-                            <img src="@Model.UpperRoomMaterial.RMBathRoom.ImageUrl" alt="Görsel Yok">
-                        }
-                        else
-                        {
-                            <p class="no-image">Görsel Yok</p>
-                        }
-                    </div>
+
+                    @if (item.RMBathRoom.Level < Model.MaksimumLevelBathRoom)
+                    {
+                        <div class="product-column">
+                            <p>Seviye: @(Model.UpperRoomMaterial.RMBathRoom.Level.ToString() ?? "Bilgi Yok")</p>
+                            <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMBathRoom.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                            <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMBathRoom.Price.ToString() ?? "Bilgi Yok")</p>
+                        </div>
+                        <div class="product-column">
+                            @if (Model.UpperRoomMaterial?.RMBathRoom?.ImageUrl != null)
+                            {
+                                <img src="@Model.UpperRoomMaterial.RMBathRoom.ImageUrl" alt="@Model.UpperRoomMaterial.RMBathRoom?.Name">
+                            }
+                            else
+                            {
+                                <p class="no-image">Görsel Yok</p>
+                            }
+                        </div>
+                    }
                 </div>
-                <button>Ürünü Yükselt</button>
+
+                @if (item.RMBathRoom.Level < Model.MaksimumLevelBathRoom)
+                {
+                    @if (Model.PlayerHotel.HotelMoney < Model.UpperRoomMaterial.RMBathRoom.Price)
+                    {
+                        <button style="background-color:red;cursor:default">Bakiye Yetersiz</button>
+                    }
+                    else
+                    {
+                        <form asp-action="UpdateRMBathRoom" method="post">
+                            <input type="hidden" name="PlayerRoomId" value="@item.PlayerRoomId" />
+                            <input type="hidden" name="RMBathRoomId" value="@item.RMBathRoom.Id" />
+                            <input type="hidden" name="PlayerHotelId" value="@Model.PlayerHotel.Id" />
+                            <button type="submit">Yükselt</button>
+                            @ViewBag.ProjectResultMessage
+                        </form>
+                    }
+                }
+                else
+                {
+                    <button style="background-color:green;cursor:default">Televizyon Son Seviye</button>
+                }
             </div>
 
             <div class="product">
@@ -181,23 +277,48 @@
                         <p>Kalite Puanı: @(item.RMToilet?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
                         <p>Yükseltme Ücreti: @(item.RMToilet?.Price.ToString() ?? "Bilgi Yok")</p>
                     </div>
-                    <div class="product-column">
-                        <p>Seviye: @(Model.UpperRoomMaterial.RMToilet.Level.ToString() ?? "Bilgi Yok")</p>
-                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMToilet.QualityPoint.ToString() ?? "Bilgi Yok")</p>
-                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMToilet.Price.ToString() ?? "Bilgi Yok")</p>
-                    </div>
-                    <div class="product-column">
-                        @if (Model.UpperRoomMaterial?.RMToilet?.ImageUrl != null)
-                        {
-                            <img src="@Model.UpperRoomMaterial.RMToilet.ImageUrl" alt="Görsel Yok">
-                        }
-                        else
-                        {
-                            <p class="no-image">Görsel Yok</p>
-                        }
-                    </div>
+
+                    @if (item.RMToilet.Level < Model.MaksimumLevelToilet)
+                    {
+                        <div class="product-column">
+                            <p>Seviye: @(Model.UpperRoomMaterial.RMToilet.Level.ToString() ?? "Bilgi Yok")</p>
+                            <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMToilet.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                            <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMToilet.Price.ToString() ?? "Bilgi Yok")</p>
+                        </div>
+                        <div class="product-column">
+                            @if (Model.UpperRoomMaterial?.RMToilet?.ImageUrl != null)
+                            {
+                                <img src="@Model.UpperRoomMaterial.RMToilet.ImageUrl" alt="@Model.UpperRoomMaterial.RMToilet?.Name">
+                            }
+                            else
+                            {
+                                <p class="no-image">Görsel Yok</p>
+                            }
+                        </div>
+                    }
                 </div>
-                <button>Ürünü Yükselt</button>
+
+                @if (item.RMToilet.Level < Model.MaksimumLevelToilet)
+                {
+                    @if (Model.PlayerHotel.HotelMoney < Model.UpperRoomMaterial.RMToilet.Price)
+                    {
+                        <button style="background-color:red;cursor:default">Bakiye Yetersiz</button>
+                    }
+                    else
+                    {
+                        <form asp-action="UpdateRMToilet" method="post">
+                            <input type="hidden" name="PlayerRoomId" value="@item.PlayerRoomId" />
+                            <input type="hidden" name="RMToiletId" value="@item.RMToilet.Id" />
+                            <input type="hidden" name="PlayerHotelId" value="@Model.PlayerHotel.Id" />
+                            <button type="submit">Yükselt</button>
+                            @ViewBag.ProjectResultMessage
+                        </form>
+                    }
+                }
+                else
+                {
+                    <button style="background-color:green;cursor:default">Televizyon Son Seviye</button>
+                }
             </div>
 
             <div class="product">
@@ -218,24 +339,50 @@
                         <p>Kalite Puanı: @(item.RMCarpet?.QualityPoint.ToString() ?? "Bilgi Yok")</p>
                         <p>Yükseltme Ücreti: @(item.RMCarpet?.Price.ToString() ?? "Bilgi Yok")</p>
                     </div>
-                    <div class="product-column">
-                        <p>Seviye: @(Model.UpperRoomMaterial.RMCarpet.Level.ToString() ?? "Bilgi Yok")</p>
-                        <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMCarpet.QualityPoint.ToString() ?? "Bilgi Yok")</p>
-                        <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMCarpet.Price.ToString() ?? "Bilgi Yok")</p>
-                    </div>
-                    <div class="product-column">
-                        @if (Model.UpperRoomMaterial?.RMCarpet?.ImageUrl != null)
-                        {
-                            <img src="@Model.UpperRoomMaterial.RMCarpet.ImageUrl" alt="Görsel Yok">
-                        }
-                        else
-                        {
-                            <p class="no-image">Görsel Yok</p>
-                        }
-                    </div>
+
+                    @if (item.RMCarpet.Level < Model.MaksimumLevelCarpet)
+                    {
+                        <div class="product-column">
+                            <p>Seviye: @(Model.UpperRoomMaterial.RMCarpet.Level.ToString() ?? "Bilgi Yok")</p>
+                            <p>Kalite Puanı: @(Model.UpperRoomMaterial.RMCarpet.QualityPoint.ToString() ?? "Bilgi Yok")</p>
+                            <p>Yükseltme Ücreti: @(Model.UpperRoomMaterial.RMCarpet.Price.ToString() ?? "Bilgi Yok")</p>
+                        </div>
+                        <div class="product-column">
+                            @if (Model.UpperRoomMaterial?.RMCarpet?.ImageUrl != null)
+                            {
+                                <img src="@Model.UpperRoomMaterial.RMCarpet.ImageUrl" alt="@Model.UpperRoomMaterial.RMCarpet?.Name">
+                            }
+                            else
+                            {
+                                <p class="no-image">Görsel Yok</p>
+                            }
+                        </div>
+                    }
                 </div>
-                <button>Ürünü Yükselt</button>
+
+                @if (item.RMCarpet.Level < Model.MaksimumLevelCarpet)
+                {
+                    @if (Model.PlayerHotel.HotelMoney < Model.UpperRoomMaterial.RMCarpet.Price)
+                    {
+                        <button style="background-color:red;cursor:default">Bakiye Yetersiz</button>
+                    }
+                    else
+                    {
+                        <form asp-action="UpdateRMCarpet" method="post">
+                            <input type="hidden" name="PlayerRoomId" value="@item.PlayerRoomId" />
+                            <input type="hidden" name="RMCarpetId" value="@item.RMCarpet.Id" />
+                            <input type="hidden" name="PlayerHotelId" value="@Model.PlayerHotel.Id" />
+                            <button type="submit">Yükselt</button>
+                            @ViewBag.ProjectResultMessage
+                        </form>
+                    }
+                }
+                else
+                {
+                    <button style="background-color:green;cursor:default">Televizyon Son Seviye</button>
+                }
             </div>
+
         }
     }
     else

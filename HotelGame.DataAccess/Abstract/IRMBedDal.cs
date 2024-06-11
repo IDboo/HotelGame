@@ -6,7 +6,7 @@ namespace HotelGame.DataAccess.Abstract
     public interface IRMBedDal : IEntityRepository<RMBed>
     {
 
-
+        public int GetMaksimumLevel();
     }
 
 }

@@ -5,7 +5,7 @@ namespace HotelGame.DataAccess.Abstract
 {
     public interface IRMBathRoomDal : IEntityRepository<RMBathRoom>
     {
-
+        public int GetMaksimumLevel();
 
     }
 

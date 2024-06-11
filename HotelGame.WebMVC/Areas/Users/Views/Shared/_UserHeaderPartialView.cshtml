@@ -23,7 +23,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="Dashboard" class="d-flex align-items-center">
+        <a asp-area="Users" asp-controller="Dashboard" asp-action="Index" asp-route-otelId="@Model.PlayerHotel.Id" class="d-flex align-items-center">
             @if (Model.PlayerHotel != null)
             {
                 <span class="hotelName">@Model.PlayerHotel.HotelName</span>
@@ -34,6 +34,7 @@
             }
         </a>
     </div><!-- End Logo -->
+
 
     <partial name="_UserMenuPartialView" />
 

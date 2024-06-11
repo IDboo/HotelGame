@@ -17,6 +17,13 @@ namespace HotelGame.WebMVC.Models.GamePlay
         public List<PlayerRoomMaterial> PlayerRoomMaterials { get; set; }
 
         public PlayerRoomMaterial UpperRoomMaterial { get; set; }
+
+        public int MaksimumLevelTelevision { get; set; }
+        public int MaksimumLevelAirCondition { get; set; }
+        public int MaksimumLevelBed { get; set; }
+        public int MaksimumLevelCarpet { get; set; }
+        public int MaksimumLevelBathRoom { get; set; }
+        public int MaksimumLevelToilet { get; set; }
     }
 
 }

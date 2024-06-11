@@ -59,6 +59,13 @@ namespace HotelGame.WebMVC.Areas.Users.Controllers
             var rMToilets = await _rMToiletService.GetAllAsync();
             var rMCarpet = await _rMCarpetService.GetAllAsync();
 
+            var maksimumLevelAirCondition = _rMAirConditionService.GetMaksimumLevel();
+            var maksimumLevelBathRoom = _rMBathRoomService.GetMaksimumLevel();
+            var maksimumLevelBed = _rMBedService.GetMaksimumLevel();
+            var maksimumLevelCarpet = _rMCarpetService.GetMaksimumLevel();
+            var maksimumLevelTelevision = _rMTelevisionService.GetMaksimumLevel();
+            var maksimumLevelToilet = _rMToiletService.GetMaksimumLevel();
+
             var result = await _playerRoomMaterialService.GetAllByPlayerRoomIdAsync(Id);
             var playerHotelDetail = await _playerHotelService.PlayerHotelByUserId(userId);
 
@@ -70,11 +77,89 @@ namespace HotelGame.WebMVC.Areas.Users.Controllers
                 {
                     PlayerHotel = playerHotelDetail.Data,
                     PlayerRoomMaterials = result.Data,
-                    UpperRoomMaterial = upperLevelMaterialResult.Data
+                    UpperRoomMaterial = upperLevelMaterialResult.Data,
+                    MaksimumLevelAirCondition = maksimumLevelAirCondition,
+                    MaksimumLevelBed = maksimumLevelBed,
+                    MaksimumLevelBathRoom = maksimumLevelBathRoom,
+                    MaksimumLevelCarpet = maksimumLevelCarpet,
+                    MaksimumLevelTelevision = maksimumLevelTelevision,
+                    MaksimumLevelToilet = maksimumLevelToilet
                 };
                 return View(playerRoomMaterials);
             }
             return View();
-        } 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRMTelevision(int PlayerRoomId, int RMTelevisionId, int PlayerHotelId)
+        {
+            var result = await _playerRoomMaterialService.UpdateRmTelevisionLevelAsync(PlayerRoomId, RMTelevisionId, PlayerHotelId);
+            if (result.Success)
+            {
+                return RedirectToAction("GetRoomDetail", new { Id = PlayerRoomId });
+            }
+            ViewBag.ProjectResultMessage = result.Message;
+            return RedirectToAction("GetRoomDetail");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRMAirCondition(int PlayerRoomId, int RMAirConditionId, int PlayerHotelId)
+        {
+            var result = await _playerRoomMaterialService.UpdateRmAirConditionLevelAsync(PlayerRoomId, RMAirConditionId, PlayerHotelId);
+            if (result.Success)
+            {
+                return RedirectToAction("GetRoomDetail", new { Id = PlayerRoomId });
+            }
+            ViewBag.ProjectResultMessage = result.Message;
+            return RedirectToAction("GetRoomDetail");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRMBathRoom(int PlayerRoomId, int RMBathRoomId, int PlayerHotelId)
+        {
+            var result = await _playerRoomMaterialService.UpdateRmBathRoomLevelAsync(PlayerRoomId, RMBathRoomId, PlayerHotelId);
+            if (result.Success)
+            {
+                return RedirectToAction("GetRoomDetail", new { Id = PlayerRoomId });
+            }
+            ViewBag.ProjectResultMessage = result.Message;
+            return RedirectToAction("GetRoomDetail");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRMBed(int PlayerRoomId, int RMBedId, int PlayerHotelId)
+        {
+            var result = await _playerRoomMaterialService.UpdateRmBedLevelAsync(PlayerRoomId, RMBedId, PlayerHotelId);
+            if (result.Success)
+            {
+                return RedirectToAction("GetRoomDetail", new { Id = PlayerRoomId });
+            }
+            ViewBag.ProjectResultMessage = result.Message;
+            return RedirectToAction("GetRoomDetail");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRMCarpet(int PlayerRoomId, int RMCarpetId, int PlayerHotelId)
+        {
+            var result = await _playerRoomMaterialService.UpdateRmCarpetLevelAsync(PlayerRoomId, RMCarpetId, PlayerHotelId);
+            if (result.Success)
+            {
+                return RedirectToAction("GetRoomDetail", new { Id = PlayerRoomId });
+            }
+            ViewBag.ProjectResultMessage = result.Message;
+            return RedirectToAction("GetRoomDetail");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRMToilet(int PlayerRoomId, int RMToiletId, int PlayerHotelId)
+        {
+            var result = await _playerRoomMaterialService.UpdateRmToiletLevelAsync(PlayerRoomId, RMToiletId, PlayerHotelId);
+            if (result.Success)
+            {
+                return RedirectToAction("GetRoomDetail", new { Id = PlayerRoomId });
+            }
+            ViewBag.ProjectResultMessage = result.Message;
+            return RedirectToAction("GetRoomDetail");
+        }
     }
 }

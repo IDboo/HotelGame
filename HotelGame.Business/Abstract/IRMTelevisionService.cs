@@ -28,6 +28,9 @@ namespace HotelGame.Business.Abstract
         Task<IResult> DeleteAsync(int Id);
 
         Task<IDataResult<RMTelevision>> GetByLevelAsync(int level);
+        Task<IDataResult<int>> UpdateUperLevelAsync(int Id, int PlayerHotelId);
+
+        public int GetMaksimumLevel();
     }
 
 

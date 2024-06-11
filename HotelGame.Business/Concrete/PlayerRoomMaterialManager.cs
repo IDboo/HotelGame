@@ -9,6 +9,7 @@ using HotelGame.DataAccess.Concrete.EntityFramework.Repositories;
 using HotelGame.Entities.Concrete;
 using HotelGame.Entities.DTOs.PlayerRoomMaterial;
 using HotelGame.Entities.DTOs.PlayerRoomMaterials;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -272,45 +273,142 @@ namespace HotelGame.Business.Concrete
             return new SuccessDataResult<PlayerRoomMaterial>(upperLevelMaterials) { };
         }
 
-        //public async Task<IResult> UpdatePlayerRMTelevision(int playerRoomId)
-        //{
-        //    var defaultRoomMaterials = await GetAllByPlayerRoomIdAsync(playerRoomId);
-        //    var upperLevelMaterials = new PlayerRoomMaterial();
+        public async Task<IResult> UpdateRmAirConditionLevelAsync(int PlayerRoomId, int AirConditionId, int PlayerHotelId)
+        {
+            if (AirConditionId != 0)
+            {
+                var upperLevelAirConditionId = await _rMAirConditionService.UpdateUperLevelAsync(AirConditionId, PlayerHotelId);
+                if (upperLevelAirConditionId.Success)
+                {
+                    var upperLevelAirConditionIdCovertInt = Convert.ToInt32(upperLevelAirConditionId.Data);
 
-        //    if (defaultRoomMaterials.Data == null || defaultRoomMaterials.Data.Count == 0)
-        //    {
-        //        return new ErrorDataResult<PlayerRoomMaterial>("Default room materials not found");
-        //    }
+                    var playerRoomMaterial = await _playerRoomMaterialDal.GetAsync(x => x.PlayerRoomId == PlayerRoomId && x.RMAirConditionId == AirConditionId);
+                    if (playerRoomMaterial != null)
+                    {
+                        playerRoomMaterial.RMAirConditionId = upperLevelAirConditionIdCovertInt;
+                        await _playerRoomMaterialDal.UpdateAsync(playerRoomMaterial);
+                        await _playerRoomMaterialDal.SaveAsync();
+                        return new SuccessResult("İşlem Başarılı");
+                    }
+                    return new ErrorResult("İlgili kayıt bulunamadı.");
+                }
+            }
+            return new ErrorResult("Geçersiz AirConditionId.");
+        }
 
-        //    foreach (var roomMaterial in defaultRoomMaterials.Data)
-        //    {
+        public async Task<IResult> UpdateRmTelevisionLevelAsync(int PlayerRoomId, int TelevisionId, int PlayerHotelId)
+        {
+            if (TelevisionId != 0)
+            {
+                var upperLevelTelevisionId = await _rMTelevisionService.UpdateUperLevelAsync(TelevisionId, PlayerHotelId);
+                if (upperLevelTelevisionId.Success)
+                {
+                    var upperLevelTelevisionIdCovertInt = Convert.ToInt32(upperLevelTelevisionId.Data);
 
-        //        if (roomMaterial.RMTelevisionId != 0)
-        //        {
-        //            var checkRMTelevisionId = await _rMTelevisionService.GetByIdAsync(roomMaterial.RMTelevisionId);
-        //            if (checkRMTelevisionId.Data != null)
-        //            {
-        //                var checkRMTelevisonLevel = await _rMTelevisionService.GetByLevelAsync(checkRMTelevisionId.Data.Level);
-        //                if (checkRMTelevisonLevel.Data != null)
-        //                {
-        //                    var upperTelevisionLevel = checkRMTelevisonLevel.Data.Level + 1;
-        //                    var checkUpperLevelTelevision = await _rMTelevisionService.GetByLevelAsync(upperTelevisionLevel);
-        //                    if (checkUpperLevelTelevision.Data != null)
-        //                    {
-        //                        upperLevelMaterials.RMTelevisionId = checkUpperLevelTelevision.Data.Id;
-        //                        upperLevelMaterials.RMTelevision = checkUpperLevelTelevision.Data;  // İlişkiyi ekliyoruz
-        //                    }
-        //                    var roomMaterialUpdateDto = new PlayerRoomMaterialUpdateDto
-        //                    {
-        //                        RMTelevisionId = roomMaterial.RMTelevisionId,
-        //                    };
+                    var playerRoomMaterial = await _playerRoomMaterialDal.GetAsync(x => x.PlayerRoomId == PlayerRoomId && x.RMTelevisionId == TelevisionId);
+                    if (playerRoomMaterial != null)
+                    {
+                        playerRoomMaterial.RMTelevisionId = upperLevelTelevisionIdCovertInt;
+                        await _playerRoomMaterialDal.UpdateAsync(playerRoomMaterial);
+                        await _playerRoomMaterialDal.SaveAsync();
+                        return new SuccessResult("İşlem Başarılı");
+                    }
+                    return new ErrorResult("İlgili kayıt bulunamadı.");
+                }
+            }
+            return new ErrorResult("Geçersiz TelevisionId.");
+        }
 
-        //                    UpdateAsync(roomMaterialUpdateDto);
-        //                }
-        //            }
-        //        }
-        //    }
+        public async Task<IResult> UpdateRmBathRoomLevelAsync(int PlayerRoomId, int BathRoomId, int PlayerHotelId)
+        {
+            if (BathRoomId != 0)
+            {
+                var upperLevelBathRoomId = await _rMBathRoomService.UpdateUperLevelAsync(BathRoomId, PlayerHotelId);
+                if (upperLevelBathRoomId.Success)
+                {
+                    var upperLevelBathRoomIdCovertInt = Convert.ToInt32(upperLevelBathRoomId.Data);
 
-        //}
+                    var playerRoomMaterial = await _playerRoomMaterialDal.GetAsync(x => x.PlayerRoomId == PlayerRoomId && x.RMBathRoomId == BathRoomId);
+                    if (playerRoomMaterial != null)
+                    {
+                        playerRoomMaterial.RMBathRoomId = upperLevelBathRoomIdCovertInt;
+                        await _playerRoomMaterialDal.UpdateAsync(playerRoomMaterial);
+                        await _playerRoomMaterialDal.SaveAsync();
+                        return new SuccessResult("İşlem Başarılı");
+                    }
+                    return new ErrorResult("İlgili kayıt bulunamadı.");
+                }
+            }
+            return new ErrorResult("Geçersiz BathRoomId.");
+        }
+
+        public async Task<IResult> UpdateRmBedLevelAsync(int PlayerRoomId, int BedId, int PlayerHotelId)
+        {
+            if (BedId != 0)
+            {
+                var upperLevelBedId = await _rMBedService.UpdateUperLevelAsync(BedId, PlayerHotelId);
+                if (upperLevelBedId.Success)
+                {
+                    var upperLevelBedIdCovertInt = Convert.ToInt32(upperLevelBedId.Data);
+
+                    var playerRoomMaterial = await _playerRoomMaterialDal.GetAsync(x => x.PlayerRoomId == PlayerRoomId && x.RMBedId == BedId);
+                    if (playerRoomMaterial != null)
+                    {
+                        playerRoomMaterial.RMBedId = upperLevelBedIdCovertInt;
+                        await _playerRoomMaterialDal.UpdateAsync(playerRoomMaterial);
+                        await _playerRoomMaterialDal.SaveAsync();
+                        return new SuccessResult("İşlem Başarılı");
+                    }
+                    return new ErrorResult("İlgili kayıt bulunamadı.");
+                }
+            }
+            return new ErrorResult("Geçersiz BedId.");
+        }
+
+        public async Task<IResult> UpdateRmCarpetLevelAsync(int PlayerRoomId, int CarpetId, int PlayerHotelId)
+        {
+            if (CarpetId != 0)
+            {
+                var upperLevelCarpetId = await _rMCarpetService.UpdateUperLevelAsync(CarpetId, PlayerHotelId);
+                if (upperLevelCarpetId.Success)
+                {
+                    var upperLevelCarpetIdCovertInt = Convert.ToInt32(upperLevelCarpetId.Data);
+
+                    var playerRoomMaterial = await _playerRoomMaterialDal.GetAsync(x => x.PlayerRoomId == PlayerRoomId && x.RMCarpetId == CarpetId);
+                    if (playerRoomMaterial != null)
+                    {
+                        playerRoomMaterial.RMCarpetId = upperLevelCarpetIdCovertInt;
+                        await _playerRoomMaterialDal.UpdateAsync(playerRoomMaterial);
+                        await _playerRoomMaterialDal.SaveAsync();
+                        return new SuccessResult("İşlem Başarılı");
+                    }
+                    return new ErrorResult("İlgili kayıt bulunamadı.");
+                }
+            }
+            return new ErrorResult("Geçersiz CarpetId.");
+        }
+
+        public async Task<IResult> UpdateRmToiletLevelAsync(int PlayerRoomId, int ToiletId, int PlayerHotelId)
+        {
+            if (ToiletId != 0)
+            {
+                var upperLevelToiletId = await _rMToiletService.UpdateUperLevelAsync(ToiletId, PlayerHotelId);
+                if (upperLevelToiletId.Success)
+                {
+                    var upperLevelToiletIdCovertInt = Convert.ToInt32(upperLevelToiletId.Data);
+
+                    var playerRoomMaterial = await _playerRoomMaterialDal.GetAsync(x => x.PlayerRoomId == PlayerRoomId && x.RMToiletId == ToiletId);
+                    if (playerRoomMaterial != null)
+                    {
+                        playerRoomMaterial.RMToiletId = upperLevelToiletIdCovertInt;
+                        await _playerRoomMaterialDal.UpdateAsync(playerRoomMaterial);
+                        await _playerRoomMaterialDal.SaveAsync();
+                        return new SuccessResult("İşlem Başarılı");
+                    }
+                    return new ErrorResult("İlgili kayıt bulunamadı.");
+                }
+            }
+            return new ErrorResult("Geçersiz ToiletId.");
+        }
     }
 }

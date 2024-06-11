@@ -131,7 +131,7 @@ body {
     }
 
     .grid-item span {
-        z-index: 3;
+        z-index: 4;
         display: flex;
         max-width: 75%;
         padding-left: 5px;
@@ -236,7 +236,7 @@ element.style {
     left: 683px;
     filter: brightness(90%);
     width: 159px;
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     pointer-events: none;
 }
@@ -246,7 +246,7 @@ element.style {
     left: 573px;
     filter: brightness(90%);
     width: 159px;
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     pointer-events: none;
 }
@@ -256,7 +256,7 @@ element.style {
     left: 837px;
     filter: brightness(90%);
     width: 159px;
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     pointer-events: none;
 }
@@ -266,7 +266,7 @@ element.style {
     left: 811px;
     filter: brightness(90%);
     width: 59px;
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     pointer-events: none;
 }
@@ -276,7 +276,7 @@ element.style {
     left: 911px;
     filter: brightness(90%);
     width: 159px;
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     pointer-events: none;
 }
@@ -311,27 +311,37 @@ element.style {
     left: -5px !important;
     filter: brightness(90%) !important;
     width: 125px !important;
-    z-index: 1 !important;
-    position: absolute !important;
-    pointer-events: none !important;
-}
-
-.tv {
-    top: -59px !important;
-    right: 60px !important;
-    filter: brightness(90%) !important;
-    width: 90px !important;
     z-index: 2 !important;
     position: absolute !important;
     pointer-events: none !important;
 }
 
-.tvunit {
-    top: -50px !important;
-    right: 55px !important;
+.yatak2 {
+    top: -55px !important;
+    left: 80px !important;
     filter: brightness(90%) !important;
-    width: 100px !important;
-    z-index: 1 !important;
+    width: 125px !important;
+    z-index: 2 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+}
+
+.tv {
+    top: -32px !important;
+    right: -3px !important;
+    filter: brightness(90%) !important;
+    width: 80px !important;
+    z-index: 3 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+}
+
+.tvunit {
+    top: 0px !important;
+    right: 0px !important;
+    filter: brightness(90%) !important;
+    width: 75px !important;
+    z-index: 2 !important;
     position: absolute !important;
     pointer-events: none !important;
 }
@@ -341,7 +351,18 @@ element.style {
     left: 50px !important;
     filter: brightness(90%) !important;
     width: 40px !important;
-    z-index: 1 !important;
+    z-index: 2 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+    transform: scaleX(-1);
+}
+
+.klima2 {
+    top: -35px !important;
+    left: 45px !important;
+    filter: brightness(90%) !important;
+    width: 50px !important;
+    z-index: 3 !important;
     position: absolute !important;
     pointer-events: none !important;
     transform: scaleX(-1);

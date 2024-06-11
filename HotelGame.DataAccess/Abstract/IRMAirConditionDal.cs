@@ -6,7 +6,7 @@ namespace HotelGame.DataAccess.Abstract
     public interface IRMAirConditionDal : IEntityRepository<RMAirCondition>
     {
 
-
+        public int GetMaksimumLevel();
     }
 
 }

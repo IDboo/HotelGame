@@ -3,7 +3,9 @@ using HotelGame.Business.Abstract;
 using HotelGame.Core.Utilities.Result.Abstract;
 using HotelGame.Core.Utilities.Result.Concrete;
 using HotelGame.DataAccess.Abstract;
+using HotelGame.DataAccess.Concrete.EntityFramework.Repositories;
 using HotelGame.Entities.Concrete;
+using HotelGame.Entities.DTOs.PlayerHotels;
 using HotelGame.Entities.DTOs.RoomMaterial;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,11 +18,13 @@ namespace HotelGame.Business.Concrete
 
         private readonly IRMCarpetDal _rMCarpetDal;
         private readonly IMapper _mapper;
+        private readonly IPlayerHotelService _playerHotelService;
 
-        public RMCarpetManager(IRMCarpetDal rMCarpetDal, IMapper mapper)
+        public RMCarpetManager(IRMCarpetDal rMCarpetDal, IMapper mapper, IPlayerHotelService playerHotelService)
         {
             _rMCarpetDal = rMCarpetDal;
             _mapper = mapper;
+            _playerHotelService = playerHotelService;
         }
 
         #endregion
@@ -101,6 +105,50 @@ namespace HotelGame.Business.Concrete
             {
                 return new ErrorDataResult<RMCarpet>(null, "Bulunamadı");
             }
+        }
+
+        public int GetMaksimumLevel()
+        {
+            var maksimumLevel = _rMCarpetDal.GetMaksimumLevel();
+            return maksimumLevel;
+        }
+
+        public async Task<IDataResult<int>> UpdateUperLevelAsync(int Id, int PlayerHotelId)
+        {
+            var oldCarpet = await GetByIdAsync(Id);
+            if (oldCarpet.Data != null)
+            {
+                var upperCarpetLevel = oldCarpet.Data.Level + 1;
+                var maksimumLevel = GetMaksimumLevel();
+                if (upperCarpetLevel <= maksimumLevel)
+                {
+                    var upperCarpet = GetByLevelAsync(upperCarpetLevel);
+                    var PlayerHotelInformation = _playerHotelService.GetByIdAsync(PlayerHotelId);
+                    if (PlayerHotelInformation.Result.Data.HotelMoney >= upperCarpet.Result.Data.Price)
+                    {
+                        var money = PlayerHotelInformation.Result.Data.HotelMoney - upperCarpet.Result.Data.Price;
+                        var QualityPoint = PlayerHotelInformation.Result.Data.HotelQuality + upperCarpet.Result.Data.QualityPoint;
+                        var updatePlayerHotel = _playerHotelService.UpdateAsync(new PlayerHotelUpdateDto
+                        {
+                            Id = PlayerHotelId,
+                            HotelMoney = money,
+                            HotelLevel = PlayerHotelInformation.Result.Data.HotelLevel,
+                            HotelName = PlayerHotelInformation.Result.Data.HotelName,
+                            HotelQuality = QualityPoint,
+                            HotelTypeId = PlayerHotelInformation.Result.Data.HotelTypeId,
+                            CustomerCommentPointAvarage = PlayerHotelInformation.Result.Data.CustomerCommentPointAvarage,
+                            UserId = PlayerHotelInformation.Result.Data.UserId
+                        });
+                        var checkUpperLevelCarpet = await GetByLevelAsync(upperCarpetLevel);
+                        if (checkUpperLevelCarpet.Data != null)
+                        {
+                            var upperLevelCarpetId = checkUpperLevelCarpet.Data.Id;
+                            return new SuccessDataResult<int>(upperLevelCarpetId, "Başarılı");
+                        }
+                    }
+                }
+            }
+            return new ErrorDataResult<int>("En Yüksek Seviye Televizyona Sahipsin");
         }
     }
 }

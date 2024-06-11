@@ -30,9 +30,11 @@ namespace HotelGame.Business.Abstract
 
         Task<IDataResult<List<PlayerRoomMaterial>>> GetAllByPlayerRoomIdAsync(int playerRoomId);
         Task<IDataResult<PlayerRoomMaterial>> GetUpperLevelMaterial(int playerRoomId);
-
-        //Task<IResult> UpdatePlayerRMTelevision(int RMTelevisionId);
-
-
+        Task<IResult> UpdateRmAirConditionLevelAsync(int PlayerRoomId, int AirConditionId, int PlayerHotelId);
+        Task<IResult> UpdateRmTelevisionLevelAsync(int PlayerRoomId, int TelevisionId, int PlayerHotelId);
+        Task<IResult> UpdateRmBedLevelAsync(int PlayerRoomId, int BedId, int PlayerHotelId);
+        Task<IResult> UpdateRmBathRoomLevelAsync(int PlayerRoomId, int BathRoomId, int PlayerHotelId);
+        Task<IResult> UpdateRmToiletLevelAsync(int PlayerRoomId, int ToiletId, int PlayerHotelId);
+        Task<IResult> UpdateRmCarpetLevelAsync(int PlayerRoomId, int CarpetId, int PlayerHotelId);
     }
 }
