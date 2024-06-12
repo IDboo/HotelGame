@@ -23,16 +23,17 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a asp-area="Users" asp-controller="Dashboard" asp-action="Index" asp-route-otelId="@Model.PlayerHotel.Id" class="d-flex align-items-center">
             @if (Model.PlayerHotel != null)
             {
-                <span class="hotelName">@Model.PlayerHotel.HotelName</span>
+                <a asp-area="Users" asp-controller="Dashboard" asp-action="Index" asp-route-otelId="@Model.PlayerHotel.Id" class="d-flex align-items-center">
+                    <span class="hotelName">@Model.PlayerHotel.HotelName</span>
+                </a>
             }
             else
             {
-                <p class="hotelName">Otelini Oluştur</p>
+                <span class="hotelName">Hoş Geldiniz</span>
             }
-        </a>
+       
     </div><!-- End Logo -->
 
 

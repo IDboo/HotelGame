@@ -39,6 +39,7 @@ function handleBellClick() {
     const normalBellSrc = '/img/Bell.png';
     const pressedBellSrc = '/img/Bell_Line_Down.png';
     const ringingBellSrc = '/img/Bell_Line.png';
+    const bellSound = new Audio('/sound/ringtone.mp3');
 
     bellButton.src = pressedBellSrc;
     bellButton.classList.add('pressed');
@@ -46,6 +47,7 @@ function handleBellClick() {
     setTimeout(() => {
         bellButton.src = ringingBellSrc;
         bellButton.classList.remove('pressed');
+        bellSound.play();
     }, 100); // 100ms sonra basılı zil görüntüsü yerine ses çıkaran zil görüntüsü
 
     openLoginPopup();
